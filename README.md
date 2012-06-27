@@ -1,4 +1,4 @@
-TangoCard_Java_SDK
-==================
+java_sdk
+========
 
-Java SDK for the TangoCard API.
+The Java SDK
