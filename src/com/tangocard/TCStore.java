@@ -139,7 +139,12 @@ public class TCStore {
 				JSONObject response = responseObject.getJSONObject("response");
 				
 				String primary = response.getString("cardNumber");
-				String secondary = response.getString("cardPin");
+
+				String secondary = null;
+				if (response.has("cardPin") && !response.isNull("cardPin")) {
+					secondary = response.getString("cardPin");
+				}
+				
 				String orderId = response.getString("referenceOrderId");
 				Card theCard = new Card(primary, secondary);
 				
