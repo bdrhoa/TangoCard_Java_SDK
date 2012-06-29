@@ -6,7 +6,7 @@ package com.tangocard;
  * using only $1.
  *
  * @author CMH
- * @author WEW
+ * @author Winston E. Williams
  * @version 1.0
  */
 

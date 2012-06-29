@@ -8,7 +8,7 @@ import java.util.Date;
  * multiple cards, but for now it is limited to one
  *
  * @author CMH
- * @author WEW
+ * @author Winston E Williams
  * @version 1.0
  */
  

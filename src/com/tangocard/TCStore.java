@@ -12,53 +12,59 @@ import java.util.Date;
  * This class is used to purchase TangoCards or Store cards and to get available Balance per account
  *
  * @author CMH
- * @author WEW
+ * @author Winston E. Williams
  * @version 1.0
  */
 
 public class TCStore {
 	
-	static boolean ENVIRONMENT_INTEGRATION = false;
-	static boolean ENVIRONMENT_PRODUCTION = true;
+	final static boolean ENVIRONMENT_INTEGRATION = false;
+	final static boolean ENVIRONMENT_PRODUCTION = true;
 
-	private String baseURL;
-	private String userName;
-	private String password;
-	private String company_identifier;
+	protected String baseURL = null;
+	protected String userName = null;
+	protected String password = null;
+	protected String company_identifier = null;
+	protected Transaction lastTransaction = null;
 
 	/**
 	 * This response type indicates that the transaction was successful.
 	 */
-	private final String SUCCESS = "SUCCESS";
+	protected final String SUCCESS = "SUCCESS";
 	
     /**     
      * This response type indicates that there was an error internal to the 
      * TangoCard service.
      */  
-	private final String SYS_ERROR = "SYS_ERROR";
+	protected final String SYS_ERROR = "SYS_ERROR";
+	protected final String SYS_ERROR_MESSAGE = "System error";
 	
     /**
      * This response type indicates that there was a problem with the inputs.  
      */
-	private final String INV_INPUT = "INV_INPUT";
+	protected final String INV_INPUT = "INV_INPUT";
+	protected final String INV_INPUT_MESSAGE = "Invalid input";
 	
     /**
      * This response type indicates that the supplied login credentials were 
      * invalid.
      */
-	private final String INV_CREDENTIAL = "INV_CREDENTIAL";
+	protected final String INV_CREDENTIAL = "INV_CREDENTIAL";
+	protected final String INV_CREDENTIAL_MESSAGE = "Invalid credentials";
 	
     /**
      * This response type indicates that the item was not available for purchase 
      * due to there not being enough available inventory.
      */
-	private final String INS_INV = "INS_INV";
+	protected final String INS_INV = "INS_INV";
+	protected final String INS_INV_MESSAGE = "Insufficient inventory";
 	
     /**
      * This response type indicates that the authenticated account did not have 
      * sufficient funds available to make the purchase.
      */
-	private final String INS_FUNDS = "INS_FUNDS";
+	protected final String INS_FUNDS = "INS_FUNDS";
+	protected final String INS_FUNDS_MESSAGE = "Insufficient funds";
 	
 
 	// ---------------------------------------------------------------------------------------------------------------
@@ -108,6 +114,8 @@ public class TCStore {
 									String recipientName, String recipientEmail, 
 									String giftFrom, String giftMessage) throws InvalidParametersException, TransactionFailureException {
 		
+		this.lastTransaction = null;
+		
 		if (value <= 0 || value >= 10000) {
 			throw new InvalidParametersException("You must supply a card value that is between 1 and 10,000 dollars.");
 		}
@@ -153,19 +161,19 @@ public class TCStore {
 				returnTransaction.setSuccess(true);
 				
 			} else if (responseType.equals(SYS_ERROR)) {
-				throw new TransactionFailureException("System error");
+				throw new TransactionFailureException(SYS_ERROR_MESSAGE);
 				
 			} else if (responseType.equals(INV_INPUT)) {
-				throw new TransactionFailureException("Invalid input");
+				throw new TransactionFailureException(INV_INPUT_MESSAGE);
 				
 			} else if (responseType.equals(INV_CREDENTIAL)) {
-				throw new TransactionFailureException("Invalid credentials");
+				throw new TransactionFailureException(INV_CREDENTIAL_MESSAGE);
 				
 			} else if (responseType.equals(INS_INV)) {
-				throw new TransactionFailureException("Insufficient inventory");
+				throw new TransactionFailureException(INS_INV_MESSAGE);
 				
 			} else if (responseType.equals(INS_FUNDS)) {
-				throw new TransactionFailureException("Insufficient funds");
+				throw new TransactionFailureException(INS_FUNDS_MESSAGE);
 
 			} else {
 				throw new TransactionFailureException("Error while performing transaction!");
@@ -178,7 +186,18 @@ public class TCStore {
 			return null;
 		}
 		
+		this.lastTransaction = returnTransaction;
+		
 		return returnTransaction;
+	}
+	
+	/**
+	 * Returns the last Transaction object used by purchaseCard   
+	 *
+	 * @return lastTransaction
+	 */
+	protected Transaction getLastTransaction() {
+		return this.lastTransaction;
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------
