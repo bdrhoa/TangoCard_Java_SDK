@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -83,11 +82,12 @@ public abstract class BaseRequest {
 	abstract public String getRequestAction();
 	
 	/**
-	 * Gets the json encoded request.
+	 * Gets the JSON encoded request.
 	 *
-	 * @return the json encoded request
+	 * @return the JSON encoded request
+	 * @throws TangoCardSdkException 
 	 */
-	abstract public String getJsonEncodedRequest();
+	abstract public String getJsonEncodedRequest() throws TangoCardSdkException;
 	
     /**
      * Gets the username.

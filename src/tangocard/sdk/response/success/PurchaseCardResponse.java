@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -34,7 +33,8 @@ package tangocard.sdk.response.success;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-// TODO: Auto-generated Javadoc
+import tangocard.sdk.common.*;
+
 /**
  * The Class PurchaseCardResponse.
  */
@@ -103,9 +103,10 @@ public class PurchaseCardResponse extends SuccessResponse {
     /**
      * Instantiates a new purchase card response.
      *
-     * @param responseJson the response json
+     * @param responseJson the response JSON
+     * @throws TangoCardSdkException 
      */
-    public PurchaseCardResponse(JSONObject responseJson)
+    public PurchaseCardResponse(JSONObject responseJson) throws TangoCardSdkException
     {
     	this.parseResponseJSON(responseJson);
     }
@@ -113,7 +114,7 @@ public class PurchaseCardResponse extends SuccessResponse {
     /* (non-Javadoc)
      * @see tangocard.sdk.response.success.SuccessResponse#parseResponseJSON(org.json.JSONObject)
      */
-    public boolean parseResponseJSON( JSONObject responseJson )
+    public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
     	boolean isSuccess = false;
 		try {
@@ -123,7 +124,7 @@ public class PurchaseCardResponse extends SuccessResponse {
 			this._cardPin 			= responseJson.getJSONObject("response").getString("cardPin");
 			isSuccess = true;
 		} catch (JSONException ex) {
-			throw new RuntimeException( "JSONException", ex );
+			throw new TangoCardSdkException( "JSONException", ex );
 		}
 		
 		return isSuccess;

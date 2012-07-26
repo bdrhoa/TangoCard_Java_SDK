@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,5 +30,16 @@
 
 package tangocard.sdk.response;
 
-public interface BaseResponse {
+import org.json.JSONObject;
+import tangocard.sdk.common.TangoCardSdkException;
+
+public abstract interface BaseResponse {
+	/**
+	 * Parses the response JSON.
+	 *
+	 * @param responseJson the response JSON
+	 * @return true, if successful
+	 * @throws TangoCardSdkException 
+	 */
+	public abstract boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException;
 }

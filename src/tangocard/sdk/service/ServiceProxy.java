@@ -1,4 +1,34 @@
-﻿package tangocard.sdk.service;
+﻿/**
+ * ServiceProxy.java
+ * TangoCard_Java_SDK
+ * 
+ * @version  1.0.2
+ * @link     http://www.tangocard.com
+ * 
+ * © 2012 Tango Card, Inc
+ * All rights reserved.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions: 
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software. 
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ * 
+ */
+
+package tangocard.sdk.service;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -18,6 +48,10 @@ import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.success.*;
 import tangocard.sdk.response.failure.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ServiceProxy.
+ */
 public class ServiceProxy {
 	
 	/** The _base_url. */
@@ -42,7 +76,7 @@ public class ServiceProxy {
 	 * Instantiates a new service proxy.
 	 *
 	 * @param requestObject the request object
-	 * @throws Exception 
+	 * @throws Exception the exception
 	 */
 	public ServiceProxy( BaseRequest requestObject ) throws Exception
 	{
@@ -60,7 +94,7 @@ public class ServiceProxy {
 		}
 		
 		if ( null == appConfig ) {
-			throw new RuntimeException("Failed to get instance of SDK configuration.");
+			throw new TangoCardSdkException("Failed to get instance of SDK configuration.");
 		}
 		
 		this._base_url = requestObject.getIsProductionMode()
@@ -69,11 +103,11 @@ public class ServiceProxy {
 		
 		this._controller = appConfig.getConfigValue("tc_sdk_controller");
 		if ( Helper.isNullOrEmptyString(this._controller)) {
-			throw new RuntimeException("SDK configuration missing 'tc_sdk_controller' setting");
+			throw new TangoCardSdkException("SDK configuration missing 'tc_sdk_controller' setting");
 		}
 		this._action = requestObject.getRequestAction();
 		if ( Helper.isNullOrEmptyString(this._action)) {
-			throw new RuntimeException("Request missing 'action' name.");
+			throw new TangoCardSdkException("Request missing 'action' name.");
 		}
 		this._path = String.format("%s/%s/%s", this._base_url, this._controller, this._action);
 	}
@@ -89,30 +123,25 @@ public class ServiceProxy {
 	{
 		boolean isSuccess = false;
 		
-		try {
+		String responseJsonEncoded = this.postRequest();
+		if ( null != responseJsonEncoded )
+		{
+			JSONObject responseJson = new JSONObject(responseJsonEncoded);
 			
-			String responseJsonEncoded = this.postRequest();
-			if ( null != responseJsonEncoded )
-			{
-				JSONObject responseJson = new JSONObject(responseJsonEncoded);
-				
-				ServiceProxy.throwOnError(responseJson);
-				
-				Class<? extends BaseRequest> classType = this._requestObject.getClass();
-				String className = classType.getName();
-				
-				if ( className.equals("tangocard.sdk.request.GetAvailableBalanceRequest") ) {
-					((GetAvailableBalanceResponse)responseSuccess).parseResponseJSON(responseJson);
-				} else if ( className.equals("tangocard.sdk.request.PurchaseCardRequest") ) {
-					((PurchaseCardResponse)responseSuccess).parseResponseJSON(responseJson);
-				} else {
-					throw new RuntimeException("Unexpected condition: " + className);
-				}
-							
-				isSuccess = true;
+			ServiceProxy.throwOnError(responseJson);
+			
+			Class<? extends BaseRequest> classType = this._requestObject.getClass();
+			String className = classType.getName();
+			
+			if ( className.equals("tangocard.sdk.request.GetAvailableBalanceRequest") ) {
+				((GetAvailableBalanceResponse)responseSuccess).parseResponseJSON(responseJson);
+			} else if ( className.equals("tangocard.sdk.request.PurchaseCardRequest") ) {
+				((PurchaseCardResponse)responseSuccess).parseResponseJSON(responseJson);
+			} else {
+				throw new TangoCardSdkException("Unexpected condition: " + className);
 			}
-		} catch (Exception ex) {
-			throw ex;
+						
+			isSuccess = true;
 		}
 			
 		return isSuccess;
@@ -143,14 +172,13 @@ public class ServiceProxy {
 	/**
 	 * Post request.
 	 *
-	 * @param responseJsonEncoded the response json encoded
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
 	protected String postRequest() throws Exception
 	{
 		if ( null == this._path ) {
-			throw new RuntimeException( "Member variable '_path' is null.");
+			throw new TangoCardSdkException( "Member variable '_path' is null.");
 		}
 		
 		String responseJsonEncoded = null;
@@ -160,7 +188,7 @@ public class ServiceProxy {
 		try {
 			url = new URL(this._path);
 		} catch(MalformedURLException ex) {
-			throw new RuntimeException( "MalformedURLException", ex );
+			throw new TangoCardSdkException( "MalformedURLException", ex );
 		}
 		
 		if ( this.mapRequest() ) {
@@ -189,7 +217,7 @@ public class ServiceProxy {
 	
 				responseJsonEncoded = response.toString();		
 			} catch(IOException ex) {
-				throw new RuntimeException( "IOException", ex );
+				throw new TangoCardSdkException( "IOException", ex );
 			}
 		}
 
@@ -201,15 +229,16 @@ public class ServiceProxy {
 	 *
 	 * @param responseJson the response JSON
 	 * @throws JSONException the JSON exception
-	 * @throws TangoCardServiceException 
+	 * @throws TangoCardServiceException the tango card service exception
+	 * @throws TangoCardSdkException 
 	 */
-	protected static void throwOnError(JSONObject responseJson) throws JSONException, TangoCardServiceException
+	protected static void throwOnError(JSONObject responseJson) throws JSONException, TangoCardServiceException, TangoCardSdkException
 	{
 		String responseType = null;
 		try {
 			responseType = responseJson.getString("responseType");
 		} catch (JSONException ex) {
-			throw new RuntimeException( "JSONException", ex );
+			throw new TangoCardSdkException( "JSONException", ex );
 		}
 		
 		if ( responseType.equals("SUCCESS")) {
@@ -230,7 +259,7 @@ public class ServiceProxy {
 			InsufficientFundsResponse responseFailure = new InsufficientFundsResponse(responseJson);
 			throw new TangoCardServiceException(ServiceResponseEnum.INS_FUNDS, responseFailure, null);
 		} else {
-			throw new RuntimeException("Unexpected 'responseType'.");			
+			throw new TangoCardSdkException("Unexpected 'responseType'.");			
 		}
 	}	
 }

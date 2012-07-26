@@ -27,39 +27,51 @@
  *  THE SOFTWARE.
  */ 
 
+package tangocard.sdk.unittests;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
+import tangocard.sdk.common.TangoCardSdkException;
 import tangocard.sdk.request.GetAvailableBalanceRequest;
+import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.success.GetAvailableBalanceResponse;
+import tangocard.sdk.service.TangoCardServiceException;
 
 import junit.framework.TestCase;
 
+/**
+ * The Class UnitTest_GetAvailableBalance.
+ */
 public class UnitTest_GetAvailableBalance extends TestCase {
 	
+	/** The _app_username. */
 	private String _app_username = null;
+	
+	/** The _app_password. */
 	private String _app_password = null;
-	private String _app_card_sku = null;
+	
+	/** The _is_production_mode. */
 	private boolean _is_production_mode = false;	
 
+    /* (non-Javadoc)
+     * @see junit.framework.TestCase#setUp()
+     */
     protected void setUp() {
 		Properties prop = new Properties();
 		
 		try {
 			prop.load(new FileInputStream("app_config.properties"));
 		} catch ( FileNotFoundException ex ) {
-			ex.printStackTrace();
 			TestCase.fail("FileNotFoundException: " + ex.getMessage());
 		} catch ( Exception ex ) {
-			ex.printStackTrace();
 			TestCase.fail("Exception: " + ex.getMessage());
 		}
 		
 		this._app_username = prop.getProperty("app_username");
 		this._app_password = prop.getProperty("app_password");
 		String app_production_mode = prop.getProperty("app_production_mode");
-		this._app_card_sku = prop.getProperty("app_card_sku");
 		
 		this._is_production_mode = app_production_mode.equals("true");        
     }
@@ -76,7 +88,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
     /**
      * Test get available balance.
      */
-    public void testGetAvailableBalance() {
+    public void test_GetAvailableBalance() {
 		GetAvailableBalanceRequest requestAvailableBalance 
 		= new GetAvailableBalanceRequest( 
 				this._is_production_mode,
@@ -88,6 +100,10 @@ public class UnitTest_GetAvailableBalance extends TestCase {
 		GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
 		try {			
 			isSuccess = requestAvailableBalance.execute(responseAvailableBalance);
+		} catch (TangoCardServiceException ex) {
+			TestCase.fail("TangoCardServiceException: " + ex.getMessage());
+		} catch (TangoCardSdkException ex) {
+			TestCase.fail("TangoCardSdkException: " + ex.getMessage());
 		} catch (Exception ex) {
 			TestCase.fail("Exception: " + ex.getMessage());
 		}
@@ -98,5 +114,37 @@ public class UnitTest_GetAvailableBalance extends TestCase {
 		int tango_cents_available_balance = responseAvailableBalance.getAvailableBalance();
 		
 		TestCase.assertTrue(tango_cents_available_balance >= 100);
+    }
+    
+    /**
+     * Test_ get available balance_ invalid credentials.
+     */
+    public void test_GetAvailableBalance_InvalidCredentials() {
+    	
+        String username = "test@test.com";
+        String password = "password";   
+        
+		GetAvailableBalanceRequest requestAvailableBalance 
+		= new GetAvailableBalanceRequest( 
+				this._is_production_mode,
+				username, 
+				password
+				);
+	
+		boolean isSuccess = false;
+		GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
+		try {			
+			isSuccess = requestAvailableBalance.execute(responseAvailableBalance);
+			
+			TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
+		} catch (TangoCardServiceException ex) {
+			TestCase.assertTrue(  ex.getResponseType().equals(ServiceResponseEnum.INV_CREDENTIAL.toString()) );
+		} catch (TangoCardSdkException ex) {
+			TestCase.fail("TangoCardSdkException: " + ex.getMessage());
+		} catch (Exception ex) {
+			TestCase.fail("Exception: " + ex.getMessage());
+		}
+		
+		TestCase.assertFalse(isSuccess);
     }
 }

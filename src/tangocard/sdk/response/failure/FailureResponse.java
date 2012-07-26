@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,12 +30,20 @@
 
 package tangocard.sdk.response.failure;
 
+import tangocard.sdk.common.TangoCardSdkException;
 import tangocard.sdk.response.*;
 
 /**
  * The Class FailureResponse.
  */
-public class FailureResponse implements BaseResponse {
-    
+public abstract class FailureResponse implements BaseResponse {
+	
+	/**
+	 * Gets the message.
+	 *
+	 * @return the message
+	 * @throws TangoCardSdkException 
+	 */
+	abstract public String getMessage() throws TangoCardSdkException;    
 }
 

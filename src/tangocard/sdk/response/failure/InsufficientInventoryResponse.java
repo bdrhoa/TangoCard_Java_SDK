@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,7 +30,10 @@
 
 package tangocard.sdk.response.failure;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import tangocard.sdk.common.TangoCardSdkException;
 
 /**
  * The Class InsufficientInventoryResponse.
@@ -39,18 +41,64 @@ import org.json.JSONObject;
 public class InsufficientInventoryResponse extends FailureResponse {
     
     /** The sku. */
-    public String sku;
+    private String _sku;
+    
+    /**
+     * Gets the sku.
+     *
+     * @return the sku
+     */
+    public String getSku()
+    {
+    	return this._sku;
+    }    
     
     /** The value. */
-    public int value;
+    private int _value;
+    
+    /**
+     * Gets the value.
+     *
+     * @return the value
+     */
+    public int getValue()
+    {
+    	return this._value;
+    }
     
     /**
      * Instantiates a new insufficient inventory response.
      *
-     * @param responseJson the response json
+     * @param responseJson the response JSON
+     * @throws TangoCardSdkException 
      */
-    public InsufficientInventoryResponse( JSONObject responseJson )
+    public InsufficientInventoryResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-
-    }    
+    	this.parseResponseJSON(responseJson);
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.BaseResponse#parseResponseJSON(org.json.JSONObject)
+     */
+    public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
+    {
+    	boolean isSuccess = false;
+		try {
+			this._sku 	= responseJson.getJSONObject("response").getString("sku");
+			this._value	= responseJson.getJSONObject("response").getInt("value");
+			isSuccess = true;
+		} catch (JSONException ex) {
+			throw new TangoCardSdkException( "JSONException", ex );
+		}
+		
+		return isSuccess;
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.failure.FailureResponse#getMessage()
+     */
+    public String getMessage()
+    {
+    	return String.format("SKU: %s, Value: %s", this._sku, this._value);
+    }
 }

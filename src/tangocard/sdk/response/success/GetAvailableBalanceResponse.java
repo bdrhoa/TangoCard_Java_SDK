@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -33,6 +32,8 @@ package tangocard.sdk.response.success;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import tangocard.sdk.common.*;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -65,9 +66,10 @@ public class GetAvailableBalanceResponse extends SuccessResponse {
      * Instantiates a new gets the available balance response.
      *
      * @param responseJson the response JSON
+     * @throws TangoCardSdkException 
      * @throws JSONException 
      */
-    public GetAvailableBalanceResponse(JSONObject responseJson) 
+    public GetAvailableBalanceResponse(JSONObject responseJson) throws TangoCardSdkException 
     {
 		this.parseResponseJSON(responseJson);
     }
@@ -77,15 +79,16 @@ public class GetAvailableBalanceResponse extends SuccessResponse {
      *
      * @param responseJson the response JSON
      * @return true, if successful
+     * @throws TangoCardSdkException 
      */
-    public boolean parseResponseJSON( JSONObject responseJson )
+    public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
     	boolean isSuccess = false;
 		try {
 			this._availableBalance = responseJson.getJSONObject("response").getInt("availableBalance");
 			isSuccess = true;
 		} catch (JSONException ex) {
-			throw new RuntimeException( "JSONException", ex );
+			throw new TangoCardSdkException( "JSONException", ex );
 		}
 		
 		return isSuccess;

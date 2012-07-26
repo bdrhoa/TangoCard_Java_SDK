@@ -1,5 +1,5 @@
 /**
- * Helper.java
+ * TangoCardSdkException.java
  * TangoCard_Java_SDK
  * 
  * @version  1.0.2
@@ -30,16 +30,71 @@
 
 package tangocard.sdk.common;
 
-public class Helper {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TangoCardSdkException.
+ */
+public class TangoCardSdkException extends Exception {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -7471889902427169391L;
+
+	/** The message. */
+	private String message = null;
+
+
 	/**
-	 * Checks if string is not null not empty.
-	 *
-	 * @param string the string
-	 * @return true, if is not null not empty
+	 * Instantiates a new tango card sdk exception.
 	 */
-	public static boolean isNullOrEmptyString(   
-		   final String string)   
-	{   
-		return (null == string) || string.isEmpty() || string.trim().isEmpty(); 
-	} 
+	public TangoCardSdkException() {
+		super();
+	}
+
+	/**
+	 * Instantiates a new tango card sdk exception.
+	 *
+	 * @param message the message
+	 */
+	public TangoCardSdkException(String message) {
+		super(message);
+		this.message = message;
+	}
+
+	/**
+	 * Instantiates a new tango card sdk exception.
+	 *
+	 * @param cause the cause
+	 */
+	public TangoCardSdkException(Throwable cause) {
+		super(cause);
+	}
+	
+	/**
+	 * Instantiates a new tango card sdk exception.
+	 *
+	 * @param message the message
+	 * @param cause the cause
+	 */
+	public TangoCardSdkException(String message, Throwable cause) {
+		super(message, cause);
+		this.message = message;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Throwable#toString()
+	 */
+	@Override
+	public String toString() {
+		return message;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Throwable#getMessage()
+	 */
+	@Override
+	public String getMessage() {
+		return message;
+	}
+
 }
+

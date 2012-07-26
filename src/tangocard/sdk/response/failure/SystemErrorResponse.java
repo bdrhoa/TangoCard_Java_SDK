@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,7 +30,10 @@
 
 package tangocard.sdk.response.failure;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import tangocard.sdk.common.TangoCardSdkException;
 
 /**
  * The Class SystemErrorResponse.
@@ -39,15 +41,49 @@ import org.json.JSONObject;
 public class SystemErrorResponse extends FailureResponse {
     
     /** The error code. */
-    public String errorCode;
+    private String _errorCode;
+    
+    /**
+     * Gets the error code.
+     *
+     * @return the error code
+     */
+    public String getErrorCode() {
+    	return this._errorCode;
+    }
     
     /**
      * Instantiates a new system error response.
      *
-     * @param responseJson the response json
+     * @param responseJson the response JSON
+     * @throws TangoCardSdkException 
      */
-    public SystemErrorResponse( JSONObject responseJson )
+    public SystemErrorResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-
+    	this.parseResponseJSON(responseJson);
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.BaseResponse#parseResponseJSON(org.json.JSONObject)
+     */
+    public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
+    {
+    	boolean isSuccess = false;
+		try {
+			this._errorCode 	= responseJson.getJSONObject("response").getString("errorCode");
+			isSuccess = true;
+		} catch (JSONException ex) {
+			throw new TangoCardSdkException( "JSONException", ex );
+		}
+		
+		return isSuccess;
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.failure.FailureResponse#getMessage()
+     */
+    public String getMessage()
+    {
+        return String.format("ErrorCode: %s", this._errorCode);
     }
 }

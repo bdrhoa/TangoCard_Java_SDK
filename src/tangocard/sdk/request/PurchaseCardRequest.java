@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -34,7 +33,7 @@ package tangocard.sdk.request;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import tangocard.sdk.common.Helper;
+import tangocard.sdk.common.*;
 import tangocard.sdk.response.success.*;
 	
 public class PurchaseCardRequest extends BaseRequest {
@@ -95,17 +94,9 @@ public class PurchaseCardRequest extends BaseRequest {
         }
         
         // cardValue
-        if (0 != (cardValue % 100))
+        if (cardValue < 1)
         {
-            throw new IllegalArgumentException( "Parameter 'cardValue' must be in multiples of 100.");
-        }
-        if (cardValue < 100)
-        {
-            throw new IllegalArgumentException( "Parameter 'cardValue' must have a value which is greater than or equal to 100.");
-        }
-        if (cardValue > 10000)
-        {
-            throw new IllegalArgumentException( "Parameter 'cardValue' must have a value which is less than or equal to 10000.");
+            throw new IllegalArgumentException( "Parameter 'cardValue' must have a value which is greater than or equal to 1.");
         }
         
         if (tcSend) {
@@ -194,7 +185,7 @@ public class PurchaseCardRequest extends BaseRequest {
 	 * @see tangocard.sdk.request.BaseRequest#getJsonEncodedRequest()
 	 */
 	@Override
-	public String getJsonEncodedRequest() {
+	public String getJsonEncodedRequest() throws TangoCardSdkException {
 		
 		JSONObject requestJson = new JSONObject();
 		try {
@@ -213,7 +204,7 @@ public class PurchaseCardRequest extends BaseRequest {
 				}
 			}
 		} catch (JSONException ex) {
-			throw new RuntimeException( "JSONException", ex );
+			throw new TangoCardSdkException( "JSONException", ex );
 		}
 		
 		return requestJson.toString();

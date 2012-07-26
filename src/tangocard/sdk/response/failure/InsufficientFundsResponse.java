@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,7 +30,10 @@
 
 package tangocard.sdk.response.failure;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import tangocard.sdk.common.TangoCardSdkException;
 
 /**
  * The Class InsufficientFundsResponse.
@@ -39,19 +41,65 @@ import org.json.JSONObject;
 public class InsufficientFundsResponse extends FailureResponse {
     
     /** The available balance. */
-    public int availableBalance;
+    private int _availableBalance;
+    
+    /**
+     * Gets the available balance.
+     *
+     * @return the available balance
+     */
+    public int getAvailableBalance()
+    {
+    	return this._availableBalance;
+    }
     
     /** The order cost. */
-    public int orderCost;
+    private int _orderCost;
+    
+    /**
+     * Gets the order cost.
+     *
+     * @return the order cost
+     */
+    public int getOrderCost()
+    {
+    	return this._orderCost;
+    }
     
     /**
      * Instantiates a new insufficient funds response.
      *
-     * @param responseJson the response json
+     * @param responseJson the response JSON
+     * @throws TangoCardSdkException 
      */
-    public InsufficientFundsResponse( JSONObject responseJson )
+    public InsufficientFundsResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-
+    	this.parseResponseJSON(responseJson);
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.BaseResponse#parseResponseJSON(org.json.JSONObject)
+     */
+    public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
+    {
+    	boolean isSuccess = false;
+		try {
+			this._availableBalance 	= responseJson.getJSONObject("response").getInt("availableBalance");
+			this._orderCost 		= responseJson.getJSONObject("response").getInt("orderCost");
+			isSuccess = true;
+		} catch (JSONException ex) {
+			throw new TangoCardSdkException( "JSONException", ex );
+		}
+		
+		return isSuccess;
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.failure.FailureResponse#getMessage()
+     */
+    public String getMessage()
+    {
+        return String.format("Available Balance: %s, Order Cost: %s", this._availableBalance, this._orderCost);
     }
 }
 

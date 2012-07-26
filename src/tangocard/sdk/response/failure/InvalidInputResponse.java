@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,9 +30,9 @@
 
 package tangocard.sdk.response.failure;
 
-import java.util.Dictionary;
+import org.json.*;
 
-import org.json.JSONObject;
+import tangocard.sdk.common.TangoCardSdkException;
 
 /**
  * The Class InvalidInputResponse.
@@ -41,15 +40,57 @@ import org.json.JSONObject;
 public class InvalidInputResponse extends FailureResponse {
     
     /** The invalid. */
-    public Dictionary<String, String> invalid;
+    private JSONObject _invalid;
+    
+    /**
+     * Gets the invalid.
+     *
+     * @return the invalid
+     */
+    public JSONObject getInvalid() {
+    	return this._invalid;
+    }
       
     /**
      * Instantiates a new invalid input response.
      *
-     * @param responseJson the response json
+     * @param responseJson the response JSON
+     * @throws TangoCardSdkException 
      */
-    public InvalidInputResponse( JSONObject responseJson )
+    public InvalidInputResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-
+    	this.parseResponseJSON(responseJson);
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.BaseResponse#parseResponseJSON(org.json.JSONObject)
+     */
+    public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
+    {
+    	boolean isSuccess = false;
+		try {
+			this._invalid 	= responseJson.getJSONObject("response").getJSONObject("invalid");
+			isSuccess = true;
+		} catch (JSONException ex) {
+			throw new TangoCardSdkException( "JSONException", ex );
+		}
+		
+		return isSuccess;
+    }
+    
+    /* (non-Javadoc)
+     * @see tangocard.sdk.response.failure.FailureResponse#getMessage()
+     */
+    public String getMessage() throws TangoCardSdkException
+    {
+    	String message = "Unknown";
+    	try {
+	    	if ( this._invalid.has("cardSku") ) {
+	    		message = "cardSku: " + this._invalid.getString("cardSku");
+	    	}
+		} catch (JSONException ex) {
+			throw new TangoCardSdkException( "JSONException", ex );
+		}
+    	return String.format("Invalid Input:: %s", message);
     }
 }

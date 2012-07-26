@@ -3,8 +3,6 @@
  * TangoCard_Java_SDK
  * 
  * @version  1.0.2
- * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -34,6 +32,7 @@ package tangocard.sdk.request;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tangocard.sdk.common.*;
 import tangocard.sdk.response.success.*;
 
 /**
@@ -70,7 +69,7 @@ public class GetAvailableBalanceRequest extends BaseRequest {
 	 * @see tangocard.sdk.request.BaseRequest#getJsonEncodedRequest()
 	 */
 	@Override
-	public String getJsonEncodedRequest() {
+	public String getJsonEncodedRequest() throws TangoCardSdkException {
 		
 		JSONObject requestJson = new JSONObject();
 
@@ -78,7 +77,7 @@ public class GetAvailableBalanceRequest extends BaseRequest {
 			requestJson.put("username", super.getUsername());
 			requestJson.put("password", super.getPassword());
 		} catch (JSONException ex) {
-			throw new RuntimeException( "JSONException", ex );
+			throw new TangoCardSdkException( "JSONException", ex );
 		}
 		
 		return requestJson.toString();

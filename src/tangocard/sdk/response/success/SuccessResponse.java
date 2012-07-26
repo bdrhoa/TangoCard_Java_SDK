@@ -4,7 +4,6 @@
  * 
  * @version  1.0.2
  * @link     http://www.tangocard.com
- * @since 	 07/23/2012
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -31,13 +30,11 @@
 
 package tangocard.sdk.response.success;
 
-import org.json.JSONObject;
-
 import tangocard.sdk.response.BaseResponse;
 
 /**
  * The Class SuccessResponse.
  */
 public abstract class SuccessResponse implements BaseResponse {
-	public abstract boolean parseResponseJSON( JSONObject responseJson );
+	
 }
