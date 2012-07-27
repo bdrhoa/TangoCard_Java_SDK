@@ -249,6 +249,8 @@ The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.j
 This is the heart of the SDK... the src sub-directory is where all of the code lies. 
 
 # Requirements #
+[Java Development Kit 1.6+]
+[Java Runtime Environment 6 / 7]
 
 # License #
 The Tango Card Java SDK is free to use, given some restrictions. Please see the LICENSE file for details.
