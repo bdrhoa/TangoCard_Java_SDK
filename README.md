@@ -13,7 +13,7 @@ The Tango Card SDK, every Request has a corresponding success-case Response obje
 ## Get Available Balance ##
 
 This request is defined by `class TangoCard\Sdk\Request\GetAvailableBalanceRequest`
-
+```java
 	// set up the request
 	GetAvailableBalanceRequest requestAvailableBalance 
 		= new GetAvailableBalanceRequest( 
@@ -37,13 +37,14 @@ This request is defined by `class TangoCard\Sdk\Request\GetAvailableBalanceReque
 			NumberFormat.getCurrencyInstance(enUSLocale);
 		System.out.println("\tI have an available balance of " + currencyFormatter.format(currencyAmount) + " dollars.");		
 	}
+```
 
 Its response `$responseAvailableBalance` will now be (assuming success) a `TangoCard\Sdk\Response\Success\GetAvailableBalanceResponse` type object.
 
 ## Purchase Tango Card ##
 
 This request is defined by `class TangoCard\Sdk\Request\PurchaseCardRequest`
-
+```java
 	int cardValueTangoCardCents = 100; // $1.00 dollars
 
 	// set up the request
@@ -70,7 +71,8 @@ This request is defined by `class TangoCard\Sdk\Request\PurchaseCardRequest`
 		System.out.println( "\tCard Number:        "  + responsePurchaseCard_Delivery.getCardNumber() + "");
 		System.out.println( "\tCard Pin:           "  + responsePurchaseCard_Delivery.getCardPin() + "");
 	}
-	
+```
+
 Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming success) a `TangoCard\Sdk\Response\Success\PurchaseCardResponse` type object.
 
 # Tango Card Error Handling #
@@ -82,7 +84,7 @@ There are also failure-case response objects. Each Request will explain (in the 
 ## Service Failure Responses ##
 
 A service will return the following failure responses as enumerated by `TangoCard\Sdk\Response\ServiceResponseEnum`:
-
+```xml
 <table>
 	<tr><td>Insufficient Funds</td><td>INS_FUNDS</td><td>`TangoCard\Sdk\Response\Failure\InsufficientFundsResponse`</td></tr>
 	<tr><td>Insufficient Inventory</td><td>INS_INV</td><td>`TangoCard\Sdk\Response\Failure\InsufficientInventoryResponse`</td></tr> 
@@ -90,6 +92,7 @@ A service will return the following failure responses as enumerated by `TangoCar
 	<tr><td>Invalid Input</td><td>INV_INPUT</td><td>`TangoCard\Sdk\Response\Failure\InvalidInputResponse`</td></tr>
 	<tr><td>System Failure</td><td>SYS_ERROR</td><td>`TangoCard\Sdk\Response\Failure\SystemFailureResponse`</td></tr>
 </table>
+```
 
 ![Tango Card SDK Service Response Failures](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_service_failure_response.png "Tango Card SDK Service Response Failures")
 
@@ -104,7 +107,7 @@ Along with standard `InvalidArgumentException` for catching parameter entry erro
 ## Handling Errors ##
 
 Wrap every Tango Card request call within a try/catch block, followed by first catching `TangoCard\Sdk\Service\TangoCardServiceException`, then by `\TangoCard\Sdk\Common\TangoCardSdkException`, and finally by standard `Exception`.
-
+```java
 	try
 	{
 		// set up the request
@@ -142,6 +145,7 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 		System.out.println("=== Unexpected Error ===");
 		System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));            
 	}
+```
 
 # SDK Structure #
 There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, and `src`.
