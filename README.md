@@ -44,11 +44,11 @@ Its response `$responseAvailableBalance` will now be (assuming success) a `Tango
 ### `GetAvailableBalanceRequest` Constructor Parameters ###
 
 <dl>
-  <dt>`boolean is_production_mode`</dt>
+  <dt>boolean is_production_mode</dt>
   <dd>- True for accessing Tango Card Production API service, and false for accessing Tango Card Integration API service</dd>
-  <dt>`string username`</dt>
+  <dt>string username</dt>
   <dd>- User email address, and the SDK Integration test username is defined in application configuration file _app_config.properties_ within *app_username*</dd>
-  <dt>`string password`</dt>
+  <dt>string password</dt>
   <dd>- User password, and the SDK Integration test password is defined in application configuration file _app_config.properties_ within *app_password*</dd>
 </dl>
 
@@ -89,25 +89,25 @@ Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming succes
 ### `PurchaseCardRequest` Constructor Parameters ###
 
 <dl>
-  <dt>`boolean is_production_mode`</dt>
+  <dt>boolean is_production_mode</dt>
   <dd>- Selecting which Tango Card Service to make requests. Set to true for accessing Tango Card Production API service, and false for accessing Tango Card Integration API service</dd>
-  <dt>`string username`</dt>
+  <dt>string username</dt>
   <dd>- User email address, and a SDK Integration test username is defined in application configuration file _app_config.properties_ within *app_username*</dd>
-  <dt>`string password`</dt>
+  <dt>string password</dt>
   <dd>- User password, and a SDK Integration test password is defined in application configuration file _app_config.properties_ within *app_password*</dd>
-  <dt>`string cardSku`</dt>
+  <dt>string cardSku</dt>
   <dd>- Card brand request, and the Tango Card brand's card sku *tango-card* is defined in application configuration file _app_config.properties_ within *app_card_sku*</dd>
-  <dt>`int cardValue`</dt>
+  <dt>int cardValue</dt>
   <dd>- Card value in cents; a value of 100 (cent) is $1.00 dollar card. Minimum value is 1 (cent).</dd>
-  <dt>`boolean tcSend`</dt>
+  <dt>boolean tcSend</dt>
   <dd>- Tango Card Service delivers by Email requested card. Set to true for email delivery, and false for no delivery.</dd>
-  <dt>`string recipientName`</dt>
+  <dt>string recipientName</dt>
   <dd>- Full name of recipient receiving gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
-  <dt>`string recipientEmail`</dt>
+  <dt>string recipientEmail</dt>
   <dd>- Valid email address of recipient receiving gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
-  <dt>`string giftMessage`</dt>
+  <dt>string giftMessage</dt>
   <dd>- [Optional] Gift message to be applied to gift card's email. Set this value with either a string (length minumum 1 character to maximum of 255 characters) or null if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
-  <dt>`string giftFrom`</dt>
+  <dt>string giftFrom</dt>
   <dd>- Full name of giver of gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
 </dl>
 
