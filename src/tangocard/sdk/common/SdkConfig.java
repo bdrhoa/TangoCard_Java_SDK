@@ -2,7 +2,7 @@
  * SdkConfig.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -36,58 +36,58 @@ import java.util.Properties;
 
 public class SdkConfig {
 
-	private static SdkConfig _instanceObject = null;
-	private Properties _tc_sdk_config;
-	private static Object _syncObject = new Object();
+    private static SdkConfig _instanceObject = null;
+    private Properties _tc_sdk_config;
+    private static Object _syncObject = new Object();
 
-	/**
-	 * Instantiates a new sdk config.
-	 *
-	 * @throws Exception the exception
-	 */
-	private SdkConfig() throws Exception {
-		this._tc_sdk_config = new Properties(); 
-		try {
-			this._tc_sdk_config.load(new FileInputStream("tc_sdk_config.properties"));
-		} catch ( FileNotFoundException ex ) {
-			throw ex;
-		} catch ( Exception ex ) {
-			throw ex;
-		}
-	}
-	
-	/**
-	 * Gets the single instance of SdkConfig.
-	 *
-	 * @return single instance of SdkConfig
-	 * @throws Exception the exception
-	 */
-	public static SdkConfig getInstance() throws Exception { 
-		
-		if (null == SdkConfig._instanceObject) {
-			synchronized(SdkConfig._syncObject) {
-				if (null == SdkConfig._instanceObject) {
-					SdkConfig._instanceObject = new SdkConfig();
-				}
-			}
-		}
-		return SdkConfig._instanceObject; 
-	}
-	
-	/**
-	 * Gets the config value.
-	 *
-	 * @param key the key
-	 * @return the config value
-	 */
-	public String getConfigValue(String key) {
-		if (null == this._tc_sdk_config) {
-			throw new NullPointerException( "Reference to '_tc_sdk_config' is null.");
-		}
-		if (Helper.isNullOrEmptyString(key)) {
-			throw new IllegalArgumentException( "Parameter 'key' is null.");
-		}
-		
-		return this._tc_sdk_config.getProperty(key);
-	}
+    /**
+     * Instantiates a new sdk config.
+     *
+     * @throws Exception the exception
+     */
+    private SdkConfig() throws Exception {
+        this._tc_sdk_config = new Properties(); 
+        try {
+            this._tc_sdk_config.load(new FileInputStream("tc_sdk_config.properties"));
+        } catch ( FileNotFoundException ex ) {
+            throw ex;
+        } catch ( Exception ex ) {
+            throw ex;
+        }
+    }
+    
+    /**
+     * Gets the single instance of SdkConfig.
+     *
+     * @return single instance of SdkConfig
+     * @throws Exception the exception
+     */
+    public static SdkConfig getInstance() throws Exception { 
+        
+        if (null == SdkConfig._instanceObject) {
+            synchronized(SdkConfig._syncObject) {
+                if (null == SdkConfig._instanceObject) {
+                    SdkConfig._instanceObject = new SdkConfig();
+                }
+            }
+        }
+        return SdkConfig._instanceObject; 
+    }
+    
+    /**
+     * Gets the config value.
+     *
+     * @param key the key
+     * @return the config value
+     */
+    public String getConfigValue(String key) {
+        if (null == this._tc_sdk_config) {
+            throw new NullPointerException( "Reference to '_tc_sdk_config' is null.");
+        }
+        if (Helper.isNullOrEmptyString(key)) {
+            throw new IllegalArgumentException( "Parameter 'key' is null.");
+        }
+        
+        return this._tc_sdk_config.getProperty(key);
+    }
 }

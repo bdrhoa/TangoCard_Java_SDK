@@ -2,7 +2,7 @@
  * SystemErrorResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -49,7 +49,7 @@ public class SystemErrorResponse extends FailureResponse {
      * @return the error code
      */
     public String getErrorCode() {
-    	return this._errorCode;
+        return this._errorCode;
     }
     
     /**
@@ -60,7 +60,7 @@ public class SystemErrorResponse extends FailureResponse {
      */
     public SystemErrorResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /* (non-Javadoc)
@@ -68,15 +68,15 @@ public class SystemErrorResponse extends FailureResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._errorCode 	= responseJson.getJSONObject("response").getString("errorCode");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._errorCode     = responseJson.getJSONObject("response").getString("errorCode");
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
     
     /* (non-Javadoc)

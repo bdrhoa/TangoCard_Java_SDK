@@ -2,7 +2,7 @@
  * BaseResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -34,12 +34,12 @@ import org.json.JSONObject;
 import tangocard.sdk.common.TangoCardSdkException;
 
 public abstract interface BaseResponse {
-	/**
-	 * Parses the response JSON.
-	 *
-	 * @param responseJson the response JSON
-	 * @return true, if successful
-	 * @throws TangoCardSdkException 
-	 */
-	public abstract boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException;
+    /**
+     * Parses the response JSON.
+     *
+     * @param responseJson the response JSON
+     * @return true, if successful
+     * @throws TangoCardSdkException 
+     */
+    public abstract boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException;
 }

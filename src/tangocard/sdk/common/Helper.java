@@ -2,7 +2,7 @@
  * Helper.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -31,15 +31,15 @@
 package tangocard.sdk.common;
 
 public class Helper {
-	/**
-	 * Checks if string is not null not empty.
-	 *
-	 * @param string the string
-	 * @return true, if is not null not empty
-	 */
-	public static boolean isNullOrEmptyString(   
-		   final String string)   
-	{   
-		return (null == string) || string.isEmpty() || string.trim().isEmpty(); 
-	} 
+    /**
+     * Checks if string is not null not empty.
+     *
+     * @param string the string
+     * @return true, if is not null not empty
+     */
+    public static boolean isNullOrEmptyString(   
+           final String string)   
+    {   
+        return (null == string) || string.isEmpty() || string.trim().isEmpty(); 
+    } 
 }

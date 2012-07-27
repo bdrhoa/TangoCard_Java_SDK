@@ -2,7 +2,7 @@
  * SuccessResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -36,5 +36,5 @@ import tangocard.sdk.response.BaseResponse;
  * The Class SuccessResponse.
  */
 public abstract class SuccessResponse implements BaseResponse {
-	
+    
 }

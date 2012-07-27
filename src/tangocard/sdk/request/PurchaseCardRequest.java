@@ -2,7 +2,7 @@
  * PurchaseCardRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -35,46 +35,46 @@ import org.json.JSONObject;
 
 import tangocard.sdk.common.*;
 import tangocard.sdk.response.success.*;
-	
+    
 public class PurchaseCardRequest extends BaseRequest {
-	
-	public String	_cardSku = null;
-	public int		_cardValue = -1;
-	public boolean	_tcSend = false;
-	public String	_recipientName = null;
-	public String	_recipientEmail = null;
-	public String	_giftMessage = null;
-	public String	_giftFrom = null;
+    
+    public String    _cardSku = null;
+    public int        _cardValue = -1;
+    public boolean    _tcSend = false;
+    public String    _recipientName = null;
+    public String    _recipientEmail = null;
+    public String    _giftMessage = null;
+    public String    _giftFrom = null;
 
-	/**
-	 * Instantiates a new purchase card request.
-	 *
-	 * @param isProductionMode the is production mode
-	 * @param username the username
-	 * @param password the password
-	 * @param cardSku the card sku
-	 * @param cardValue the card value
-	 * @param tcSend Tango Card service sends email to recipient
-	 * @param recipientName the recipient name
-	 * @param recipientEmail the recipient email
-	 * @param giftMessage the gift message
-	 * @param giftFrom the gift from
-	 */
-	public PurchaseCardRequest(
-			boolean isProductionMode,
-			String username, 
-			String password,    
-			String cardSku, 
-			int cardValue, 
-			boolean tcSend, 
-			String recipientName, 
-			String recipientEmail, 
-			String giftMessage, 
-			String giftFrom
-	) {
+    /**
+     * Instantiates a new purchase card request.
+     *
+     * @param isProductionMode the is production mode
+     * @param username the username
+     * @param password the password
+     * @param cardSku the card sku
+     * @param cardValue the card value
+     * @param tcSend Tango Card service sends email to recipient
+     * @param recipientName the recipient name
+     * @param recipientEmail the recipient email
+     * @param giftMessage the gift message
+     * @param giftFrom the gift from
+     */
+    public PurchaseCardRequest(
+            boolean isProductionMode,
+            String username, 
+            String password,    
+            String cardSku, 
+            int cardValue, 
+            boolean tcSend, 
+            String recipientName, 
+            String recipientEmail, 
+            String giftMessage, 
+            String giftFrom
+    ) {
         // parent construct
-		super(isProductionMode, username, password);
-		
+        super(isProductionMode, username, password);
+        
         // -----------------------------------------------------------------
         // validate inputs
         // ----------------------------------------------------------------- 
@@ -144,10 +144,10 @@ public class PurchaseCardRequest extends BaseRequest {
             
             // giftMessage
             if ( !Helper.isNullOrEmptyString(giftMessage) ) {
-	            if (giftMessage.length() > 255)
-	            {
-	                throw new IllegalArgumentException( "Parameter 'giftMessage' must have a length less than 256.");
-	            }
+                if (giftMessage.length() > 255)
+                {
+                    throw new IllegalArgumentException( "Parameter 'giftMessage' must have a length less than 256.");
+                }
             }
 
         }
@@ -164,57 +164,57 @@ public class PurchaseCardRequest extends BaseRequest {
             this._recipientEmail = recipientEmail;
             this._giftFrom       = giftFrom;
             if ( !Helper.isNullOrEmptyString(giftMessage) ) {
-            	this._giftMessage    = giftMessage;
+                this._giftMessage    = giftMessage;
             }          
         }
-	}
-	
-	
-	/**
-	 * Execute.
-	 *
-	 * @param response the response
-	 * @return true, if successful
-	 * @throws Exception the exception
-	 */
-	public boolean execute(PurchaseCardResponse response) throws Exception {
+    }
+    
+    
+    /**
+     * Execute.
+     *
+     * @param response the response
+     * @return true, if successful
+     * @throws Exception the exception
+     */
+    public boolean execute(PurchaseCardResponse response) throws Exception {
         return super.execute(response);
     }
 
-	/* (non-Javadoc)
-	 * @see tangocard.sdk.request.BaseRequest#getJsonEncodedRequest()
-	 */
-	@Override
-	public String getJsonEncodedRequest() throws TangoCardSdkException {
-		
-		JSONObject requestJson = new JSONObject();
-		try {
-			requestJson.put("username", 	super.getUsername());
-			requestJson.put("password", 	super.getPassword());
-			requestJson.put("giver_name", 	this._giftFrom);
-			requestJson.put("cardSku", 		this._cardSku);
-			requestJson.put("cardValue", 	this._cardValue);
-			requestJson.put("tcSend", 		this._tcSend);
-			if (this._tcSend) {
-				requestJson.put("recipientName", 	this._recipientName);
-				requestJson.put("recipientEmail", 	this._recipientEmail);
-				requestJson.put("giftFrom", 		this._giftFrom);
-				if ( !Helper.isNullOrEmptyString(this._giftMessage) ) {
-					requestJson.put("giftMessage", 	this._giftMessage);
-				}
-			}
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return requestJson.toString();
-	}
+    /* (non-Javadoc)
+     * @see tangocard.sdk.request.BaseRequest#getJsonEncodedRequest()
+     */
+    @Override
+    public String getJsonEncodedRequest() throws TangoCardSdkException {
+        
+        JSONObject requestJson = new JSONObject();
+        try {
+            requestJson.put("username",     super.getUsername());
+            requestJson.put("password",     super.getPassword());
+            requestJson.put("giver_name",     this._giftFrom);
+            requestJson.put("cardSku",         this._cardSku);
+            requestJson.put("cardValue",     this._cardValue);
+            requestJson.put("tcSend",         this._tcSend);
+            if (this._tcSend) {
+                requestJson.put("recipientName",     this._recipientName);
+                requestJson.put("recipientEmail",     this._recipientEmail);
+                requestJson.put("giftFrom",         this._giftFrom);
+                if ( !Helper.isNullOrEmptyString(this._giftMessage) ) {
+                    requestJson.put("giftMessage",     this._giftMessage);
+                }
+            }
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return requestJson.toString();
+    }
 
-	/* (non-Javadoc)
-	 * @see tangocard.sdk.request.BaseRequest#getRequestAction()
-	 */
-	@Override
-	public String getRequestAction() {
-	    return "PurchaseCard";
-	}
+    /* (non-Javadoc)
+     * @see tangocard.sdk.request.BaseRequest#getRequestAction()
+     */
+    @Override
+    public String getRequestAction() {
+        return "PurchaseCard";
+    }
 }

@@ -2,7 +2,7 @@
  * InsufficientInventoryResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -50,7 +50,7 @@ public class InsufficientInventoryResponse extends FailureResponse {
      */
     public String getSku()
     {
-    	return this._sku;
+        return this._sku;
     }    
     
     /** The value. */
@@ -63,7 +63,7 @@ public class InsufficientInventoryResponse extends FailureResponse {
      */
     public int getValue()
     {
-    	return this._value;
+        return this._value;
     }
     
     /**
@@ -74,7 +74,7 @@ public class InsufficientInventoryResponse extends FailureResponse {
      */
     public InsufficientInventoryResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /* (non-Javadoc)
@@ -82,16 +82,16 @@ public class InsufficientInventoryResponse extends FailureResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._sku 	= responseJson.getJSONObject("response").getString("sku");
-			this._value	= responseJson.getJSONObject("response").getInt("value");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._sku     = responseJson.getJSONObject("response").getString("sku");
+            this._value    = responseJson.getJSONObject("response").getInt("value");
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
     
     /* (non-Javadoc)
@@ -99,6 +99,6 @@ public class InsufficientInventoryResponse extends FailureResponse {
      */
     public String getMessage()
     {
-    	return String.format("SKU: %s, Value: %s", this._sku, this._value);
+        return String.format("SKU: %s, Value: %s", this._sku, this._value);
     }
 }

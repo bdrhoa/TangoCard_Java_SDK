@@ -2,7 +2,7 @@
  * BaseRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -35,28 +35,28 @@ import tangocard.sdk.response.success.SuccessResponse;
 import tangocard.sdk.service.*;
 
 public abstract class BaseRequest {
-	
-	/** The _username. */
-	private String _username = null;
-	
-	/** The _password. */
-	private String _password = null;
-	
-	/** The _endpoint. */
-	private boolean _is_production_mode = false;
-	
-	/**
-	 * Instantiates a new base request.
-	 *
-	 * @param isProductionMode the is production mode
-	 * @param username the username
-	 * @param password the password
-	 */
-	public BaseRequest(
-			boolean isProductionMode,
-			String username,
-			String password
-	){
+    
+    /** The _username. */
+    private String _username = null;
+    
+    /** The _password. */
+    private String _password = null;
+    
+    /** The _endpoint. */
+    private boolean _is_production_mode = false;
+    
+    /**
+     * Instantiates a new base request.
+     *
+     * @param isProductionMode the is production mode
+     * @param username the username
+     * @param password the password
+     */
+    public BaseRequest(
+            boolean isProductionMode,
+            String username,
+            String password
+    ){
         // -----------------------------------------------------------------
         // validate inputs
         // -----------------------------------------------------------------
@@ -69,26 +69,26 @@ public abstract class BaseRequest {
             throw new IllegalArgumentException("Parameter 'password' is not defined.");
         }
         
-		this._username = username;
-		this._password = password;
-		this._is_production_mode = isProductionMode;
-	}
-	
-	/**
-	 * Gets the request action.
-	 *
-	 * @return the request action
-	 */
-	abstract public String getRequestAction();
-	
-	/**
-	 * Gets the JSON encoded request.
-	 *
-	 * @return the JSON encoded request
-	 * @throws TangoCardSdkException 
-	 */
-	abstract public String getJsonEncodedRequest() throws TangoCardSdkException;
-	
+        this._username = username;
+        this._password = password;
+        this._is_production_mode = isProductionMode;
+    }
+    
+    /**
+     * Gets the request action.
+     *
+     * @return the request action
+     */
+    abstract public String getRequestAction();
+    
+    /**
+     * Gets the JSON encoded request.
+     *
+     * @return the JSON encoded request
+     * @throws TangoCardSdkException 
+     */
+    abstract public String getJsonEncodedRequest() throws TangoCardSdkException;
+    
     /**
      * Gets the username.
      *
@@ -104,7 +104,7 @@ public abstract class BaseRequest {
      * @param username the new username
      */
     public void setUsername(String username) {
-    	this._username = username;
+        this._username = username;
     }
     
     /**
@@ -113,7 +113,7 @@ public abstract class BaseRequest {
      * @return the password
      */
     public String getPassword() {
-    	return this._password;
+        return this._password;
     }
     
     /**
@@ -122,7 +122,7 @@ public abstract class BaseRequest {
      * @param password the new password
      */
     public void setPassword(String password) {
-    	this._password = password;
+        this._password = password;
     }
     
     /**
@@ -132,7 +132,7 @@ public abstract class BaseRequest {
      */
     public boolean getIsProductionMode()
     {
-    	return this._is_production_mode;
+        return this._is_production_mode;
     }
     
     /**
@@ -142,7 +142,7 @@ public abstract class BaseRequest {
      */
     public void setIsProductionMode(boolean is_production_mode)
     {
-    	this._is_production_mode = is_production_mode;
+        this._is_production_mode = is_production_mode;
     }
     
     /**
@@ -155,7 +155,7 @@ public abstract class BaseRequest {
      */
     public <T extends SuccessResponse> boolean execute(T response) throws Exception
     {
-    	ServiceProxy proxy = new ServiceProxy(this);
-    	return proxy.executeRequest(response);
+        ServiceProxy proxy = new ServiceProxy(this);
+        return proxy.executeRequest(response);
     }
 }

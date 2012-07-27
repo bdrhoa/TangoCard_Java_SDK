@@ -2,7 +2,7 @@
  * GetAvailableBalanceRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.
@@ -48,46 +48,46 @@ public class GetAvailableBalanceRequest extends BaseRequest {
      * @param password the password
      */
     public GetAvailableBalanceRequest(
-			boolean isProductionMode,
-    		String username, 
-    		String password
-	) {
-		super(isProductionMode, username, password);
-	}
+            boolean isProductionMode,
+            String username, 
+            String password
+    ) {
+        super(isProductionMode, username, password);
+    }
 
-	/**
-	 * Execute.
-	 *
-	 * @return the gets the available balance response
-	 * @throws Exception 
-	 */
-	public boolean execute(GetAvailableBalanceResponse response) throws Exception {
+    /**
+     * Execute.
+     *
+     * @return the gets the available balance response
+     * @throws Exception 
+     */
+    public boolean execute(GetAvailableBalanceResponse response) throws Exception {
         return super.execute(response);
     }
 
-	/* (non-Javadoc)
-	 * @see tangocard.sdk.request.BaseRequest#getJsonEncodedRequest()
-	 */
-	@Override
-	public String getJsonEncodedRequest() throws TangoCardSdkException {
-		
-		JSONObject requestJson = new JSONObject();
+    /* (non-Javadoc)
+     * @see tangocard.sdk.request.BaseRequest#getJsonEncodedRequest()
+     */
+    @Override
+    public String getJsonEncodedRequest() throws TangoCardSdkException {
+        
+        JSONObject requestJson = new JSONObject();
 
-		try {
-			requestJson.put("username", super.getUsername());
-			requestJson.put("password", super.getPassword());
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return requestJson.toString();
-	}
+        try {
+            requestJson.put("username", super.getUsername());
+            requestJson.put("password", super.getPassword());
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return requestJson.toString();
+    }
 
-	/* (non-Javadoc)
-	 * @see tangocard.sdk.request.BaseRequest#getRequestAction()
-	 */
-	@Override
-	public String getRequestAction() {
+    /* (non-Javadoc)
+     * @see tangocard.sdk.request.BaseRequest#getRequestAction()
+     */
+    @Override
+    public String getRequestAction() {
         return "GetAvailableBalance";
-	}
+    }
 }

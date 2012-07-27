@@ -2,7 +2,7 @@
  * InvalidCredentialsResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -49,11 +49,11 @@ public class InvalidCredentialsResponse extends FailureResponse {
      * @return the message
      */
     public String getMessage() {
-    	if (this._message.equals("TCP:PNPA:3"))
+        if (this._message.equals("TCP:PNPA:3"))
         {
             return "Provided user credentials are not valid.";
         }
-    	return this._message;
+        return this._message;
     }
     
     /**
@@ -64,7 +64,7 @@ public class InvalidCredentialsResponse extends FailureResponse {
      */
     public InvalidCredentialsResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /* (non-Javadoc)
@@ -72,14 +72,14 @@ public class InvalidCredentialsResponse extends FailureResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._message 	= responseJson.getJSONObject("response").getString("message");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._message     = responseJson.getJSONObject("response").getString("message");
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
 }

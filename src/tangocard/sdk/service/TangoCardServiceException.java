@@ -32,54 +32,54 @@ import tangocard.sdk.response.failure.*;
  */
 public class TangoCardServiceException extends Exception { 
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 3461168669128080352L;
-	
-	/** The _response type. */
-	private String _responseType = "UNDEFINED";
-	
-	/** The _response. */
-	private FailureResponse _response = null;
-	
-	/**
-	 * Gets the response type.
-	 *
-	 * @return the response type
-	 */
-	public String getResponseType() {
-		return this._responseType;
-	}
-	
-	/**
-	 * Gets the response.
-	 *
-	 * @return the response
-	 */
-	public Object getResponse() {
-		return this._response;
-	}
-	
-	/**
-	 * Instantiates a new service exception.
-	 *
-	 * @param responseType the response type
-	 * @param responseJson the response JSON
-	 * @param message the message
-	 */
-	public TangoCardServiceException(ServiceResponseEnum responseType, FailureResponse responseJson, String message) { 
-		super(message); 
-		this._responseType = responseType.name();
-		this._response = responseJson;
-	} 
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Throwable#getMessage()
-	 */
-	public String getMessage() {
-		try {
-			return this._response.getMessage();
-		} catch (TangoCardSdkException ex) {
-			return ex.getMessage();
-		}
-	}
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 3461168669128080352L;
+    
+    /** The _response type. */
+    private String _responseType = "UNDEFINED";
+    
+    /** The _response. */
+    private FailureResponse _response = null;
+    
+    /**
+     * Gets the response type.
+     *
+     * @return the response type
+     */
+    public String getResponseType() {
+        return this._responseType;
+    }
+    
+    /**
+     * Gets the response.
+     *
+     * @return the response
+     */
+    public Object getResponse() {
+        return this._response;
+    }
+    
+    /**
+     * Instantiates a new service exception.
+     *
+     * @param responseType the response type
+     * @param responseJson the response JSON
+     * @param message the message
+     */
+    public TangoCardServiceException(ServiceResponseEnum responseType, FailureResponse responseJson, String message) { 
+        super(message); 
+        this._responseType = responseType.name();
+        this._response = responseJson;
+    } 
+    
+    /* (non-Javadoc)
+     * @see java.lang.Throwable#getMessage()
+     */
+    public String getMessage() {
+        try {
+            return this._response.getMessage();
+        } catch (TangoCardSdkException ex) {
+            return ex.getMessage();
+        }
+    }
 } 

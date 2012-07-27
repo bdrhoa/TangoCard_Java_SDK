@@ -2,7 +2,7 @@
  * PurchaseCardResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -50,7 +50,7 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public String getReferenceOrderId()
     {
-    	return this._referenceOrderId;
+        return this._referenceOrderId;
     }
     
     /** The _card token. */
@@ -63,7 +63,7 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public String getCardToken()
     {
-    	return this._cardToken;
+        return this._cardToken;
     }
     
     /** The _card number. */
@@ -76,7 +76,7 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public String getCardNumber()
     {
-    	return this._cardNumber;
+        return this._cardNumber;
     }
     
     /** The _card pin. */
@@ -89,7 +89,7 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public String getCardPin()
     {
-    	return this._cardPin;
+        return this._cardPin;
     }
  
     /**
@@ -97,7 +97,7 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public PurchaseCardResponse()
     {
-    	
+        
     }
     
     /**
@@ -108,7 +108,7 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public PurchaseCardResponse(JSONObject responseJson) throws TangoCardSdkException
     {
-    	this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /* (non-Javadoc)
@@ -116,17 +116,21 @@ public class PurchaseCardResponse extends SuccessResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._referenceOrderId 	= responseJson.getJSONObject("response").getString("referenceOrderId");
-			this._cardToken 		= responseJson.getJSONObject("response").getString("cardToken");
-			this._cardNumber 		= responseJson.getJSONObject("response").getString("cardNumber");
-			this._cardPin 			= responseJson.getJSONObject("response").getString("cardPin");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._referenceOrderId         = responseJson.getJSONObject("response").getString("referenceOrderId");
+            this._cardToken             = responseJson.getJSONObject("response").getString("cardToken");
+            if ( responseJson.getJSONObject("response").has("cardNumber")) {
+                this._cardNumber         = responseJson.getJSONObject("response").getString("cardNumber");
+            }
+            if ( responseJson.getJSONObject("response").has("cardPin")) {
+                this._cardPin             = responseJson.getJSONObject("response").getString("cardPin");
+            }
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
 }

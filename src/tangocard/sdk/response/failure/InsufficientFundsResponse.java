@@ -2,7 +2,7 @@
  * InsufficientFundsResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -50,7 +50,7 @@ public class InsufficientFundsResponse extends FailureResponse {
      */
     public int getAvailableBalance()
     {
-    	return this._availableBalance;
+        return this._availableBalance;
     }
     
     /** The order cost. */
@@ -63,7 +63,7 @@ public class InsufficientFundsResponse extends FailureResponse {
      */
     public int getOrderCost()
     {
-    	return this._orderCost;
+        return this._orderCost;
     }
     
     /**
@@ -74,7 +74,7 @@ public class InsufficientFundsResponse extends FailureResponse {
      */
     public InsufficientFundsResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /* (non-Javadoc)
@@ -82,16 +82,16 @@ public class InsufficientFundsResponse extends FailureResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._availableBalance 	= responseJson.getJSONObject("response").getInt("availableBalance");
-			this._orderCost 		= responseJson.getJSONObject("response").getInt("orderCost");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._availableBalance     = responseJson.getJSONObject("response").getInt("availableBalance");
+            this._orderCost         = responseJson.getJSONObject("response").getInt("orderCost");
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
     
     /* (non-Javadoc)

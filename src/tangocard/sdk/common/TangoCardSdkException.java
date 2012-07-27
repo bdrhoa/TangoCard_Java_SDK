@@ -2,7 +2,7 @@
  * TangoCardSdkException.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -36,65 +36,65 @@ package tangocard.sdk.common;
  */
 public class TangoCardSdkException extends Exception {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = -7471889902427169391L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -7471889902427169391L;
 
-	/** The message. */
-	private String message = null;
+    /** The message. */
+    private String message = null;
 
 
-	/**
-	 * Instantiates a new tango card sdk exception.
-	 */
-	public TangoCardSdkException() {
-		super();
-	}
+    /**
+     * Instantiates a new tango card sdk exception.
+     */
+    public TangoCardSdkException() {
+        super();
+    }
 
-	/**
-	 * Instantiates a new tango card sdk exception.
-	 *
-	 * @param message the message
-	 */
-	public TangoCardSdkException(String message) {
-		super(message);
-		this.message = message;
-	}
+    /**
+     * Instantiates a new tango card sdk exception.
+     *
+     * @param message the message
+     */
+    public TangoCardSdkException(String message) {
+        super(message);
+        this.message = message;
+    }
 
-	/**
-	 * Instantiates a new tango card sdk exception.
-	 *
-	 * @param cause the cause
-	 */
-	public TangoCardSdkException(Throwable cause) {
-		super(cause);
-	}
-	
-	/**
-	 * Instantiates a new tango card sdk exception.
-	 *
-	 * @param message the message
-	 * @param cause the cause
-	 */
-	public TangoCardSdkException(String message, Throwable cause) {
-		super(message, cause);
-		this.message = message;
-	}
+    /**
+     * Instantiates a new tango card sdk exception.
+     *
+     * @param cause the cause
+     */
+    public TangoCardSdkException(Throwable cause) {
+        super(cause);
+    }
+    
+    /**
+     * Instantiates a new tango card sdk exception.
+     *
+     * @param message the message
+     * @param cause the cause
+     */
+    public TangoCardSdkException(String message, Throwable cause) {
+        super(message, cause);
+        this.message = message;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Throwable#toString()
-	 */
-	@Override
-	public String toString() {
-		return message;
-	}
+    /* (non-Javadoc)
+     * @see java.lang.Throwable#toString()
+     */
+    @Override
+    public String toString() {
+        return message;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Throwable#getMessage()
-	 */
-	@Override
-	public String getMessage() {
-		return message;
-	}
+    /* (non-Javadoc)
+     * @see java.lang.Throwable#getMessage()
+     */
+    @Override
+    public String getMessage() {
+        return message;
+    }
 
 }
 

@@ -1,9 +1,9 @@
 /**
  * 
- *  TangoCard_Store_Example.java
+ *  TangoCard_Failures_Example.java
  *  TangoCard_Java_SDK
  *  
- *  Example code using Tango Card SDK forcing failures and then collecting responses.
+ *  Example code using Tango Card SDK and how to handle Service Failures.
  * 
  *  © 2012 Tango Card, Inc
  *  All rights reserved.
@@ -27,10 +27,12 @@
  *  THE SOFTWARE.
  */ 
 
-package tangocard.sdk.examples;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Properties;
 
 import tangocard.sdk.common.TangoCardSdkException;
@@ -44,25 +46,25 @@ import tangocard.sdk.service.TangoCardServiceException;
 
 public class TangoCard_Failures_Example {
 
-	/**
-	 * @param args
-	 * @throws Exception 
-	 */
-	public static void main(String[] args) throws Exception {
-		
-		System.out.println( "\n===============================" );
-		System.out.println(   "= Tango Card Java SDK Example =" );
-		System.out.println(   "=   with Failures             =" );
-		System.out.println(   "===============================" );
-		
-		TangoCard_Failures_Example.Example_GetAvailableBalance_InvalidCredentials();
-		TangoCard_Failures_Example.Example_PurchaseCard_InsufficientFunds();
+    /**
+     * @param args
+     * @throws Exception 
+     */
+    public static void main(String[] args) throws Exception {
+        
+        System.out.println( "\n===============================" );
+        System.out.println(   "= Tango Card Java SDK Example =" );
+        System.out.println(   "=   with Failures             =" );
+        System.out.println(   "===============================" );
+        
+        TangoCard_Failures_Example.Example_GetAvailableBalance_InvalidCredentials();
+        TangoCard_Failures_Example.Example_PurchaseCard_InsufficientFunds();
 
-		System.out.println(   "===============================" );		
-		System.out.println(   "=   The End                   =" );
-		System.out.println(   "===============================" );
-	}
-	
+        System.out.println(   "===============================" );        
+        System.out.println(   "=   The End                   =" );
+        System.out.println(   "===============================" );
+    }
+    
     /**
      * Example_ get available balance_ invalid credentials.
      *
@@ -70,19 +72,19 @@ public class TangoCard_Failures_Example {
      */
     static public void Example_GetAvailableBalance_InvalidCredentials() throws Exception
     {
-		Properties prop = new Properties();		
-		try {
-			prop.load(new FileInputStream("app_config.properties"));
-		} catch ( FileNotFoundException ex ) {
-			throw ex;
-		} catch ( Exception ex ) {
-			throw ex;
-		}
-		
-		String app_production_mode = prop.getProperty("app_production_mode");
-		
-		boolean is_production_mode = app_production_mode.equals("true");
-		
+        Properties prop = new Properties();        
+        try {
+            prop.load(new FileInputStream("app_config.properties"));
+        } catch ( FileNotFoundException ex ) {
+            throw ex;
+        } catch ( Exception ex ) {
+            throw ex;
+        }
+        
+        String app_production_mode = prop.getProperty("app_production_mode");
+        
+        boolean is_production_mode = app_production_mode.equals("true");
+        
 
        String username = "test@test.com";
        String password = "password";
@@ -136,17 +138,17 @@ public class TangoCard_Failures_Example {
      */
     static public void Example_PurchaseCard_InsufficientFunds() throws Exception
     {
-		Properties prop = new Properties();		
-		try {
-			prop.load(new FileInputStream("app_config.properties"));
-		} catch ( FileNotFoundException ex ) {
-			throw ex;
-		} catch ( Exception ex ) {
-			throw ex;
-		}
+        Properties prop = new Properties();        
+        try {
+            prop.load(new FileInputStream("app_config.properties"));
+        } catch ( FileNotFoundException ex ) {
+            throw ex;
+        } catch ( Exception ex ) {
+            throw ex;
+        }
 
-		String app_production_mode = prop.getProperty("app_production_mode");		
-		boolean is_production_mode = app_production_mode.equals("true");
+        String app_production_mode = prop.getProperty("app_production_mode");        
+        boolean is_production_mode = app_production_mode.equals("true");
 
         String username = "empty@tangocard.com";
         String password = "password";
@@ -188,14 +190,31 @@ public class TangoCard_Failures_Example {
         catch (TangoCardSdkException ex)
         {
             System.out.println("=== Tango Card SDK Failure ===");
-            System.out.println( String.format("%s :: %s", ex.getCause().getClass().toString(), ex.getMessage()));           
+            System.out.println( String.format("%s :: %s", ex.getCause().getClass().toString(), ex.getMessage())); 
+
+            System.out.println(TangoCard_Failures_Example.getStackTrace(ex));
         }
         catch (Exception ex)
         {          
             System.out.println("=== Unexpected Error ===");
             System.out.println( String.format("%s :: %s", ex.getCause().getClass().toString(), ex.getMessage()));   
+
+            System.out.println(TangoCard_Failures_Example.getStackTrace(ex));
         }
 
         System.out.println("===== End Get Available Balance ====\n\n\n");
+    }
+    
+    /**
+     * Gets the stack trace.
+     *
+     * @param aThrowable the a throwable
+     * @return the stack trace
+     */
+    public static String getStackTrace(Throwable aThrowable) {
+        final Writer result = new StringWriter();
+        final PrintWriter printWriter = new PrintWriter(result);
+        aThrowable.printStackTrace(printWriter);
+        return result.toString();
     }
 }

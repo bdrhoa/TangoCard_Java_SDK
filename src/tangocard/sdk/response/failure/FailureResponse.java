@@ -2,7 +2,7 @@
  * FailureResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -37,13 +37,13 @@ import tangocard.sdk.response.*;
  * The Class FailureResponse.
  */
 public abstract class FailureResponse implements BaseResponse {
-	
-	/**
-	 * Gets the message.
-	 *
-	 * @return the message
-	 * @throws TangoCardSdkException 
-	 */
-	abstract public String getMessage() throws TangoCardSdkException;    
+    
+    /**
+     * Gets the message.
+     *
+     * @return the message
+     * @throws TangoCardSdkException 
+     */
+    abstract public String getMessage() throws TangoCardSdkException;    
 }
 

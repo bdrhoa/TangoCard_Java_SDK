@@ -2,7 +2,7 @@
  * GetAvailableBalanceResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -51,7 +51,7 @@ public class GetAvailableBalanceResponse extends SuccessResponse {
      */
     public int getAvailableBalance()
     {
-    	return this._availableBalance;
+        return this._availableBalance;
     }
     
     /**
@@ -71,7 +71,7 @@ public class GetAvailableBalanceResponse extends SuccessResponse {
      */
     public GetAvailableBalanceResponse(JSONObject responseJson) throws TangoCardSdkException 
     {
-		this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /**
@@ -83,14 +83,14 @@ public class GetAvailableBalanceResponse extends SuccessResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._availableBalance = responseJson.getJSONObject("response").getInt("availableBalance");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._availableBalance = responseJson.getJSONObject("response").getInt("availableBalance");
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
 }

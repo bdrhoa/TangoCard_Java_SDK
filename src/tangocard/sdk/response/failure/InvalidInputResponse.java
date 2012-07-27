@@ -2,7 +2,7 @@
  * InvalidInputResponse.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.2
+ * @version  1.0.4
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -48,7 +48,7 @@ public class InvalidInputResponse extends FailureResponse {
      * @return the invalid
      */
     public JSONObject getInvalid() {
-    	return this._invalid;
+        return this._invalid;
     }
       
     /**
@@ -59,7 +59,7 @@ public class InvalidInputResponse extends FailureResponse {
      */
     public InvalidInputResponse( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	this.parseResponseJSON(responseJson);
+        this.parseResponseJSON(responseJson);
     }
     
     /* (non-Javadoc)
@@ -67,15 +67,15 @@ public class InvalidInputResponse extends FailureResponse {
      */
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
-    	boolean isSuccess = false;
-		try {
-			this._invalid 	= responseJson.getJSONObject("response").getJSONObject("invalid");
-			isSuccess = true;
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-		
-		return isSuccess;
+        boolean isSuccess = false;
+        try {
+            this._invalid     = responseJson.getJSONObject("response").getJSONObject("invalid");
+            isSuccess = true;
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        
+        return isSuccess;
     }
     
     /* (non-Javadoc)
@@ -83,14 +83,14 @@ public class InvalidInputResponse extends FailureResponse {
      */
     public String getMessage() throws TangoCardSdkException
     {
-    	String message = "Unknown";
-    	try {
-	    	if ( this._invalid.has("cardSku") ) {
-	    		message = "cardSku: " + this._invalid.getString("cardSku");
-	    	}
-		} catch (JSONException ex) {
-			throw new TangoCardSdkException( "JSONException", ex );
-		}
-    	return String.format("Invalid Input:: %s", message);
+        String message = "Unknown";
+        try {
+            if ( this._invalid.has("cardSku") ) {
+                message = "cardSku: " + this._invalid.getString("cardSku");
+            }
+        } catch (JSONException ex) {
+            throw new TangoCardSdkException( "JSONException", ex );
+        }
+        return String.format("Invalid Input:: %s", message);
     }
 }
