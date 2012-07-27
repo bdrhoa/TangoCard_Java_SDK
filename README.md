@@ -188,10 +188,22 @@ There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, an
 
 ## Java IDE ##
 
-This Java SDK project was built off of 
-* *eclipse Ganymede*
+This Java SDK project was built using:
+* **eclipse Ganymede**
 * jdk1.6.0_27 (32 bit)
 * jre7 (32 bit) and jre6 (32 bit) 
+* JAutodoc
+
+## config ##
+
+There a several configuration files that are referenced by either the provide application examples, unittests, and SDK itself.
+
+<dl>
+	<dt>config\app_config.ini</dt>
+	<dd>- Application configuration file for `\examples` and `\unittests`</dd>
+	<dt>lib\config\tc_sdk_config.ini</dt>
+	<dd>- SDK configuration file referenced by `TangoCard\Sdk\Common\SdkConfig.php`. **DO NOT MODIFY**</dd>
+</dl>
 
 ## doc ##
 The docs sub-directory maintains the up-to-date (javadoc) documentation for the classes (and functions) that are included in the SDK.
