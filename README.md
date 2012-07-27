@@ -199,10 +199,10 @@ This Java SDK project was built using:
 There a several configuration files that are referenced by either the provide application examples, unittests, and SDK itself.
 
 <dl>
-	<dt>config\app_config.ini</dt>
+	<dt>app_config.properties</dt>
 	<dd>- Application configuration file for `\examples` and `\unittests`</dd>
-	<dt>lib\config\tc_sdk_config.ini</dt>
-	<dd>- SDK configuration file referenced by `TangoCard\Sdk\Common\SdkConfig.php`. **DO NOT MODIFY**</dd>
+	<dt>tc_sdk_config.properties</dt>
+	<dd>- SDK configuration file referenced by `tangocard\sdk\common\SdkConfig.java`. **DO NOT MODIFY**</dd>
 </dl>
 
 ## doc ##
