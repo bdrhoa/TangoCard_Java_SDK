@@ -183,10 +183,7 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 	}
 ```
 
-# SDK Structure #
-There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, and `src`.
-
-## Java IDE ##
+# Java IDE #
 
 This Java SDK project was built using:
 * **eclipse Ganymede**
@@ -194,7 +191,12 @@ This Java SDK project was built using:
 * jre7 (32 bit) and jre6 (32 bit) 
 * JAutodoc
 
-## config ##
+# SDK Structure #
+There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, `src`, and key `configuration files`.
+
+
+
+## configuration files ##
 
 There a several configuration files that are referenced by either the provide application examples, unittests, and SDK itself.
 
