@@ -1,4 +1,4 @@
-﻿/**
+/**
  * BaseResponse.java
  * TangoCard_Java_SDK
  * 

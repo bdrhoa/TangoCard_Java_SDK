@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GetAvailableBalanceRequest.java
  * TangoCard_Java_SDK
  * 

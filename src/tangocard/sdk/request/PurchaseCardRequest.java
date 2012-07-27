@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PurchaseCardRequest.java
  * TangoCard_Java_SDK
  * 

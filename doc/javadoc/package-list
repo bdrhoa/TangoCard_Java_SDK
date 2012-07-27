@@ -1,0 +1,6 @@
+tangocard.sdk.common
+tangocard.sdk.request
+tangocard.sdk.response
+tangocard.sdk.response.failure
+tangocard.sdk.response.success
+tangocard.sdk.service

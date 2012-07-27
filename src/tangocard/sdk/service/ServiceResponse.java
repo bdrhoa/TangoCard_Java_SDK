@@ -1,4 +1,4 @@
-﻿package tangocard.sdk.service;
+package tangocard.sdk.service;
 
 import tangocard.sdk.response.BaseResponse;
 import tangocard.sdk.response.ServiceResponseEnum;
