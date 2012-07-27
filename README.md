@@ -13,7 +13,7 @@ The Tango Card SDK, every Request has a corresponding success-case Response obje
 ## Get Available Balance ##
 
 This request is defined by `class TangoCard\Sdk\Request\GetAvailableBalanceRequest`
-
+```java
 	// set up the request
 	GetAvailableBalanceRequest requestAvailableBalance 
 		= new GetAvailableBalanceRequest( 
@@ -37,6 +37,7 @@ This request is defined by `class TangoCard\Sdk\Request\GetAvailableBalanceReque
 			NumberFormat.getCurrencyInstance(enUSLocale);
 		System.out.println("\tI have an available balance of " + currencyFormatter.format(currencyAmount) + " dollars.");		
 	}
+```
 
 Its response `$responseAvailableBalance` will now be (assuming success) a `TangoCard\Sdk\Response\Success\GetAvailableBalanceResponse` type object.
 
@@ -54,7 +55,7 @@ Its response `$responseAvailableBalance` will now be (assuming success) a `Tango
 ## Purchase Tango Card ##
 
 This request is defined by `class TangoCard\Sdk\Request\PurchaseCardRequest`
-
+```java
 	int cardValueTangoCardCents = 100; // $1.00 dollars
 
 	// set up the request
@@ -81,7 +82,8 @@ This request is defined by `class TangoCard\Sdk\Request\PurchaseCardRequest`
 		System.out.println( "\tCard Number:        "  + responsePurchaseCard_Delivery.getCardNumber() + "");
 		System.out.println( "\tCard Pin:           "  + responsePurchaseCard_Delivery.getCardPin() + "");
 	}
-	
+```
+
 Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming success) a `TangoCard\Sdk\Response\Success\PurchaseCardResponse` type object.
 
 ### `PurchaseCardRequest` Constructor Parameters ###
@@ -141,7 +143,7 @@ Along with standard `InvalidArgumentException` for catching parameter entry erro
 ## Handling Errors ##
 
 Wrap every Tango Card request call within a try/catch block, followed by first catching `TangoCard\Sdk\Service\TangoCardServiceException`, then by `\TangoCard\Sdk\Common\TangoCardSdkException`, and finally by standard `Exception`.
-
+```java
 	try
 	{
 		// set up the request
@@ -179,6 +181,7 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 		System.out.println("=== Unexpected Error ===");
 		System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));            
 	}
+```
 
 # SDK Structure #
 There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, and `src`.
