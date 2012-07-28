@@ -218,18 +218,18 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 	}
 ```
 
-# Java IDE #
+# Java SDK Development Environment #
 
 This Java SDK project was built using:
-* **eclipse Ganymede**
+
+* [eclipse Ganymede](http://www.eclipse.org/ganymede/)
 * jdk1.6.0_27 (32 bit)
 * jre7 (32 bit) and jre6 (32 bit) 
-* JAutodoc
+* [JAutodoc](http://jautodoc.sourceforge.net/)
+* [JUnit](http://www.junit.org/)
 
 # SDK Structure #
 There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, `src`, and key `configuration files`.
-
-
 
 ## configuration files ##
 
@@ -342,14 +342,14 @@ This example is intended to be run from the command line:
 	
 ## unittests ##
 
-The SDK's unittests have been written to use [JavaUnit](http://www.phpunit.de).
+The SDK's unittests have been written to use [JUnit](http://www.junit.org/).
 
-* `UnitTest_GetAvailableBalance`
-* `UnitTest_PurchaseCard`
+* `UnitTest_GetAvailableBalance.java`
+* `UnitTest_PurchaseCard.java`
 
 ### Running JUnit Test ###
 
-These unit tests are executable from <b>IDE eclipse Ganymede</b> by righ-click selecting a UnitTest_ file, then <b><i>Debug As... > JUnit Test</i></b>
+These unit tests are executable from <b>IDE eclipse Ganymede</b> by right-click selecting a <i>UnitTest_* file</i>, then <b><i>Debug As... > JUnit Test</i></b>
 
 ## lib ##
 The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.jar], which is included.
@@ -358,8 +358,8 @@ The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.j
 This is the heart of the SDK... the src sub-directory is where all of the code lies. 
 
 # Requirements #
-[Java Development Kit 1.6+]
-[Java Runtime Environment 6 / 7]
+[Java Development Kit 1.6+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[Java Runtime Environment 6 / 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 # License #
 The Tango Card Java SDK is free to use, given some restrictions. Please see the LICENSE file for details.
