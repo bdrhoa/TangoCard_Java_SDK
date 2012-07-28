@@ -267,7 +267,7 @@ This example is intended to be run from the command line:
 	
 #### Example Command Line Run ####
 
-```java
+```Text
 	===============================
 	= Tango Card Java SDK Example =
 	=   for simple store front    =
@@ -315,7 +315,7 @@ This example is intended to be run from the command line:
 
 #### Example Command Line Run ####
 
-```java
+```Text
 	===============================
 	= Tango Card Java SDK Example =
 	=   with Failures             =
