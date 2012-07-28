@@ -239,7 +239,7 @@ There a several configuration files that are referenced by either the provide ap
 	<dt>app_config.properties</dt>
 	<dd>- Application configuration file for `\examples` and `\unittests`</dd>
 	<dt>tc_sdk_config.properties</dt>
-	<dd>- SDK configuration file referenced by `tangocard\sdk\common\SdkConfig.java`. **DO NOT MODIFY**</dd>
+	<dd>- SDK configuration file referenced by `tangocard\sdk\common\SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
 </dl>
 
 ## doc ##
@@ -349,7 +349,7 @@ The SDK's unittests have been written to use [JavaUnit](http://www.phpunit.de).
 
 ### Running JUnit Test ###
 
-These unit tests are executable from IDE eclipse Ganymede by righ-click selecting a UnitTest_ file, then *Debug As... > JUnit Test*
+These unit tests are executable from <b>IDE eclipse Ganymede</b> by righ-click selecting a UnitTest_ file, then <b><i>Debug As... > JUnit Test</i></b>
 
 ## lib ##
 The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.jar], which is included.
