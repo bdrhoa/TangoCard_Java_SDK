@@ -2,7 +2,9 @@
  * SdkConfig.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.4
+ * SDK Configuration file parser.
+ * 
+ * @version  1.0.5
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc

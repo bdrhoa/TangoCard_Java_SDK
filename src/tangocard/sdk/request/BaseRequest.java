@@ -2,7 +2,7 @@
  * BaseRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.4
+ * @version  1.0.5
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -43,17 +43,17 @@ public abstract class BaseRequest {
     private String _password = null;
     
     /** The _endpoint. */
-    private boolean _is_production_mode = false;
+    private TangoCardServiceApiEnum _tango_card_service_api = TangoCardServiceApiEnum.UNDEFINED;
     
     /**
      * Instantiates a new base request.
      *
-     * @param isProductionMode the is production mode
+     * @param enumTangoCardServiceApi the enum tango card service api
      * @param username the username
      * @param password the password
      */
     public BaseRequest(
-            boolean isProductionMode,
+            TangoCardServiceApiEnum enumTangoCardServiceApi,
             String username,
             String password
     ){
@@ -71,7 +71,7 @@ public abstract class BaseRequest {
         
         this._username = username;
         this._password = password;
-        this._is_production_mode = isProductionMode;
+        this._tango_card_service_api = enumTangoCardServiceApi;
     }
     
     /**
@@ -126,23 +126,23 @@ public abstract class BaseRequest {
     }
     
     /**
-     * Determine if currently requested service endpoint type is for production.
+     * Gets the tango card service api.
      *
-     * @return the checks if is production mode
+     * @return the tango card service api
      */
-    public boolean getIsProductionMode()
+    public TangoCardServiceApiEnum getTangoCardServiceApi()
     {
-        return this._is_production_mode;
+        return this._tango_card_service_api;
     }
     
     /**
-     * Set service endpoint type based upon if request is for production.
+     * Sets the tango card service api.
      *
-     * @param is_production_mode the new checks if is production mode
+     * @param enumTangoCardServiceApi the new tango card service api
      */
-    public void setIsProductionMode(boolean is_production_mode)
+    public void setTangoCardServiceApi(TangoCardServiceApiEnum enumTangoCardServiceApi)
     {
-        this._is_production_mode = is_production_mode;
+        this._tango_card_service_api = enumTangoCardServiceApi;
     }
     
     /**

@@ -6,18 +6,28 @@ The Tango Card Java SDK is a wrapper around the Tango Card Extend API. As such, 
 
 # Tango Card Service Requests #
 
-The Tango Card SDK, every Request has a corresponding success-case Response object. 
+The Tango Card SDK, every Request has a corresponding success-case Response object.
 
 ![Tango Card SDK Requests](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_service_success_response.png "Tango Card SDK Requests")
+
+## Tango Card Service API ##
+
+Available are two endpoints that provide the Tango Card Service API, as defined by `enum TangoCard\Sdk\Service\TangoCardServiceApiEnum` :
+* `INTEGRATION` - Expected to be used for development and testing purposes.
+* `PRODUCTION` - Performs actual card purchase requests.
+
+Requests are secure HTTP POST using SSL.
 
 ## Get Available Balance ##
 
 This request is defined by `class TangoCard\Sdk\Request\GetAvailableBalanceRequest`
 ```java
+	TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+	
 	// set up the request
 	GetAvailableBalanceRequest requestAvailableBalance 
 		= new GetAvailableBalanceRequest( 
-				is_production_mode,
+				enumTangoCardServiceApi,
 				username, 
 				password
 				);
@@ -41,15 +51,22 @@ This request is defined by `class TangoCard\Sdk\Request\GetAvailableBalanceReque
 
 Its response `$responseAvailableBalance` will now be (assuming success) a `TangoCard\Sdk\Response\Success\GetAvailableBalanceResponse` type object.
 
-### `GetAvailableBalanceRequest` Constructor Parameters ###
+### `TangoCard\Sdk\Request\GetAvailableBalanceRequest` Constructor Parameters ###
 
 <dl>
-  <dt>boolean is_production_mode</dt>
-  <dd>- True for accessing Tango Card Production API service, and false for accessing Tango Card Integration API service</dd>
+  <dt>TangoCardServiceApiEnum enumTangoCardServiceApi</dt>
+  <dd>- INTEGRATION and PRODUCTION</dd>
   <dt>string username</dt>
   <dd>- User email address, and the SDK Integration test username is defined in application configuration file _app_config.properties_ within *app_username*</dd>
   <dt>string password</dt>
   <dd>- User password, and the SDK Integration test password is defined in application configuration file _app_config.properties_ within *app_password*</dd>
+</dl>
+
+### `TangoCard\Sdk\Response\Success\GetAvailableBalanceResponse` Properties ###
+
+<dl>
+  <dt>int getAvailableBalance</dt>
+  <dd>- Returns available balance of username's account in cents: 100 is $1.00 dollar.</dd>
 </dl>
 
 ## Purchase Tango Card ##
@@ -57,19 +74,20 @@ Its response `$responseAvailableBalance` will now be (assuming success) a `Tango
 This request is defined by `class TangoCard\Sdk\Request\PurchaseCardRequest`
 ```java
 	int cardValueTangoCardCents = 100; // $1.00 dollars
+	TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
 
 	// set up the request
 	PurchaseCardRequest requestPurchaseCardRequest_Delivery = new PurchaseCardRequest(
-			is_production_mode,				// isProductionMode
+			enumTangoCardServiceApi,		// enumTangoCardServiceApi
 			username, 						// username
 			password,						// password
 			card_sku,              			// cardSku
 			cardValueTangoCardCents,       	// cardValue
 			true,                      		// tcSend 
-			"Sally Test Recipient",         // recipientName
-			"sue_test_recipient@test.com",  // recipientEmail
-			"Happy Birthday",               // giftMessage
-			"Bob Test Giver"                // giftFrom  
+			"Sally Example",				// recipientName
+			"sally@example.com",			// recipientEmail
+			"Happy Birthday",				// giftMessage
+			"Bill Example"					// giftFrom  
 	);
 
 	// make the request
@@ -86,7 +104,7 @@ This request is defined by `class TangoCard\Sdk\Request\PurchaseCardRequest`
 
 Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming success) a `TangoCard\Sdk\Response\Success\PurchaseCardResponse` type object.
 
-### `PurchaseCardRequest` Constructor Parameters ###
+### `TangoCard\Sdk\Request\PurchaseCardRequest` Constructor Parameters ###
 
 <dl>
   <dt>boolean is_production_mode</dt>
@@ -111,6 +129,19 @@ Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming succes
   <dd>- Full name of giver of gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
 </dl>
 
+### `TangoCard\Sdk\Response\Success\PurchaseCardResponse` Properties ###
+
+<dl>
+  <dt>String getReferenceOrderId</dt>
+  <dd>- Confirmation number of purchase.</dd>
+  <dt>String getCardToken</dt>
+  <dd>- Card reference to the aforementioned purchase.</dd>
+  <dt>String getCardNumber</dt>
+  <dd>- Card number provided to the recipient to be used at redemption upon the www.tangocard.com site.</dd>
+  <dt>String getCardPin</dt>
+  <dd>- Card pin provided to the recipient used to validate provided Card number a redemption upon the www.tangocard.com site.</dd>
+</dl>
+
 # Tango Card Error Handling #
 
 There are also failure-case response objects. Each Request will explain (in the documentation) what type of possible failure-case response objects can be expected.
@@ -130,6 +161,8 @@ A service will return the following failure responses as enumerated by `TangoCar
 	<tr><td>System Failure</td><td>SYS_ERROR</td><td>`TangoCard\Sdk\Response\Failure\SystemFailureResponse`</td></tr>
 </table>
 
+Each of the aforementioned `Failure Responses` contains details as to the reason that the `Tango Card Service API` did not perform provided `Request`.
+
 ![Tango Card SDK Service Response Failures](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_service_failure_response.png "Tango Card SDK Service Response Failures")
 
 The details of these service failure responses are embedded and thrown within `TangoCard\Sdk\ServiceTangoCardServiceException`
@@ -146,10 +179,12 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 ```java
 	try
 	{
+		TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+		
 		// set up the request
 		GetAvailableBalanceRequest request = new GetAvailableBalanceRequest
 		(
-			is_production_mode,
+			enumTangoCardServiceApi,
 			username,
 			password
 		);
@@ -229,6 +264,39 @@ This example is intended to be run from the command line:
     $ javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
 
 	$ java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
+	
+#### Example Command Line Run ####
+
+```java
+	===============================
+	= Tango Card Java SDK Example =
+	=   for simple store front    =
+	===============================
+
+	Success - GetAvailableBalance - Initial
+			I have an available balance of $8,755,654.00 dollars.
+
+	Success - PurchaseCard - Delivery
+
+			Reference Order ID: 112-07212466-28
+			Card Token:         501385bb04f608.38922035
+			Card Number:        7001-8040-0176-7850-913
+			Card Pin:           368525
+
+	Success - PurchaseCard - No Delivery
+
+			Reference Order ID: 112-07212467-28
+			Card Token:         501385bb84a0f7.11849672
+			Card Number:        7001-5040-0168-6066-118
+			Card Pin:           701172
+
+	Success - GetAvailableBalance - Concluding
+			I have an available balance of $8,755,652.00 dollars.
+			
+	===============================
+	=   The End                   =
+	===============================
+```
 
 ### TangoCard_Failures_Example.java ###
 
@@ -241,10 +309,37 @@ Example of how the SDK handles various failure responses, such as:
 
 This example is intended to be run from the command line:
 
-    $ javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
+    $ javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
 
-	$ java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
+	$ java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
 
+#### Example Command Line Run ####
+
+```java
+	===============================
+	= Tango Card Java SDK Example =
+	=   with Failures             =
+	===============================
+	
+	======== Get Available Balance ========
+	=== Tango Card Service Failure ===
+	Failure response type: INV_CREDENTIAL
+	Failure response:      Provided user credentials are not valid.
+	===== End Get Available Balance ====
+
+	======== Purchase Card ========
+	=== Tango Card Service Failure ===
+	Failure response type: INS_FUNDS
+	Failure response:      Available Balance: 0, Order Cost: 100
+	AvailableBalance:      0
+	OrderCost:             100
+	===== End Get Available Balance ====
+
+	===============================
+	=   The End                   =
+	===============================
+```
+	
 ## unittests ##
 
 The SDK's unittests have been written to use [JavaUnit](http://www.phpunit.de).

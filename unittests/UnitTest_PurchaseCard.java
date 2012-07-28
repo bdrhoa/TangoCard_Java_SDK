@@ -35,6 +35,7 @@ import tangocard.sdk.common.TangoCardSdkException;
 import tangocard.sdk.request.PurchaseCardRequest;
 import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.success.PurchaseCardResponse;
+import tangocard.sdk.service.TangoCardServiceApiEnum;
 import tangocard.sdk.service.TangoCardServiceException;
 
 import junit.framework.TestCase;
@@ -53,8 +54,8 @@ public class UnitTest_PurchaseCard extends TestCase {
     /** The _app_card_sku. */
     private String _app_card_sku = null;
     
-    /** The _is_production_mode. */
-    private boolean _is_production_mode = false;    
+    /** The _enum tango card service api. */
+    private TangoCardServiceApiEnum _enumTangoCardServiceApi = TangoCardServiceApiEnum.UNDEFINED; 
 
     /* (non-Javadoc)
      * @see junit.framework.TestCase#setUp()
@@ -72,10 +73,10 @@ public class UnitTest_PurchaseCard extends TestCase {
         
         this._app_username = prop.getProperty("app_username");
         this._app_password = prop.getProperty("app_password");
-        String app_production_mode = prop.getProperty("app_production_mode");
         this._app_card_sku = prop.getProperty("app_card_sku");
         
-        this._is_production_mode = app_production_mode.equals("true");        
+        String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
+        this._enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
     }
     
     /**
@@ -95,16 +96,16 @@ public class UnitTest_PurchaseCard extends TestCase {
 
         // set up the request
         PurchaseCardRequest requestPurchaseCardRequest_Delivery = new PurchaseCardRequest(
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 this._app_username, 
                 this._app_password,
                 this._app_card_sku,             // cardSku
-                cardValueTangoCardCents,           // cardValue
-                true,                              // tcSend 
-                "Sally Test Recipient",         // recipientName
-                "sue_test_recipient@test.com",  // recipientEmail
+                cardValueTangoCardCents,        // cardValue
+                true,                           // tcSend 
+                "Sally Example",                // recipientName
+                "sally@example.com",            // recipientEmail
                 "Happy Birthday",               // giftMessage
-                "Bob Test Giver"                // giftFrom  
+                "Bill Example"                  // giftFrom  
         );
 
         // make the request
@@ -137,14 +138,14 @@ public class UnitTest_PurchaseCard extends TestCase {
 
         // set up the request
         PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 this._app_username, 
                 this._app_password,
                 this._app_card_sku,             // cardSku
-                cardValueTangoCardCents,           // cardValue
+                cardValueTangoCardCents,        // cardValue
                 false,                          // tcSend 
-                null,                             // recipientName
-                null,                              // recipientEmail
+                null,                           // recipientName
+                null,                           // recipientEmail
                 null,                           // giftMessage
                 null                            // giftFrom  
         );
@@ -176,12 +177,12 @@ public class UnitTest_PurchaseCard extends TestCase {
     public void test_PurchaseCard_InvalidCredentials() {
         int cardValueTangoCardCents = 100; // $1.00 dollars
         
-        String username = "test@test.com";
+        String username = "burt@example.com";
         String password = "password";  
 
         // set up the request
         PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 username, 
                 password,
                 this._app_card_sku,             // cardSku
@@ -229,7 +230,7 @@ public class UnitTest_PurchaseCard extends TestCase {
 
         // set up the request
         PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 username, 
                 password,
                 this._app_card_sku,             // cardSku
@@ -274,14 +275,14 @@ public class UnitTest_PurchaseCard extends TestCase {
 
         // set up the request
         PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 this._app_username, 
                 this._app_password,
-                "mango-card",                     // cardSku
-                cardValueTangoCardCents,           // cardValue
+                "mango-card",                   // cardSku
+                cardValueTangoCardCents,        // cardValue
                 false,                          // tcSend 
-                null,                             // recipientName
-                null,                              // recipientEmail
+                null,                           // recipientName
+                null,                           // recipientEmail
                 null,                           // giftMessage
                 null                            // giftFrom  
         );

@@ -1,4 +1,10 @@
 /**
+ * 
+ * TangoCardServiceException.java 
+ * TangoCard_Java_SDK
+ * 
+ * This Exception is thrown when Tango Card service returns Failure Response.
+ * 
  * © 2012 Tango Card, Inc
  *  All rights reserved.
  * 

@@ -42,6 +42,7 @@ import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.failure.InsufficientFundsResponse;
 import tangocard.sdk.response.success.GetAvailableBalanceResponse;
 import tangocard.sdk.response.success.PurchaseCardResponse;
+import tangocard.sdk.service.TangoCardServiceApiEnum;
 import tangocard.sdk.service.TangoCardServiceException;
 
 public class TangoCard_Failures_Example {
@@ -81,12 +82,11 @@ public class TangoCard_Failures_Example {
             throw ex;
         }
         
-        String app_production_mode = prop.getProperty("app_production_mode");
-        
-        boolean is_production_mode = app_production_mode.equals("true");
+        String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
+        TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
         
 
-       String username = "test@test.com";
+       String username = "burt@example.com";
        String password = "password";
         
         try
@@ -95,7 +95,7 @@ public class TangoCard_Failures_Example {
 
             GetAvailableBalanceRequest request = new GetAvailableBalanceRequest
             (
-                is_production_mode,
+                enumTangoCardServiceApi,
                 username,
                 password
             );
@@ -147,8 +147,8 @@ public class TangoCard_Failures_Example {
             throw ex;
         }
 
-        String app_production_mode = prop.getProperty("app_production_mode");        
-        boolean is_production_mode = app_production_mode.equals("true");
+        String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
+        TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
 
         String username = "empty@tangocard.com";
         String password = "password";
@@ -159,7 +159,7 @@ public class TangoCard_Failures_Example {
 
             PurchaseCardRequest request = new PurchaseCardRequest
             (
-                is_production_mode,
+                enumTangoCardServiceApi,
                 username,
                 password,
                 "tango-card",

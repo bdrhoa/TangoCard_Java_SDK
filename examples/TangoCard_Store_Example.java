@@ -36,6 +36,7 @@ import tangocard.sdk.common.TangoCardSdkException;
 import tangocard.sdk.request.*;
 import tangocard.sdk.response.success.GetAvailableBalanceResponse;
 import tangocard.sdk.response.success.PurchaseCardResponse;
+import tangocard.sdk.service.TangoCardServiceApiEnum;
 import tangocard.sdk.service.TangoCardServiceException;
 
 public class TangoCard_Store_Example {
@@ -65,14 +66,14 @@ public class TangoCard_Store_Example {
         try {
             String app_username = prop.getProperty("app_username");
             String app_password = prop.getProperty("app_password");
-            String app_production_mode = prop.getProperty("app_production_mode");
             String app_card_sku = prop.getProperty("app_card_sku");
             
-            boolean is_production_mode = app_production_mode.equals("true");
+            String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
+            TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
             
             GetAvailableBalanceRequest requestAvailableBalance 
                 = new GetAvailableBalanceRequest( 
-                        is_production_mode,
+                        enumTangoCardServiceApi,
                         app_username, 
                         app_password
                         );
@@ -92,16 +93,16 @@ public class TangoCard_Store_Example {
     
             // set up the request
             PurchaseCardRequest requestPurchaseCardRequest_Delivery = new PurchaseCardRequest(
-                    is_production_mode,
+                    enumTangoCardServiceApi,
                     app_username, 
                     app_password,
                     app_card_sku,                      // cardSku
                     cardValueTangoCardCents,           // cardValue
                     true,                              // tcSend 
-                    "Sally Test Recipient",         // recipientName
-                    "sue_test_recipient@test.com",  // recipientEmail
+                    "Sally Example",         // recipientName
+                    "sally@example.com",  // recipientEmail
                     "Happy Birthday",               // giftMessage
-                    "Bob Test Giver"                // giftFrom  
+                    "Bill Example"                // giftFrom  
             );
     
             // make the request
@@ -117,7 +118,7 @@ public class TangoCard_Store_Example {
             
             // set up the request
             PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                    is_production_mode,
+                    enumTangoCardServiceApi,
                     app_username, 
                     app_password,
                     app_card_sku,                      // cardSku
@@ -142,7 +143,7 @@ public class TangoCard_Store_Example {
             
             GetAvailableBalanceRequest requestUpdatedBalance 
             = new GetAvailableBalanceRequest( 
-                    is_production_mode,
+                    enumTangoCardServiceApi,
                     app_username, 
                     app_password
                     );

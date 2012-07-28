@@ -2,7 +2,9 @@
  * TangoCardSdkException.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.4
+ * This Exception is thrown when the SDK detects an unexpected error within its code.
+ * 
+ * @version  1.0.5
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc

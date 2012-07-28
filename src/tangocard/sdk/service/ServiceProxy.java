@@ -2,7 +2,7 @@
  * ServiceProxy.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.4
+ * @version  1.0.5
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -97,9 +97,18 @@ public class ServiceProxy {
             throw new TangoCardSdkException("Failed to get instance of SDK configuration.");
         }
         
-        this._base_url = requestObject.getIsProductionMode()
-            ? appConfig.getConfigValue("tc_sdk_environment_production_url")
-            : appConfig.getConfigValue("tc_sdk_environment_integration_url");
+        this._base_url = null;
+        if ( requestObject.getTangoCardServiceApi().equals(TangoCardServiceApiEnum.INTEGRATION)) {
+            this._base_url = appConfig.getConfigValue("tc_sdk_environment_integration_url");
+        } else if ( requestObject.getTangoCardServiceApi().equals(TangoCardServiceApiEnum.PRODUCTION)) {
+            this._base_url = appConfig.getConfigValue("tc_sdk_environment_production_url");
+        } else {
+            throw new TangoCardSdkException("Unexpected Tango Card Service API request: " + requestObject.getTangoCardServiceApi().name() );
+        }
+
+        if ( null == this._base_url) {
+            throw new TangoCardSdkException("Tango Card Service API was not assigned." );
+        }
         
         this._controller = appConfig.getConfigValue("tc_sdk_controller");
         if ( Helper.isNullOrEmptyString(this._controller)) {

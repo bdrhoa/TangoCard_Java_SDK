@@ -35,6 +35,7 @@ import tangocard.sdk.common.TangoCardSdkException;
 import tangocard.sdk.request.GetAvailableBalanceRequest;
 import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.success.GetAvailableBalanceResponse;
+import tangocard.sdk.service.TangoCardServiceApiEnum;
 import tangocard.sdk.service.TangoCardServiceException;
 
 import junit.framework.TestCase;
@@ -43,9 +44,9 @@ import junit.framework.TestCase;
  * The Class UnitTest_GetAvailableBalance.
  */
 public class UnitTest_GetAvailableBalance extends TestCase {
-	
-	public static void main(String args[]) {
-		} 
+    
+    public static void main(String args[]) {
+        } 
     
     /** The _app_username. */
     private String _app_username = null;
@@ -53,8 +54,8 @@ public class UnitTest_GetAvailableBalance extends TestCase {
     /** The _app_password. */
     private String _app_password = null;
     
-    /** The _is_production_mode. */
-    private boolean _is_production_mode = false;    
+    /** The _enum tango card service api. */
+    private TangoCardServiceApiEnum _enumTangoCardServiceApi = TangoCardServiceApiEnum.UNDEFINED;
 
     /* (non-Javadoc)
      * @see junit.framework.TestCase#setUp()
@@ -72,9 +73,9 @@ public class UnitTest_GetAvailableBalance extends TestCase {
         
         this._app_username = prop.getProperty("app_username");
         this._app_password = prop.getProperty("app_password");
-        String app_production_mode = prop.getProperty("app_production_mode");
         
-        this._is_production_mode = app_production_mode.equals("true");        
+        String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
+        this._enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
     }
     
     /**
@@ -92,7 +93,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
     public void test_GetAvailableBalance() {
         GetAvailableBalanceRequest requestAvailableBalance 
         = new GetAvailableBalanceRequest( 
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 this._app_username, 
                 this._app_password
                 );
@@ -122,12 +123,12 @@ public class UnitTest_GetAvailableBalance extends TestCase {
      */
     public void test_GetAvailableBalance_InvalidCredentials() {
         
-        String username = "test@test.com";
+        String username = "burt@example.com";
         String password = "password";   
         
         GetAvailableBalanceRequest requestAvailableBalance 
         = new GetAvailableBalanceRequest( 
-                this._is_production_mode,
+                this._enumTangoCardServiceApi,
                 username, 
                 password
                 );

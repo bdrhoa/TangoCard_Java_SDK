@@ -2,7 +2,7 @@
  * PurchaseCardRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.4
+ * @version  1.0.5
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import tangocard.sdk.common.*;
 import tangocard.sdk.response.success.*;
+import tangocard.sdk.service.TangoCardServiceApiEnum;
     
 public class PurchaseCardRequest extends BaseRequest {
     
@@ -49,7 +50,7 @@ public class PurchaseCardRequest extends BaseRequest {
     /**
      * Instantiates a new purchase card request.
      *
-     * @param isProductionMode the is production mode
+     * @param enumTangoCardServiceApi the enum tango card service api
      * @param username the username
      * @param password the password
      * @param cardSku the card sku
@@ -61,7 +62,7 @@ public class PurchaseCardRequest extends BaseRequest {
      * @param giftFrom the gift from
      */
     public PurchaseCardRequest(
-            boolean isProductionMode,
+            TangoCardServiceApiEnum enumTangoCardServiceApi,
             String username, 
             String password,    
             String cardSku, 
@@ -73,12 +74,17 @@ public class PurchaseCardRequest extends BaseRequest {
             String giftFrom
     ) {
         // parent construct
-        super(isProductionMode, username, password);
+        super(enumTangoCardServiceApi, username, password);
         
         // -----------------------------------------------------------------
         // validate inputs
         // ----------------------------------------------------------------- 
-
+        
+        // enumTangoCardServiceApi
+        if ( enumTangoCardServiceApi.equals(TangoCardServiceApiEnum.UNDEFINED) ) {
+            throw new IllegalArgumentException( "Parameter 'enumTangoCardServiceApi' must be defined.");
+        }
+        
         // cardSku
         if (Helper.isNullOrEmptyString(cardSku))
         {
