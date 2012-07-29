@@ -144,7 +144,10 @@ Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming succes
 
 # Tango Card Error Handling #
 
-There are also failure-case response objects. Each Request will explain (in the documentation) what type of possible failure-case response objects can be expected.
+There are also failure-case response objects. 
+
+* `TangoCard\Sdk\ServiceTangoCardServiceException` is thrown when the `Tango Card Service API` return a `Failure Response` for a given `Request`.
+* `TangoCard\Sdk\Common\TangoCardSdkException` is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
 
 ![Tango Card SDK Exceptions](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_exceptions.png "Tango Card SDK Exceptions")
 
@@ -153,7 +156,7 @@ There are also failure-case response objects. Each Request will explain (in the 
 A service will return the following failure responses as enumerated by `TangoCard\Sdk\Response\ServiceResponseEnum`:
 
 <table>
-	<tr><th>Failure</th><th>Reponse Type</th><th>Response</th></tr>
+	<tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
 	<tr><td>Insufficient Funds</td><td>INS_FUNDS</td><td>`TangoCard\Sdk\Response\Failure\InsufficientFundsResponse`</td></tr>
 	<tr><td>Insufficient Inventory</td><td>INS_INV</td><td>`TangoCard\Sdk\Response\Failure\InsufficientInventoryResponse`</td></tr> 
 	<tr><td>Invalid Credentials</td><td>INV_CREDENTIAL</td><td>`TangoCard\Sdk\Response\Failure\InvalidCredentialsResponse`</td></tr> 
@@ -166,6 +169,37 @@ Each of the aforementioned `Failure Responses` contains details as to the reason
 ![Tango Card SDK Service Response Failures](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_service_failure_response.png "Tango Card SDK Service Response Failures")
 
 The details of these service failure responses are embedded and thrown within `TangoCard\Sdk\ServiceTangoCardServiceException`
+
+### Expected Failure Responses for Specific Requests ###
+
+Each Request will have the following possible Failure Responses as a property value within `TangoCard\Sdk\ServiceTangoCardServiceException.getResponse()`:
+
+<table>
+	<tr><th>Request</th><th>Possible Failure Responses</th></tr>
+	<tr>
+		<td>`GetAvailableBalanceRequest`</td>
+		<td>
+			<table>
+				<tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
+				<tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
+				<tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>`PurchaseCardRequest`</td>
+		<td>
+			<table>
+				<tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
+				<tr><td>INS_FUNDS</td><td>`InsufficientFundsResponse`</td></tr>
+				<tr><td>INS_INV</td><td>`InsufficientInventoryResponse`</td></tr> 
+				<tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
+				<tr><td>INV_INPUT</td><td>`InvalidInputResponse`</td></tr>
+				<tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
 
 ## SDK Error Responses ##
 
