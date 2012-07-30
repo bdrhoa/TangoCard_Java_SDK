@@ -234,7 +234,7 @@ Each Request will have the following possible Failure Responses as a property va
 
 Along with standard `InvalidArgumentException` for catching parameter entry errors, the SDK throws it own exception when detecting errors that pertain to itself `TangoCard\Sdk\Common\TangoCardSdkException`.
 
-![Tango Card SDK Error Detection](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_sdk_error_detected.png "Tango Card SDK Error Detection")
+![Tango Card SDK Error Detection](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_error_detected.png "Tango Card SDK Error Detection")
 
 ## Handling Errors ##
 
@@ -320,7 +320,7 @@ This is a complete example of requesting available balance and purchasing Tango 
 
 #### Command Line ####
 
-This example is intended to be run from the command line (note: provide correct *<version>* label):
+This example is intended to be run from the command line  (<b>NOTE: Set `<version>` to the current TangoCard_Java_SDK jar label.):
 
     $ javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
 
@@ -368,7 +368,7 @@ Example of how the SDK handles various failure responses, such as:
 
 #### Command Line ####
 
-This example is intended to be run from the command line:
+This example is intended to be run from the command line (<b>NOTE: Set `<version>` to the current TangoCard_Java_SDK jar label.):
 
     $ javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
 
