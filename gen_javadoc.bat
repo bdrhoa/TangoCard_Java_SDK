@@ -1,0 +1,1 @@
+javadoc -windowtitle "TangoCard_Java_SDK" -doctitle "TangoCard_Java_SDK" -d doc\javadoc -sourcepath src -classpath "lib\org.json-20120521.jar" tangocard.sdk tangocard.sdk.common tangocard.sdk.request tangocard.sdk.response tangocard.sdk.response.success tangocard.sdk.response.failure tangocard.sdk.service
