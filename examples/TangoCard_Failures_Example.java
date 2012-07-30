@@ -35,15 +35,12 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Properties;
 
+import tangocard.sdk.TangoCardServiceApi;
 import tangocard.sdk.common.TangoCardSdkException;
-import tangocard.sdk.request.GetAvailableBalanceRequest;
-import tangocard.sdk.request.PurchaseCardRequest;
 import tangocard.sdk.response.ServiceResponseEnum;
-import tangocard.sdk.response.failure.InsufficientFundsResponse;
-import tangocard.sdk.response.success.GetAvailableBalanceResponse;
-import tangocard.sdk.response.success.PurchaseCardResponse;
-import tangocard.sdk.service.TangoCardServiceApiEnum;
-import tangocard.sdk.service.TangoCardServiceException;
+import tangocard.sdk.response.failure.*;
+import tangocard.sdk.response.success.*;
+import tangocard.sdk.service.*;
 
 public class TangoCard_Failures_Example {
 
@@ -91,20 +88,18 @@ public class TangoCard_Failures_Example {
         
         try
         {
-            System.out.println("======== Get Available Balance ========");
+            System.out.println("\n======== Get Available Balance with Invalid Credentials ========");
 
-            GetAvailableBalanceRequest request = new GetAvailableBalanceRequest
-            (
-                enumTangoCardServiceApi,
-                username,
-                password
-            );
             GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
-            if (request.execute(response) && (null != response))
-            {
-                
+            if (TangoCardServiceApi.GetAvailableBalance(
+            		enumTangoCardServiceApi, 
+            		username, 
+            		password, 
+            		response
+            		) 
+            		&& (null != response)
+            ) {
                 System.out.println("=== Expected failure ===");
-                
             }
         }
         catch (TangoCardServiceException ex)
@@ -128,7 +123,7 @@ public class TangoCard_Failures_Example {
             System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));            
         }
 
-        System.out.println("===== End Get Available Balance ====\n\n\n");
+        System.out.println("===== End Get Available Balance with Invalid Credentials ====\n\n\n");
     }
 
     /**
@@ -155,25 +150,24 @@ public class TangoCard_Failures_Example {
       
         try
         {
-            System.out.println("======== Purchase Card ========");
-
-            PurchaseCardRequest request = new PurchaseCardRequest
-            (
-                enumTangoCardServiceApi,
-                username,
-                password,
-                "tango-card",
-                100,    // $1.00 value
-                false, 
-                null, 
-                null, 
-                null, 
-                null
-            );
+            System.out.println("\n======== Purchase Card with Insufficient Funds ========");
 
             PurchaseCardResponse response = null;
-            if (request.execute(response) && (null != response))
-            {              
+            if ( TangoCardServiceApi.PurchaseCard(
+                    enumTangoCardServiceApi,	// API environment
+                    username, 					// username
+                    password,					// password
+                    "tango-card",				// cardSku
+                    100,    					// cardValue = $1.00 value
+                    false,						// tcSend 
+                    null,						// recipientName
+                    null,						// recipientEmail
+                    null,						// giftMessage
+                    null,						// giftFrom  
+                    response					// response 
+            		) 
+            		&& (null != response)
+            ) {       
                 System.out.println("=== Expected failure ===");               
             }
         }
@@ -202,7 +196,7 @@ public class TangoCard_Failures_Example {
             System.out.println(TangoCard_Failures_Example.getStackTrace(ex));
         }
 
-        System.out.println("===== End Get Available Balance ====\n\n\n");
+        System.out.println("===== End Purchase Card with Insufficient Funds ====\n\n\n");
     }
     
     /**

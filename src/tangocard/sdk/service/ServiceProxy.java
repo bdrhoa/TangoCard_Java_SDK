@@ -2,7 +2,7 @@
  * ServiceProxy.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.5
+ * @version  1.0.6
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -98,16 +98,16 @@ public class ServiceProxy {
         }
         
         this._base_url = null;
-        if ( requestObject.getTangoCardServiceApi().equals(TangoCardServiceApiEnum.INTEGRATION)) {
+        if ( requestObject.getTangoCardServiceApiEnum().equals(TangoCardServiceApiEnum.INTEGRATION)) {
             this._base_url = appConfig.getConfigValue("tc_sdk_environment_integration_url");
-        } else if ( requestObject.getTangoCardServiceApi().equals(TangoCardServiceApiEnum.PRODUCTION)) {
+        } else if ( requestObject.getTangoCardServiceApiEnum().equals(TangoCardServiceApiEnum.PRODUCTION)) {
             this._base_url = appConfig.getConfigValue("tc_sdk_environment_production_url");
         } else {
-            throw new TangoCardSdkException("Unexpected Tango Card Service API request: " + requestObject.getTangoCardServiceApi().name() );
+            throw new TangoCardSdkException("Unexpected Tango Card Service API request: " + requestObject.getTangoCardServiceApiEnum().name() );
         }
 
         if ( null == this._base_url) {
-            throw new TangoCardSdkException("Tango Card Service API was not assigned." );
+            throw new TangoCardSdkException("Tango Card Service API URL was not assigned." );
         }
         
         this._controller = appConfig.getConfigValue("tc_sdk_controller");
@@ -238,7 +238,7 @@ public class ServiceProxy {
      *
      * @param responseJson the response JSON
      * @throws JSONException the JSON exception
-     * @throws TangoCardServiceException the tango card service exception
+     * @throws TangoCardServiceException the Tango Card service exception
      * @throws TangoCardSdkException 
      */
     protected static void throwOnError(JSONObject responseJson) throws JSONException, TangoCardServiceException, TangoCardSdkException

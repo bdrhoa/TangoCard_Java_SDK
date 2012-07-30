@@ -32,8 +32,8 @@ import java.io.FileNotFoundException;
 import java.text.NumberFormat;
 import java.util.Properties;
 
+import tangocard.sdk.TangoCardServiceApi;
 import tangocard.sdk.common.TangoCardSdkException;
-import tangocard.sdk.request.*;
 import tangocard.sdk.response.success.GetAvailableBalanceResponse;
 import tangocard.sdk.response.success.PurchaseCardResponse;
 import tangocard.sdk.service.TangoCardServiceApiEnum;
@@ -70,17 +70,16 @@ public class TangoCard_Store_Example {
             
             String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
             TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
-            
-            GetAvailableBalanceRequest requestAvailableBalance 
-                = new GetAvailableBalanceRequest( 
-                        enumTangoCardServiceApi,
-                        app_username, 
-                        app_password
-                        );
-            
+                        
             GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
-            if ( requestAvailableBalance.execute(responseAvailableBalance) && (null != responseAvailableBalance) )
-            {
+            if ( TangoCardServiceApi.GetAvailableBalance(
+            		enumTangoCardServiceApi, 
+            		app_username, 
+            		app_password, 
+            		responseAvailableBalance
+            		) 
+            		&& (null != responseAvailableBalance) 
+            ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Initial");
                 int tango_cents_available_balance = responseAvailableBalance.getAvailableBalance();
                 double currencyAmount = tango_cents_available_balance/100;
@@ -90,25 +89,23 @@ public class TangoCard_Store_Example {
             }
                     
             int cardValueTangoCardCents = 100; // $1.00 dollars
-    
-            // set up the request
-            PurchaseCardRequest requestPurchaseCardRequest_Delivery = new PurchaseCardRequest(
-                    enumTangoCardServiceApi,
-                    app_username, 
-                    app_password,
-                    app_card_sku,                      // cardSku
-                    cardValueTangoCardCents,           // cardValue
-                    true,                              // tcSend 
-                    "Sally Example",         // recipientName
-                    "sally@example.com",  // recipientEmail
-                    "Happy Birthday",               // giftMessage
-                    "Bill Example"                // giftFrom  
-            );
-    
-            // make the request
+
             PurchaseCardResponse responsePurchaseCard_Delivery = new PurchaseCardResponse();
-            if ( requestPurchaseCardRequest_Delivery.execute(responsePurchaseCard_Delivery) && (null != responsePurchaseCard_Delivery))
-            {
+            if ( TangoCardServiceApi.PurchaseCard(
+                    enumTangoCardServiceApi,		// API environment
+                    app_username, 					// username
+                    app_password,					// password
+                    app_card_sku,					// cardSku
+                    cardValueTangoCardCents,		// cardValue
+                    true,							// tcSend 
+                    "Sally Example",				// recipientName
+                    "sally@example.com",			// recipientEmail
+                    "Happy Birthday",				// giftMessage
+                    "Bill Example",					// giftFrom  
+            		responsePurchaseCard_Delivery	// response 
+            		) 
+            		&& (null != responsePurchaseCard_Delivery)
+            ) {
                 System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
                 System.out.println( "\tReference Order ID: "  + responsePurchaseCard_Delivery.getReferenceOrderId() + "");
                 System.out.println( "\tCard Token:         "  + responsePurchaseCard_Delivery.getCardToken() + "");
@@ -116,24 +113,22 @@ public class TangoCard_Store_Example {
                 System.out.println( "\tCard Pin:           "  + responsePurchaseCard_Delivery.getCardPin() + "");
             }
             
-            // set up the request
-            PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                    enumTangoCardServiceApi,
-                    app_username, 
-                    app_password,
-                    app_card_sku,                      // cardSku
-                    cardValueTangoCardCents,           // cardValue
-                    false,                          // tcSend 
-                    null,                             // recipientName
-                    null,                              // recipientEmail
-                    null,                           // giftMessage
-                    null                            // giftFrom  
-            );
-    
-            // make the request
             PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
-            if ( requestPurchaseCardRequest_NoDelivery.execute(responsePurchaseCard_NoDelivery) && (null != responsePurchaseCard_NoDelivery))
-            {
+            if ( TangoCardServiceApi.PurchaseCard(
+                    enumTangoCardServiceApi,		// API environment
+                    app_username, 					// username
+                    app_password,					// password
+                    app_card_sku,					// cardSku
+                    cardValueTangoCardCents,		// cardValue
+                    false,                          // tcSend 
+                    null,							// recipientName
+                    null,							// recipientEmail
+                    null,                           // giftMessage
+                    null,                           // giftFrom  
+                    responsePurchaseCard_NoDelivery	// response 
+            		) 
+            		&& (null != responsePurchaseCard_Delivery)
+            ) {
                 System.out.println( "\nSuccess - PurchaseCard - No Delivery\n" );
                 System.out.println( "\tReference Order ID: "  + responsePurchaseCard_NoDelivery.getReferenceOrderId() + "");
                 System.out.println( "\tCard Token:         "  + responsePurchaseCard_NoDelivery.getCardToken() + "");
@@ -141,16 +136,14 @@ public class TangoCard_Store_Example {
                 System.out.println( "\tCard Pin:           "  + responsePurchaseCard_NoDelivery.getCardPin() + "");
             }
             
-            GetAvailableBalanceRequest requestUpdatedBalance 
-            = new GetAvailableBalanceRequest( 
-                    enumTangoCardServiceApi,
-                    app_username, 
-                    app_password
-                    );
-        
             GetAvailableBalanceResponse responseUpdatedBalance = new GetAvailableBalanceResponse();
-            if ( requestUpdatedBalance.execute(responseUpdatedBalance) && (null != responseUpdatedBalance) )
-            {
+            if ( TangoCardServiceApi.GetAvailableBalance(
+            		enumTangoCardServiceApi, 
+            		app_username, 
+            		app_password, 
+            		responseUpdatedBalance) 
+            		&& (null != responseUpdatedBalance) 
+            ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Concluding");
                 int tango_cents_available_balance = responseUpdatedBalance.getAvailableBalance();
                 double currencyAmount = tango_cents_available_balance/100;

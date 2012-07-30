@@ -2,7 +2,7 @@
  * BaseRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.5
+ * @version  1.0.6
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -43,12 +43,12 @@ public abstract class BaseRequest {
     private String _password = null;
     
     /** The _endpoint. */
-    private TangoCardServiceApiEnum _tango_card_service_api = TangoCardServiceApiEnum.UNDEFINED;
+    private TangoCardServiceApiEnum _enumTangoCardServiceApi = TangoCardServiceApiEnum.UNDEFINED;
     
     /**
      * Instantiates a new base request.
      *
-     * @param enumTangoCardServiceApi the enum tango card service api
+     * @param enumTangoCardServiceApi the enum Tango Card service api
      * @param username the username
      * @param password the password
      */
@@ -60,6 +60,12 @@ public abstract class BaseRequest {
         // -----------------------------------------------------------------
         // validate inputs
         // -----------------------------------------------------------------
+    	
+    	// enumTangoCardServiceApi
+        if ( enumTangoCardServiceApi.equals(TangoCardServiceApiEnum.UNDEFINED) ) {
+            throw new IllegalArgumentException("Parameter 'enumTangoCardServiceApi' is not a defined service environment.");
+        }
+    	
         // username
         if ( Helper.isNullOrEmptyString(username) ) {
             throw new IllegalArgumentException("Parameter 'username' is not defined.");
@@ -71,7 +77,7 @@ public abstract class BaseRequest {
         
         this._username = username;
         this._password = password;
-        this._tango_card_service_api = enumTangoCardServiceApi;
+        this._enumTangoCardServiceApi = enumTangoCardServiceApi;
     }
     
     /**
@@ -126,23 +132,23 @@ public abstract class BaseRequest {
     }
     
     /**
-     * Gets the tango card service api.
+     * Gets the Tango Card service api.
      *
-     * @return the tango card service api
+     * @return the Tango Card service api
      */
-    public TangoCardServiceApiEnum getTangoCardServiceApi()
+    public TangoCardServiceApiEnum getTangoCardServiceApiEnum()
     {
-        return this._tango_card_service_api;
+        return this._enumTangoCardServiceApi;
     }
     
     /**
-     * Sets the tango card service api.
+     * Sets the Tango Card service api.
      *
-     * @param enumTangoCardServiceApi the new tango card service api
+     * @param enumTangoCardServiceApi the new Tango Card service api
      */
-    public void setTangoCardServiceApi(TangoCardServiceApiEnum enumTangoCardServiceApi)
+    public void setTangoCardServiceApiEnum(TangoCardServiceApiEnum enumTangoCardServiceApi)
     {
-        this._tango_card_service_api = enumTangoCardServiceApi;
+        this._enumTangoCardServiceApi = enumTangoCardServiceApi;
     }
     
     /**

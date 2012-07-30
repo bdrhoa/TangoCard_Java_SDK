@@ -2,7 +2,7 @@
  * PurchaseCardRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.5
+ * @version  1.0.6
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -39,7 +39,7 @@ import tangocard.sdk.service.TangoCardServiceApiEnum;
     
 public class PurchaseCardRequest extends BaseRequest {
     
-    public String    _cardSku = null;
+    public String     _cardSku = null;
     public int        _cardValue = -1;
     public boolean    _tcSend = false;
     public String    _recipientName = null;
@@ -50,7 +50,7 @@ public class PurchaseCardRequest extends BaseRequest {
     /**
      * Instantiates a new purchase card request.
      *
-     * @param enumTangoCardServiceApi the enum tango card service api
+     * @param enumTangoCardServiceApi the enum Tango Card service api
      * @param username the username
      * @param password the password
      * @param cardSku the card sku

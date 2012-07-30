@@ -4,7 +4,7 @@
  * 
  * This Exception is thrown when the SDK detects an unexpected error within its code.
  * 
- * @version  1.0.5
+ * @version  1.0.6
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -34,7 +34,7 @@ package tangocard.sdk.common;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class TangoCardSdkException.
+ * TangoCardSdkException is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
  */
 public class TangoCardSdkException extends Exception {
 
@@ -46,14 +46,14 @@ public class TangoCardSdkException extends Exception {
 
 
     /**
-     * Instantiates a new tango card sdk exception.
+     * Instantiates a new Tango Card sdk exception.
      */
     public TangoCardSdkException() {
         super();
     }
 
     /**
-     * Instantiates a new tango card sdk exception.
+     * Instantiates a new Tango Card sdk exception.
      *
      * @param message the message
      */
@@ -63,7 +63,7 @@ public class TangoCardSdkException extends Exception {
     }
 
     /**
-     * Instantiates a new tango card sdk exception.
+     * Instantiates a new Tango Card sdk exception.
      *
      * @param cause the cause
      */
@@ -72,7 +72,7 @@ public class TangoCardSdkException extends Exception {
     }
     
     /**
-     * Instantiates a new tango card sdk exception.
+     * Instantiates a new Tango Card sdk exception.
      *
      * @param message the message
      * @param cause the cause

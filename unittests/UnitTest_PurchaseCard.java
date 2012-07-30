@@ -31,6 +31,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
+import tangocard.sdk.TangoCardServiceApi;
 import tangocard.sdk.common.TangoCardSdkException;
 import tangocard.sdk.request.PurchaseCardRequest;
 import tangocard.sdk.response.ServiceResponseEnum;
@@ -54,7 +55,7 @@ public class UnitTest_PurchaseCard extends TestCase {
     /** The _app_card_sku. */
     private String _app_card_sku = null;
     
-    /** The _enum tango card service api. */
+    /** The _enum Tango Card service api. */
     private TangoCardServiceApiEnum _enumTangoCardServiceApi = TangoCardServiceApiEnum.UNDEFINED; 
 
     /* (non-Javadoc)
@@ -94,25 +95,23 @@ public class UnitTest_PurchaseCard extends TestCase {
     public void test_PurchaseCard_Delivery() {
         int cardValueTangoCardCents = 100; // $1.00 dollars
 
-        // set up the request
-        PurchaseCardRequest requestPurchaseCardRequest_Delivery = new PurchaseCardRequest(
-                this._enumTangoCardServiceApi,
-                this._app_username, 
-                this._app_password,
-                this._app_card_sku,             // cardSku
-                cardValueTangoCardCents,        // cardValue
-                true,                           // tcSend 
-                "Sally Example",                // recipientName
-                "sally@example.com",            // recipientEmail
-                "Happy Birthday",               // giftMessage
-                "Bill Example"                  // giftFrom  
-        );
-
         // make the request
         boolean isSuccess = false;
         PurchaseCardResponse responsePurchaseCard_Delivery = new PurchaseCardResponse();
         try {
-            isSuccess = requestPurchaseCardRequest_Delivery.execute(responsePurchaseCard_Delivery);
+            isSuccess = TangoCardServiceApi.PurchaseCard(
+                    this._enumTangoCardServiceApi,
+                    this._app_username, 
+                    this._app_password,
+                    this._app_card_sku,             // cardSku
+                    cardValueTangoCardCents,        // cardValue
+                    true,                           // tcSend 
+                    "Sally Example",                // recipientName
+                    "sally@example.com",            // recipientEmail
+                    "Happy Birthday",               // giftMessage
+                    "Bill Example",                 // giftFrom  
+            		responsePurchaseCard_Delivery	// response
+            		);
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -136,25 +135,23 @@ public class UnitTest_PurchaseCard extends TestCase {
     public void test_PurchaseCard_NoDelivery() {
         int cardValueTangoCardCents = 100; // $1.00 dollars
 
-        // set up the request
-        PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._enumTangoCardServiceApi,
-                this._app_username, 
-                this._app_password,
-                this._app_card_sku,             // cardSku
-                cardValueTangoCardCents,        // cardValue
-                false,                          // tcSend 
-                null,                           // recipientName
-                null,                           // recipientEmail
-                null,                           // giftMessage
-                null                            // giftFrom  
-        );
-
         // make the request
         boolean isSuccess = false;
         PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
         try {
-            isSuccess = requestPurchaseCardRequest_NoDelivery.execute(responsePurchaseCard_NoDelivery);
+            isSuccess = TangoCardServiceApi.PurchaseCard(
+                    this._enumTangoCardServiceApi,
+                    this._app_username, 
+                    this._app_password,
+                    this._app_card_sku,             // cardSku
+                    cardValueTangoCardCents,        // cardValue
+                    false,                          // tcSend 
+                    null,                           // recipientName
+                    null,                           // recipientEmail
+                    null,                           // giftMessage
+                    null,                            // giftFrom  
+                    responsePurchaseCard_NoDelivery	// response
+            		);
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -180,25 +177,22 @@ public class UnitTest_PurchaseCard extends TestCase {
         String username = "burt@example.com";
         String password = "password";  
 
-        // set up the request
-        PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._enumTangoCardServiceApi,
-                username, 
-                password,
-                this._app_card_sku,             // cardSku
-                cardValueTangoCardCents,           // cardValue
-                false,                          // tcSend 
-                null,                             // recipientName
-                null,                              // recipientEmail
-                null,                           // giftMessage
-                null                            // giftFrom  
-        );
-
-        // make the request
         boolean isSuccess = false;
         PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
         try {
-            isSuccess = requestPurchaseCardRequest_NoDelivery.execute(responsePurchaseCard_NoDelivery);
+            isSuccess = TangoCardServiceApi.PurchaseCard(
+                    this._enumTangoCardServiceApi,
+                    username, 
+                    password,
+                    this._app_card_sku,             	// cardSku
+                    cardValueTangoCardCents,           	// cardValue
+                    false,                          	// tcSend 
+                    null,                             	// recipientName
+                    null,                              	// recipientEmail
+                    null,                           	// giftMessage
+                    null,                            	// giftFrom  
+                    responsePurchaseCard_NoDelivery		// response
+            		);
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {
@@ -228,25 +222,23 @@ public class UnitTest_PurchaseCard extends TestCase {
         String username = "empty@tangocard.com";
         String password = "password";  
 
-        // set up the request
-        PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._enumTangoCardServiceApi,
-                username, 
-                password,
-                this._app_card_sku,             // cardSku
-                cardValueTangoCardCents,           // cardValue
-                false,                          // tcSend 
-                null,                             // recipientName
-                null,                              // recipientEmail
-                null,                           // giftMessage
-                null                            // giftFrom  
-        );
-
         // make the request
         boolean isSuccess = false;
         PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
         try {
-            isSuccess = requestPurchaseCardRequest_NoDelivery.execute(responsePurchaseCard_NoDelivery);
+            isSuccess = TangoCardServiceApi.PurchaseCard(
+                    this._enumTangoCardServiceApi,
+                    username, 
+                    password,
+                    this._app_card_sku,             	// cardSku
+                    cardValueTangoCardCents,           	// cardValue
+                    false,                          	// tcSend 
+                    null,                             	// recipientName
+                    null,                              	// recipientEmail
+                    null,                           	// giftMessage
+                    null,                            	// giftFrom  
+                    responsePurchaseCard_NoDelivery		// response
+            		);
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {
@@ -273,25 +265,23 @@ public class UnitTest_PurchaseCard extends TestCase {
     public void test_PurchaseCard_InvalidInput_Sku() {
         int cardValueTangoCardCents = 100; // $1.00 dollars 
 
-        // set up the request
-        PurchaseCardRequest requestPurchaseCardRequest_NoDelivery = new PurchaseCardRequest(
-                this._enumTangoCardServiceApi,
-                this._app_username, 
-                this._app_password,
-                "mango-card",                   // cardSku
-                cardValueTangoCardCents,        // cardValue
-                false,                          // tcSend 
-                null,                           // recipientName
-                null,                           // recipientEmail
-                null,                           // giftMessage
-                null                            // giftFrom  
-        );
-
         // make the request
         boolean isSuccess = false;
         PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
         try {
-            isSuccess = requestPurchaseCardRequest_NoDelivery.execute(responsePurchaseCard_NoDelivery);
+            isSuccess = TangoCardServiceApi.PurchaseCard(
+                    this._enumTangoCardServiceApi,
+                    this._app_username, 
+                    this._app_password,
+                    "mango-card",                   	// cardSku
+                    cardValueTangoCardCents,           	// cardValue
+                    false,                          	// tcSend 
+                    null,                             	// recipientName
+                    null,                              	// recipientEmail
+                    null,                           	// giftMessage
+                    null,                            	// giftFrom  
+                    responsePurchaseCard_NoDelivery		// response
+            		);
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {

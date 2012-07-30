@@ -31,8 +31,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 
+import tangocard.sdk.TangoCardServiceApi;
 import tangocard.sdk.common.TangoCardSdkException;
-import tangocard.sdk.request.GetAvailableBalanceRequest;
 import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.success.GetAvailableBalanceResponse;
 import tangocard.sdk.service.TangoCardServiceApiEnum;
@@ -54,7 +54,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
     /** The _app_password. */
     private String _app_password = null;
     
-    /** The _enum tango card service api. */
+    /** The _enum Tango Card service api. */
     private TangoCardServiceApiEnum _enumTangoCardServiceApi = TangoCardServiceApiEnum.UNDEFINED;
 
     /* (non-Javadoc)
@@ -91,17 +91,16 @@ public class UnitTest_GetAvailableBalance extends TestCase {
      * Test get available balance.
      */
     public void test_GetAvailableBalance() {
-        GetAvailableBalanceRequest requestAvailableBalance 
-        = new GetAvailableBalanceRequest( 
-                this._enumTangoCardServiceApi,
-                this._app_username, 
-                this._app_password
-                );
-    
+
         boolean isSuccess = false;
         GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
         try {            
-            isSuccess = requestAvailableBalance.execute(responseAvailableBalance);
+            isSuccess = TangoCardServiceApi.GetAvailableBalance(
+            		this._enumTangoCardServiceApi, 
+            		this._app_username, 
+            		this._app_password, 
+            		responseAvailableBalance
+            		);
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -125,18 +124,16 @@ public class UnitTest_GetAvailableBalance extends TestCase {
         
         String username = "burt@example.com";
         String password = "password";   
-        
-        GetAvailableBalanceRequest requestAvailableBalance 
-        = new GetAvailableBalanceRequest( 
-                this._enumTangoCardServiceApi,
-                username, 
-                password
-                );
-    
+
         boolean isSuccess = false;
         GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
         try {            
-            isSuccess = requestAvailableBalance.execute(responseAvailableBalance);
+            isSuccess = TangoCardServiceApi.GetAvailableBalance(
+                    this._enumTangoCardServiceApi,
+                    username, 
+                    password,
+                    responseAvailableBalance
+            		);
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {

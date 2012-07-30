@@ -2,7 +2,7 @@
  * ServiceResponseEnum.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.5
+ * @version  1.0.6
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -30,12 +30,29 @@
 
 package tangocard.sdk.response;
 
+/**
+ * Enumeration of expected response types from Tango Card Service API.
+ */
 public enum ServiceResponseEnum
 {
+	/** Undefined. */
+    UNDEFINED,
+    
+    /** Success. */
     SUCCESS,
+    
+    /** Failure - Insufficient Funds */
     INS_FUNDS,
+    
+    /** Failure - Invalid Credentials */
     INV_CREDENTIAL,
-    SYS_ERROR,
+    
+    /** Failure - Invalid Input */
     INV_INPUT,
-    INS_INV
+    
+    /** Failure - Insufficient Inventory */
+    INS_INV,
+    
+    /** Failure - Service System Error */
+    SYS_ERROR
 }
