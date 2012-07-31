@@ -76,10 +76,10 @@ The `out` parameter `response` will now be (assuming success) a `tangocard.sdk.r
   <dd>- INTEGRATION and PRODUCTION</dd>
   
   <dt>string username</dt>
-  <dd>- User email address, and the SDK Integration test username is defined in application configuration file *app_config.properties* within *app_username*</dd>
+  <dd>- User email address, and the SDK Integration test username is defined within configuration file *app_config.properties* in setting *app_username*</dd>
 
   <dt>string password</dt>
-  <dd>- User password, and the SDK Integration test password is defined in application configuration file *app_config.properties* within *app_password*</dd>
+  <dd>- User password, and the SDK Integration test password is defined within configuration file *app_config.properties* in setting *app_password*</dd>
 
   <dt>tangocard.sdk.response.success.GetAvailableBalanceResponse response</dt>
   <dd>- This `out` paramter will provide a valid success response object if this method returns true upon success.</dd>
@@ -141,13 +141,13 @@ Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming succes
   <dd>- INTEGRATION or PRODUCTION</dd>
 
   <dt>string username</dt>
-  <dd>- User email address, and a SDK Integration test username is defined in application configuration file *app_config.properties* within *app_username*</dd>
+  <dd>- User email address, and a SDK Integration test username is defined within configuration file *app_config.properties* in setting *app_username*</dd>
 
   <dt>string password</dt>
-  <dd>- User password, and a SDK Integration test password is defined in application configuration file *app_config.properties* within *app_password*</dd>
+  <dd>- User password, and a SDK Integration test password is defined within configuration file *app_config.properties* in setting *app_password*</dd>
 
   <dt>string cardSku</dt>
-  <dd>- Card brand request, and the Tango Card brand's card sku *tango-card* is defined in application configuration file *app_config.properties* within *app_card_sku*</dd>
+  <dd>- Card brand request, and the Tango Card brand's card sku *tango-card* is defined within configuration file *app_config.properties* in setting *app_card_sku*</dd>
 
   <dt>int cardValue</dt>
   <dd>- Card value in cents; a value of 100 (cent) is $1.00 dollar card. Minimum value is 1 (cent).</dd>
