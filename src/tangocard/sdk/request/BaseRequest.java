@@ -161,6 +161,9 @@ public abstract class BaseRequest {
      */
     public <T extends SuccessResponse> boolean execute(T response) throws Exception
     {
+    	if ( null == response) {
+    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
+    	}
         ServiceProxy proxy = new ServiceProxy(this);
         return proxy.executeRequest(response);
     }

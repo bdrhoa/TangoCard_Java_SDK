@@ -19,6 +19,7 @@ The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the foll
 * [Java Development Kit 1.6+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Java Runtime Environment 6 / 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [JSON in Java](http://www.json.org/java/) - *org.json-20120521.jar*, included within `\lib\` folder of this SDK.
+* [Apache ANT](http://ant.apache.org/)
 
 # Tango Card Service Requests #
 
@@ -298,18 +299,30 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 	}
 ```
 
-# Java SDK Development Environment #
+# Java SDK Contents #
+The contents of this Java SDK are:
 
-This Java SDK was built using:
+* _build file_
+** build.xml
+* _configuration files_
+** app_config.properties
+** tc_sdk_config.properties
+* _binary file_
+** TangoCard_Java_SDK.jar
+* doc
+** images
+** javadoc
+* examples
+* lib
+** junit-4.10.jar
+** org.json-20120521.jar
+* src
+** tangocard
+* unittests
 
-* [eclipse Ganymede](http://www.eclipse.org/ganymede/)
-* jdk1.6.0_27 (32 bit)
-* jre7 (32 bit) and jre6 (32 bit) 
-* [JAutodoc](http://jautodoc.sourceforge.net/)
-* [JUnit](http://www.junit.org/)
+## build file ##
 
-# SDK Structure #
-There are four directories in the SDK: `doc`, `examples`, `unittests`, `lib`, `src`, and key `configuration files`.
+Provided is an [Apache ANT](http://ant.apache.org/) *build.xml* file, which was used to create the binary file *TangoCard_Java_SDK.jar*.
 
 ## configuration files ##
 
@@ -324,10 +337,10 @@ There a several configuration files that are referenced by either the provide ap
 </dl>
 
 ## doc ##
-The docs sub-directory maintains the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) documentation for the classes (and functions) that are included in the SDK.
+The `doc` sub-directory maintains the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) documentation for the classes (and functions) that are included in the SDK.
 
 ## examples ##
-The examples sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
+The `examples` sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
 
 ### TangoCard_Store_Example.java ###
 
@@ -343,9 +356,13 @@ This is a complete example of requesting available balance and purchasing Tango 
 This example is intended to be run from the command line  (<b>NOTE: Set `<version>` to the current TangoCard_Java_SDK jar label.):
 
 ```Text
-    $ javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
+    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
+	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
+```
+or 
 
-	$ java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
+```Text
+    > ant TangoCard_Store_Example
 ```
 
 #### Example Command Line Run ####
@@ -390,11 +407,18 @@ Example of how the SDK handles various failure responses, such as:
 
 #### Command Line ####
 
-This example is intended to be run from the command line (<b>NOTE: set `<version>` to the current TangoCard_Java_SDK jar label.):
+This example is intended to be run from the command line:
 
-    > javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Failures_Example.java
+```Text
+    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Failures_Example.java
+	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
+```
 
-	> java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
+or 
+
+```Text
+	> ant TangoCard_Failures_Example
+```
 
 #### Example Command Line Run ####
 
@@ -436,12 +460,11 @@ This SDK sources contains a JUnit jar downloaded from [junit.org downloads](http
 
 #### JUnit UnitTest_GetAvailableBalance.java ####
 
-This junit test is intended to be run from the command line (<b>NOTE: set `<version>` to the current TangoCard_Java_SDK jar label.):
+This junit test is intended to be run from the command line:
 
 ```Text
-	> javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_GetAvailableBalance.java
-
-	> java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_GetAvailableBalance
+	> javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_GetAvailableBalance.java
+	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_GetAvailableBalance
 		JUnit version 4.10
 		..
 		Time: 1.466
@@ -449,14 +472,25 @@ This junit test is intended to be run from the command line (<b>NOTE: set `<vers
 		OK (2 tests)
 ```
 
-#### JUnit UnitTest_PurchaseCard.java ####
-
-This junit test is intended to be run from the command line (<b>NOTE: set `<version>` to the current TangoCard_Java_SDK jar label.):
+or 
 
 ```Text
-	> javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_PurchaseCard.java
+	> ant UnitTest_GetAvailableBalance
+	Buildfile: \TangoCard_Java_SDK\build.xml
 
-	> java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_PurchaseCard
+	UnitTest_GetAvailableBalance:
+		[junit] Running UnitTest_GetAvailableBalance
+		[junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 3.43 sec	
+```
+
+#### JUnit UnitTest_PurchaseCard.java ####
+
+This junit test is intended to be run from the command line:
+
+```Text
+	> javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_PurchaseCard.java
+
+	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_PurchaseCard
 		JUnit version 4.10
 		.....
 		Time: 2.492
@@ -464,11 +498,34 @@ This junit test is intended to be run from the command line (<b>NOTE: set `<vers
 		OK (5 tests)
 ```
 
+or 
+
+```Text
+	> ant UnitTest_PurchaseCard
+	Buildfile: \TangoCard_Java_SDK\build.xml
+
+	UnitTest_PurchaseCard:
+		[mkdir] \TangoCard_Java_SDK\junit
+		[junit] Running UnitTest_PurchaseCard
+		[junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 2.932 sec	
+```
+
 ## lib ##
 The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.jar](http://code.google.com/p/org-json-java/downloads/detail?name=org.json-20120521.jar&can=2&q=), which is included.
 
 ## src ##
 This is the heart of the SDK... the src sub-directory is where all of the code lies. 
+
+# Java SDK Development Environment #
+
+This Java SDK was built using:
+
+* [eclipse Ganymede](http://www.eclipse.org/ganymede/)
+* jdk1.6.0_27 (32 bit)
+* jre7 (32 bit) and jre6 (32 bit) 
+* [JAutodoc](http://jautodoc.sourceforge.net/)
+* [JUnit](http://www.junit.org/)
+* [Apache ANT](http://ant.apache.org/)
 
 # License #
 The Tango Card Java SDK is free to use, given some restrictions. Please see the LICENSE file for details.

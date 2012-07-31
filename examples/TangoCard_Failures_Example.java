@@ -152,7 +152,7 @@ public class TangoCard_Failures_Example {
         {
             System.out.println("\n======== Purchase Card with Insufficient Funds ========");
 
-            PurchaseCardResponse response = null;
+            PurchaseCardResponse response = new PurchaseCardResponse();
             if ( TangoCardServiceApi.PurchaseCard(
                     enumTangoCardServiceApi,	// API environment
                     username, 					// username

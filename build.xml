@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+   build.xml
+   TangoCard_Java_SDK
+   
+   Example code using Tango Card SDK and how to handle Service Failures.
+   
+   © 2012 Tango Card, Inc
+   All rights reserved.
+   
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions: 
+   
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software. 
+   
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+   THE SOFTWARE. 
+-->
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="TangoCard_Java_SDK">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 3.libraryclasspath">
+        <pathelement location="../../../Program Files (x86)/eclipse/eclipse-java-ganymede-SR2-win32/eclipse/plugins/org.junit_3.8.2.v20080602-1318/junit.jar"/>
+    </path>
+    <path id="TangoCard_Java_SDK.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/org.json-20120521.jar"/>
+        <path refid="JUnit 3.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="examples" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="unittests" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+		<delete file="TangoCard_Java_SDK.jar"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project,compress" name="build"/>
+    <target name="build-subprojects"/>
+	<target depends="build-project" name="compress" >
+		<jar destfile="TangoCard_Java_SDK.jar" basedir="bin" />
+	</target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="examples"/>
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="unittests"/>
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="TangoCard_Failures_Example">
+        <java classname="TangoCard_Failures_Example" failonerror="true" fork="yes">
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </java>
+    </target>
+    <target name="unittests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="UnitTest_GetAvailableBalance" todir="${junit.output.dir}"/>
+            <test name="UnitTest_PurchaseCard" todir="${junit.output.dir}"/>
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </junit>
+    </target>
+    <target name="UnitTest_GetAvailableBalance">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="UnitTest_GetAvailableBalance" todir="${junit.output.dir}"/>
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </junit>
+    </target>
+    <target name="UnitTest_PurchaseCard">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="UnitTest_PurchaseCard" todir="${junit.output.dir}"/>
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </junit>
+    </target>
+    <target name="TangoCard_Store_Example">
+        <java classname="TangoCard_Store_Example" failonerror="true" fork="yes">
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+
+</project>

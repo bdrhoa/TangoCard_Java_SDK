@@ -59,6 +59,10 @@ public final class TangoCardServiceApi {
             GetAvailableBalanceResponse response
     ) throws Exception {
 		
+    	if ( null == response) {
+    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
+    	}
+    	
 		// set up the request
         GetAvailableBalanceRequest request 
 	        = new GetAvailableBalanceRequest( 
@@ -100,6 +104,10 @@ public final class TangoCardServiceApi {
             String giftFrom,
             PurchaseCardResponse response
     ) throws Exception {
+    	
+    	if ( null == response) {
+    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
+    	}
     	
     	// set up the request
         PurchaseCardRequest requestPurchaseCard = new PurchaseCardRequest(
