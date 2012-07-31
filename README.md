@@ -69,7 +69,7 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
 
 Assuming success, the `out` parameter `response` will be an instance of `tangocard.sdk.response.success.GetAvailableBalanceResponse`.
 
-### static method `tangocard.sdk.TangoCardServiceApi.GetAvailableBalance()` ###
+### Method tangocard.sdk.TangoCardServiceApi.GetAvailableBalance() ###
 
 #### Parameters ####
 <dl>
@@ -133,7 +133,7 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
 
 Assuming success, the `out` parameter `response` will be an instance of `tangocard.sdk.response.success.PurchaseCardResponse`.
 
-### `tangocard.sdk.TangoCardServiceApi.PurchaseCard()` Method ###
+### Method tangocard.sdk.TangoCardServiceApi.PurchaseCard() ###
 
 #### Parameters ###
 
