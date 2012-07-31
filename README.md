@@ -165,20 +165,24 @@ Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming succes
 <dl>
   <dt>String getReferenceOrderId</dt>
   <dd>- Confirmation number of purchase.</dd>
+  
   <dt>String getCardToken</dt>
   <dd>- Card reference to the aforementioned purchase.</dd>
+  
   <dt>String getCardNumber</dt>
   <dd>- Card number provided to the recipient to be used at redemption upon the www.tangocard.com site.</dd>
+  
   <dt>String getCardPin</dt>
   <dd>- Card pin provided to the recipient used to validate provided Card number a redemption upon the www.tangocard.com site.</dd>
 </dl>
 
 # Tango Card Error Handling #
 
-There are also failure-case response objects. 
+The Tango Card Service API SDK handles its errors by throwing the following exceptions:
 
-* `tangocard.sdk.service.TangoCardServiceException` is thrown when the `Tango Card Service API` return a `Failure Response` for a given `Request`.
-* `tangocard.sdk.common.TangoCardSdkException` is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
+* Custom `tangocard.sdk.service.TangoCardServiceException` is thrown when the `Tango Card Service API` return a `Failure Response` for a given `Request`.
+* Custom `tangocard.sdk.common.TangoCardSdkException` is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
+* Standard `java.lang.IllegalArgumentException` is thrown due to parameter entry errors.
 
 ![Tango Card SDK Exceptions](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_exceptions.png "Tango Card SDK Exceptions")
 
@@ -234,7 +238,7 @@ Each Request will have the following possible Failure Responses as a property va
 
 ## SDK Error Responses ##
 
-Along with standard `InvalidArgumentException` for catching parameter entry errors, the SDK throws it own exception when detecting errors that pertain to itself `tangocard.sdk.common.TangoCardSdkException`.
+This SDK throws it own custom exception `tangocard.sdk.common.TangoCardSdkException` when detecting errors that pertain to itself.
 
 ![Tango Card SDK Error Detection](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_error_detected.png "Tango Card SDK Error Detection")
 
