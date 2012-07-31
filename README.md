@@ -376,11 +376,11 @@ Example of how the SDK handles various failure responses, such as:
 
 #### Command Line ####
 
-This example is intended to be run from the command line (<b>NOTE: Set `<version>` to the current TangoCard_Java_SDK jar label.):
+This example is intended to be run from the command line (<b>NOTE: set `<version>` to the current TangoCard_Java_SDK jar label.):
 
-    $ javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Failures_Example.java
+    > javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" examples\TangoCard_Failures_Example.java
 
-	$ java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
+	> java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
 
 #### Example Command Line Run ####
 
@@ -418,7 +418,37 @@ The SDK's unittests have been written to use [JUnit](http://www.junit.org/).
 
 ### Running JUnit Tests ###
 
-These unit tests are executable from <b>IDE eclipse Ganymede</b> by right-click selecting a <i>UnitTest_* file</i>, then <b><i>Debug As... > JUnit Test</i></b>
+This SDK sources contains a JUnit jar downloaded from [junit.org downloads](https://github.com/KentBeck/junit/downloads): `\lib\junit-4.10.jar`.
+
+#### JUnit UnitTest_GetAvailableBalance.java ####
+
+This junit test is intended to be run from the command line (<b>NOTE: set `<version>` to the current TangoCard_Java_SDK jar label.):
+
+```Text
+	> javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_GetAvailableBalance.java
+
+	> java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_GetAvailableBalance
+		JUnit version 4.10
+		..
+		Time: 1.466
+
+		OK (2 tests)
+```
+
+#### JUnit UnitTest_PurchaseCard.java ####
+
+This junit test is intended to be run from the command line (<b>NOTE: set `<version>` to the current TangoCard_Java_SDK jar label.):
+
+```Text
+	> javac -d . -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_PurchaseCard.java
+
+	> java -cp ".;TangoCard_Java_SDK-<version>.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_PurchaseCard
+		JUnit version 4.10
+		.....
+		Time: 2.492
+
+		OK (5 tests)
+```
 
 ## lib ##
 The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.jar](http://code.google.com/p/org-json-java/downloads/detail?name=org.json-20120521.jar&can=2&q=), which is included.
