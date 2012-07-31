@@ -40,19 +40,21 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
 
 ```java
 	TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+	String username = "burt@example.com";
+	String password = "password";
 	
-	GetAvailableBalanceResponse responseGetAvailableBalance = new GetAvailableBalanceResponse();
+	GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
 	if ( TangoCardServiceApi.GetAvailableBalance(
 			enumTangoCardServiceApi, 
 			username, 
 			password, 
-			responseGetAvailableBalance
+			response
 			) 
-			&& (null != responseGetAvailableBalance) 
+			&& (null != response) 
 	) {
 	{
 		System.out.println("\nSuccess - GetAvailableBalance - Initial");
-		int tango_cents_available_balance = responseGetAvailableBalance.getAvailableBalance();
+		int tango_cents_available_balance = response.getAvailableBalance();
 		double currencyAmount = tango_cents_available_balance/100;
 		
 		Locale enUSLocale =
@@ -64,9 +66,9 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
 	}
 ```
 
-Its response `$responseGetAvailableBalance` will now be (assuming success) a `tangocard.sdk.response.success.GetAvailableBalanceResponse` type object.
+The `out` parameter `response` will now be (assuming success) a `tangocard.sdk.response.success.GetAvailableBalanceResponse` type object.
 
-### `tangocard.sdk.TangoCardServiceApi.GetAvailableBalance()` Method ###
+### static method `tangocard.sdk.TangoCardServiceApi.GetAvailableBalance()` ###
 
 #### Parameters ####
 <dl>
@@ -80,7 +82,7 @@ Its response `$responseGetAvailableBalance` will now be (assuming success) a `ta
   <dd>- User password, and the SDK Integration test password is defined in application configuration file *app_config.properties* within *app_password*</dd>
 
   <dt>tangocard.sdk.response.success.GetAvailableBalanceResponse response</dt>
-  <dd>- This out paramter will provide a valid success response object if this method returns true upon success.</dd>
+  <dd>- This `out` paramter will provide a valid success response object if this method returns true upon success.</dd>
 </dl>
 
 ### `tangocard.sdk.response.success.GetAvailableBalanceResponse` Properties ###
@@ -97,31 +99,34 @@ Its response `$responseGetAvailableBalance` will now be (assuming success) a `ta
 This request is defined by static method call `tangocard.sdk.TangoCardServiceApi.PurchaseCard()`:
 
 ```java
-	int cardValueTangoCardCents = 100; // $1.00 dollars
 	TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
-
-	PurchaseCardResponse responsePurchaseCard_Delivery = new PurchaseCardResponse();
+	String username = "burt@example.com";
+	String password = "password";
+	String card_sku = "tango-card";
+	int cardValueTangoCardCents = 100; // $1.00 dollars
+	
+	PurchaseCardResponse response = new PurchaseCardResponse();
 	if ( TangoCardServiceApi.PurchaseCard(
 			enumTangoCardServiceApi,		// API environment
-			username, 					// username
-			password,					// password
-			card_sku,					// cardSku
+			username, 						// username
+			password,						// password
+			card_sku,						// cardSku
 			cardValueTangoCardCents,		// cardValue
 			true,							// tcSend 
 			"Sally Example",				// recipientName
 			"sally@example.com",			// recipientEmail
 			"Happy Birthday",				// giftMessage
 			"Bill Example",					// giftFrom  
-			responsePurchaseCard_Delivery	// response 
+			response	// response 
 			) 
-			&& (null != responsePurchaseCard_Delivery)
+			&& (null != response)
 	) {
 	{
 		System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
-		System.out.println( "\tReference Order ID: "  + responsePurchaseCard_Delivery.getReferenceOrderId() + "");
-		System.out.println( "\tCard Token:         "  + responsePurchaseCard_Delivery.getCardToken() + "");
-		System.out.println( "\tCard Number:        "  + responsePurchaseCard_Delivery.getCardNumber() + "");
-		System.out.println( "\tCard Pin:           "  + responsePurchaseCard_Delivery.getCardPin() + "");
+		System.out.println( "\tReference Order ID: "  + response.getReferenceOrderId() + "");
+		System.out.println( "\tCard Token:         "  + response.getCardToken() + "");
+		System.out.println( "\tCard Number:        "  + response.getCardNumber() + "");
+		System.out.println( "\tCard Pin:           "  + response.getCardPin() + "");
 	}
 ```
 
@@ -130,9 +135,10 @@ Its response `$requestPurchaseCardRequest_Delivery` will now be (assuming succes
 ### `tangocard.sdk.TangoCardServiceApi.PurchaseCard()` Method ###
 
 #### Parameters ###
+
 <dl>
   <dt>TangoCardServiceApiEnum enumTangoCardServiceApi</dt>
-  <dd>- INTEGRATION and PRODUCTION</dd>
+  <dd>- INTEGRATION or PRODUCTION</dd>
 
   <dt>string username</dt>
   <dd>- User email address, and a SDK Integration test username is defined in application configuration file *app_config.properties* within *app_username*</dd>
@@ -250,19 +256,22 @@ This SDK throws it own custom exception `tangocard.sdk.common.TangoCardSdkExcept
 ## Handling Errors ##
 
 Wrap every Tango Card request call within a try/catch block, followed by first catching `tangocard.sdk.service.TangoCardServiceException`, then by `tangocard.sdk.common.TangoCardSdkException`, and finally by standard `Exception`.
+
 ```java
 	try
 	{
 		TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+        String username = "burt@example.com";
+        String password = "password";
 		
-		GetAvailableBalanceResponse responseGetAvailableBalance = new GetAvailableBalanceResponse();
+		GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
 		if ( TangoCardServiceApi.GetAvailableBalance(
 				enumTangoCardServiceApi, 
 				username, 
 				password, 
-				responseGetAvailableBalance
+				response
 				) 
-				&& (null != responseGetAvailableBalance) 
+				&& (null != response) 
 		) {
             // Do Stuff ... //
 		}
@@ -291,7 +300,7 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 
 # Java SDK Development Environment #
 
-This Java SDK project was built using:
+This Java SDK was built using:
 
 * [eclipse Ganymede](http://www.eclipse.org/ganymede/)
 * jdk1.6.0_27 (32 bit)
@@ -460,8 +469,6 @@ The Tango Card Java SDK has one dependency for JSON Library [org.json-20120521.j
 
 ## src ##
 This is the heart of the SDK... the src sub-directory is where all of the code lies. 
-
-
 
 # License #
 The Tango Card Java SDK is free to use, given some restrictions. Please see the LICENSE file for details.
