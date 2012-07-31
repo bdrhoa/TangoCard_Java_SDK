@@ -303,21 +303,21 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
 The contents of this Java SDK are:
 
 * _build file_
-** build.xml
+    + build.xml
 * _configuration files_
-** app_config.properties
-** tc_sdk_config.properties
+    + app_config.properties
+    + tc_sdk_config.properties
 * _binary file_
-** TangoCard_Java_SDK.jar
+    + TangoCard_Java_SDK.jar
 * doc
-** images
-** javadoc
+    + images
+    + javadoc
 * examples
 * lib
-** junit-4.10.jar
-** org.json-20120521.jar
+    + junit-4.10.jar
+    + org.json-20120521.jar
 * src
-** tangocard
+    + tangocard
 * unittests
 
 ## build file ##
