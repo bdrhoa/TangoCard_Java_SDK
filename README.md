@@ -386,7 +386,7 @@ There a several configuration files that are referenced by either the provide ap
 <a name="doc"></a>
 ## doc ##
 
-The `doc\javadoc` sub-directory maintains the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) documentation for the classes (and functions) that are included in the SDK.
+The `doc\javadoc\index.html` accesses the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) generated documentation for the classes (and functions) that are included in the SDK.
 
 <a name="examples"></a>
 ## examples ##
