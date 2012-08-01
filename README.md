@@ -563,7 +563,8 @@ or
 
 
 
-# Java SDK Development Environment #
+<a name="sdk_development_environment"></a>
+# SDK Development Environment #
 
 This Java SDK was built using:
 
