@@ -32,8 +32,8 @@
 
 package tangocard.sdk.common;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class SdkConfig {
@@ -50,8 +50,9 @@ public class SdkConfig {
     private SdkConfig() throws Exception {
         this._tc_sdk_config = new Properties(); 
         try {
-            this._tc_sdk_config.load(new FileInputStream("tc_sdk_config.properties"));
-        } catch ( FileNotFoundException ex ) {
+        	InputStream inputStream = this.getClass().getResourceAsStream("tc_sdk_config.properties"); 
+            this._tc_sdk_config.load(inputStream);
+        } catch ( IOException ex ) {
             throw ex;
         } catch ( Exception ex ) {
             throw ex;

@@ -403,8 +403,8 @@ There a several configuration files that are referenced by either the provide ap
 	<dt>app_config.properties</dt>
 	<dd>- Application configuration file for `\examples` and `\unittests`</dd>
 	
-	<dt>tc_sdk_config.properties</dt>
-	<dd>- SDK configuration file referenced by `tangocard\sdk\common\SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
+	<dt>src/tangocard/sdk/common/tc_sdk_config.properties</dt>
+	<dd>- SDK configuration file referenced by `tangocard.sdk.common.SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
 </dl>
 
 <a name="doc"></a>
