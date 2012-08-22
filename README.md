@@ -70,7 +70,7 @@ The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the foll
 	<dd>- Purchase a gift card using funds from user's www.tangocard.com account.</dd>
 </dl>
 
-![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocardserviceapi.png "Tango Card Service Api")
+![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocardserviceapi.png "Tango Card Service Api")
 
 <a name="sdk_requirements"></a>
 # SDK Requirements #
@@ -98,7 +98,7 @@ Requests are secure HTTP POST using SSL.
 <a name="get_available_balance"></a>
 ## Get Available Balance ##
 
-![Tango Card Service API - GetAvailableBalance()](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocardserviceapi_getavailablebalance.png "Tango Card Service API - GetAvailableBalance()")
+![Tango Card Service API - GetAvailableBalance()](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocardserviceapi_getavailablebalance.png "Tango Card Service API - GetAvailableBalance()")
 
 This request is defined by static method call `tangocard.sdk.TangoCardServiceApi.GetAvailableBalance()`:
 
@@ -159,7 +159,7 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
 <a name="purchase_card"></a>
 ## Purchase Card ##
 
-![Tango Card Service API - PurchaseCard()](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocardserviceapi_purchasecard.png "Tango Card Service API - PurchaseCard()")
+![Tango Card Service API - PurchaseCard()](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocardserviceapi_purchasecard.png "Tango Card Service API - PurchaseCard()")
 
 This request is defined by static method call `tangocard.sdk.TangoCardServiceApi.PurchaseCard()`:
 
@@ -261,7 +261,7 @@ The Tango Card Service API SDK handles its errors by throwing the following exce
 * Custom `tangocard.sdk.common.TangoCardSdkException` is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
 * Standard `java.lang.IllegalArgumentException` is thrown due to parameter entry errors.
 
-![Tango Card SDK Exceptions](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_exceptions.png "Tango Card SDK Exceptions")
+![Tango Card SDK Exceptions](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocard_sdk_exceptions.png "Tango Card SDK Exceptions")
 
 <a name="service_failure_responses"></a>
 ## Service Failure Responses ##
@@ -279,7 +279,7 @@ A service will return the following failure responses as enumerated by `tangocar
 
 Each of the aforementioned `Failure Responses` contains details as to the reason that the `Tango Card Service API` did not perform provided `Request`.
 
-![Tango Card SDK Service Response Failures](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_service_failure_response.png "Tango Card SDK Service Response Failures")
+![Tango Card SDK Service Response Failures](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocard_sdk_service_failure_response.png "Tango Card SDK Service Response Failures")
 
 The details of these service failure responses are embedded and thrown within `tangocard.sdk.service.TangoCardServiceException`
 
@@ -319,7 +319,7 @@ Each Request will have the following possible Failure Responses as a property va
 
 This SDK throws it own custom exception `tangocard.sdk.common.TangoCardSdkException` when detecting errors that pertain to itself.
 
-![Tango Card SDK Error Detection](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocard_sdk_error_detected.png "Tango Card SDK Error Detection")
+![Tango Card SDK Error Detection](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocard_sdk_error_detected.png "Tango Card SDK Error Detection")
 
 <a name="handling_errors"></a>
 ## Handling Errors ##
