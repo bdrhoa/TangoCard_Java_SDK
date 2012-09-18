@@ -4,7 +4,7 @@
  * 
  * SDK Configuration file parser.
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -50,7 +50,7 @@ public class SdkConfig {
     private SdkConfig() throws Exception {
         this._tc_sdk_config = new Properties(); 
         try {
-        	InputStream inputStream = this.getClass().getResourceAsStream("tc_sdk_config.properties"); 
+            InputStream inputStream = this.getClass().getResourceAsStream("tc_sdk_config.properties"); 
             this._tc_sdk_config.load(inputStream);
         } catch ( IOException ex ) {
             throw ex;

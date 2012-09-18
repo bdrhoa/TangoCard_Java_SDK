@@ -3,42 +3,42 @@ TangoCard Java SDK
 
 # Table of Contents #
 <ul>
-	<li><a href="#introduction">Introduction</a>
-		<ul>
-			<li><a href="#Incorporate_tango_card">Incorporate Tango Card Gift Cards</a></li>
-			<li><a href="#open_account">Open Tango Card Account</a></li>
-			<li><a href="#sdk_support">SDK Support</a></li>
-		</ul>
-	</li>
-	<li><a href="#sdk_overview">SDK Overview</a></li>
-	<li><a href="#sdk_requirements">SDK Requirements</a></li>
-	<li><a href="#tango_card_service_requests">Tango Card Service Requests</a>
-		<ul>
-			<li><a href="#tango_card_service_api_endpoints">Tango Card Service API Endpoints</a></li>
-			<li><a href="#get_available_balance">Get Available Balance</a></li>
-			<li><a href="#purchase_card">Purchase Card</a></li>
-		</ul>
-	</li>
-	<li><a href="#tango_card_error_handling">Tango Card Error Handling</a>
-		<ul>
-			<li><a href="#service_failure_responses">Service Failure Responses</a></li>
-			<li><a href="#sdk_error_responses">SDK Error Responses</a></li>
-			<li><a href="#handling_errors">Handling Errors</a></li>
-		</ul>
-	</li>
-	<li><a href="#sdk_contents">SDK Contents</a>
-		<ul>
-			<li><a href="#src">src</a></li>
-			<li><a href="#lib">lib</a></li>
-			<li><a href="#configuration_files">configuration files</a></li>
-			<li><a href="#doc">doc</a></li>
-			<li><a href="#examples">examples</a></li>		
-			<li><a href="#unittests">unittests</a></li>
-		</ul>
-	</li>
-	<li><a href="#sdk_development_environment">SDK Development Environment</a></li>
-	<li><a href="#license">License</a></li>
-	<li><a href="#production_deployment">Production Deployment</a></li>
+    <li><a href="#introduction">Introduction</a>
+        <ul>
+            <li><a href="#Incorporate_tango_card">Incorporate Tango Card Gift Cards</a></li>
+            <li><a href="#open_account">Open Tango Card Account</a></li>
+            <li><a href="#sdk_support">SDK Support</a></li>
+        </ul>
+    </li>
+    <li><a href="#sdk_overview">SDK Overview</a></li>
+    <li><a href="#sdk_requirements">SDK Requirements</a></li>
+    <li><a href="#tango_card_service_requests">Tango Card Service Requests</a>
+        <ul>
+            <li><a href="#tango_card_service_api_endpoints">Tango Card Service API Endpoints</a></li>
+            <li><a href="#get_available_balance">Get Available Balance</a></li>
+            <li><a href="#purchase_card">Purchase Card</a></li>
+        </ul>
+    </li>
+    <li><a href="#tango_card_error_handling">Tango Card Error Handling</a>
+        <ul>
+            <li><a href="#service_failure_responses">Service Failure Responses</a></li>
+            <li><a href="#sdk_error_responses">SDK Error Responses</a></li>
+            <li><a href="#handling_errors">Handling Errors</a></li>
+        </ul>
+    </li>
+    <li><a href="#sdk_contents">SDK Contents</a>
+        <ul>
+            <li><a href="#src">src</a></li>
+            <li><a href="#lib">lib</a></li>
+            <li><a href="#configuration_files">configuration files</a></li>
+            <li><a href="#doc">doc</a></li>
+            <li><a href="#examples">examples</a></li>        
+            <li><a href="#unittests">unittests</a></li>
+        </ul>
+    </li>
+    <li><a href="#sdk_development_environment">SDK Development Environment</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#production_deployment">Production Deployment</a></li>
 </ul>
 
 <a name="introduction"></a>
@@ -63,11 +63,11 @@ The Tango Card Java SDK is a wrapper around the Tango Card Service API environme
 
 The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the following static methods:
 <dl>
-	<dt>bool GetAvailableBalance()</dt>
-	<dd>- Gather the currently available balance for provided user within their www.tangocard.com account.</dd>
+    <dt>bool GetAvailableBalance()</dt>
+    <dd>- Gather the currently available balance for provided user within their www.tangocard.com account.</dd>
 
-	<dt>bool PurchaseCard()</dt>
-	<dd>- Purchase a gift card using funds from user's www.tangocard.com account.</dd>
+    <dt>bool PurchaseCard()</dt>
+    <dd>- Purchase a gift card using funds from user's www.tangocard.com account.</dd>
 </dl>
 
 ![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/dev/doc/images/tangocardserviceapi.png "Tango Card Service Api")
@@ -103,31 +103,31 @@ Requests are secure HTTP POST using SSL.
 This request is defined by static method call `tangocard.sdk.TangoCardServiceApi.GetAvailableBalance()`:
 
 ```java
-	TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
-	String username = "burt@example.com";
-	String password = "password";
-	
-	GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
-	if ( TangoCardServiceApi.GetAvailableBalance(
-			enumTangoCardServiceApi, 
-			username, 
-			password, 
-			response
-			) 
-			&& (null != response) 
-	) {
-	{
-		System.out.println("\nSuccess - GetAvailableBalance - Initial");
-		int tango_cents_available_balance = response.getAvailableBalance();
-		double currencyAmount = tango_cents_available_balance/100;
-		
-		Locale enUSLocale =
-			new Locale.Builder().setLanguage("en").setRegion("US").build();
+    TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+    String username = "burt@example.com";
+    String password = "password";
+    
+    GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
+    if ( TangoCardServiceApi.GetAvailableBalance(
+            enumTangoCardServiceApi, 
+            username, 
+            password, 
+            response
+            ) 
+            && (null != response) 
+    ) {
+    {
+        System.out.println("\nSuccess - GetAvailableBalance - Initial");
+        int tango_cents_available_balance = response.getAvailableBalance();
+        double currencyAmount = tango_cents_available_balance/100;
+        
+        Locale enUSLocale =
+            new Locale.Builder().setLanguage("en").setRegion("US").build();
 
-		NumberFormat currencyFormatter = 
-			NumberFormat.getCurrencyInstance(enUSLocale);
-		System.out.println("\tI have an available balance of " + currencyFormatter.format(currencyAmount) + " dollars.");		
-	}
+        NumberFormat currencyFormatter = 
+            NumberFormat.getCurrencyInstance(enUSLocale);
+        System.out.println("\tI have an available balance of " + currencyFormatter.format(currencyAmount) + " dollars.");        
+    }
 ```
 
 Assuming success, the `out` parameter `response` will be an instance of `tangocard.sdk.response.success.GetAvailableBalanceResponse`.
@@ -164,35 +164,36 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
 This request is defined by static method call `tangocard.sdk.TangoCardServiceApi.PurchaseCard()`:
 
 ```java
-	TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
-	String username = "burt@example.com";
-	String password = "password";
-	String card_sku = "tango-card";
-	int cardValueTangoCardCents = 100; // $1.00 dollars
-	
-	PurchaseCardResponse response = new PurchaseCardResponse();
-	if ( TangoCardServiceApi.PurchaseCard(
-			enumTangoCardServiceApi,		// API environment
-			username, 						// username
-			password,						// password
-			card_sku,						// cardSku
-			cardValueTangoCardCents,		// cardValue
-			true,							// tcSend 
-			"Sally Example",				// recipientName
-			"sally@example.com",			// recipientEmail
-			"Happy Birthday",				// giftMessage
-			"Bill Example",					// giftFrom  
-			response	// response 
-			) 
-			&& (null != response)
-	) {
-	{
-		System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
-		System.out.println( "\tReference Order ID: "  + response.getReferenceOrderId() + "");
-		System.out.println( "\tCard Token:         "  + response.getCardToken() + "");
-		System.out.println( "\tCard Number:        "  + response.getCardNumber() + "");
-		System.out.println( "\tCard Pin:           "  + response.getCardPin() + "");
-	}
+    TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+    String username = "burt@example.com";
+    String password = "password";
+    String card_sku = "tango-card";
+    int cardValueTangoCardCents = 100; // $1.00 dollars
+    
+    PurchaseCardResponse response = new PurchaseCardResponse();
+    if ( TangoCardServiceApi.PurchaseCard(
+            enumTangoCardServiceApi,            // API environment
+            username,                           // username
+            password,                           // password
+            card_sku,                           // cardSku
+            cardValueTangoCardCents,            // cardValue
+            true,                               // tcSend 
+            "Sally Example",                    // recipientName
+            "sally@example.com",                // recipientEmail
+            "Happy Birthday",                   // giftMessage (optional)
+            "Bill Example",                     // giftFrom
+            null,                               // companyIndentifier (optional)
+            response    // response 
+            ) 
+            && (null != response)
+    ) {
+    {
+        System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
+        System.out.println( "\tReference Order ID: "  + response.getReferenceOrderId() + "");
+        System.out.println( "\tCard Token:         "  + response.getCardToken() + "");
+        System.out.println( "\tCard Number:        "  + response.getCardNumber() + "");
+        System.out.println( "\tCard Pin:           "  + response.getCardPin() + "");
+    }
 ```
 
 Assuming success, the `out` parameter `response` will be an instance of `tangocard.sdk.response.success.PurchaseCardResponse`.
@@ -221,16 +222,19 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
   <dd>- Tango Card Service delivers by Email requested card. Set to true for email delivery, and false for no delivery.</dd>
 
   <dt>string recipientName</dt>
-  <dd>- Full name of recipient receiving gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dd>- Full name of recipient receiving gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if `tcSend` is true, or `null` if parameter `tcSend` is `false`.</dd>
 
   <dt>string recipientEmail</dt>
-  <dd>- Valid email address of recipient receiving gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dd>- Valid email address of recipient receiving gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if `tcSend` is true, or `null` if parameter `tcSend` is `false`.</dd>
 
   <dt>string giftMessage</dt>
-  <dd>- [Optional] Gift message to be applied to gift card's email. Set this value with either a string (length minumum 1 character to maximum of 255 characters) or null if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dd>- [Optional] Gift message to be applied to gift card's email. Set this optional parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) or null if `tcSend` is true, or `null` if parameter `tcSend` is `false`.</dd>
 
   <dt>string giftFrom</dt>
-  <dd>- Full name of giver of gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dd>- Full name of giver of gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if `tcSend` is true, or `null` if parameter `tcSend` is `false`.</dd>
+  
+  <dt>string companyIdentifier</dt>
+  <dd>- The name of the parent company providing this gift. Set this optional parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if `tcSend` is true, or `null` if parameter `tcSend` is `false`.</dd>
 
   <dt>tangocard.sdk.response.success.PurchaseCardResponse response</dt>
   <dd>- This <i>out</i> paramter will provide a valid success response object if this method returns true upon success.</dd>
@@ -269,12 +273,12 @@ The Tango Card Service API SDK handles its errors by throwing the following exce
 A service will return the following failure responses as enumerated by `tangocard.sdk.response.ServiceResponseEnum`:
 
 <table>
-	<tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
-	<tr><td>Insufficient Funds</td><td>INS_FUNDS</td><td>`tangocard.sdk.response.failure.InsufficientFundsResponse`</td></tr>
-	<tr><td>Insufficient Inventory</td><td>INS_INV</td><td>`tangocard.sdk.response.failure.InsufficientInventoryResponse`</td></tr> 
-	<tr><td>Invalid Credentials</td><td>INV_CREDENTIAL</td><td>`tangocard.sdk.response.failure.InvalidCredentialsResponse`</td></tr> 
-	<tr><td>Invalid Input</td><td>INV_INPUT</td><td>`tangocard.sdk.response.failure.InvalidInputResponse`</td></tr>
-	<tr><td>System Failure</td><td>SYS_ERROR</td><td>`tangocard.sdk.response.failure.SystemFailureResponse`</td></tr>
+    <tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
+    <tr><td>Insufficient Funds</td><td>INS_FUNDS</td><td>`tangocard.sdk.response.failure.InsufficientFundsResponse`</td></tr>
+    <tr><td>Insufficient Inventory</td><td>INS_INV</td><td>`tangocard.sdk.response.failure.InsufficientInventoryResponse`</td></tr> 
+    <tr><td>Invalid Credentials</td><td>INV_CREDENTIAL</td><td>`tangocard.sdk.response.failure.InvalidCredentialsResponse`</td></tr> 
+    <tr><td>Invalid Input</td><td>INV_INPUT</td><td>`tangocard.sdk.response.failure.InvalidInputResponse`</td></tr>
+    <tr><td>System Failure</td><td>SYS_ERROR</td><td>`tangocard.sdk.response.failure.SystemFailureResponse`</td></tr>
 </table>
 
 Each of the aforementioned `Failure Responses` contains details as to the reason that the `Tango Card Service API` did not perform provided `Request`.
@@ -288,30 +292,30 @@ The details of these service failure responses are embedded and thrown within `t
 Each Request will have the following possible Failure Responses as a property value within `tangocard.sdk.service.TangoCardServiceException.getResponse()`:
 
 <table>
-	<tr><th>Request</th><th>Possible Failure Responses</th></tr>
-	<tr>
-		<td>`GetAvailableBalanceRequest`</td>
-		<td>
-			<table>
-				<tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-				<tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
-				<tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td>`PurchaseCardRequest`</td>
-		<td>
-			<table>
-				<tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-				<tr><td>INS_FUNDS</td><td>`InsufficientFundsResponse`</td></tr>
-				<tr><td>INS_INV</td><td>`InsufficientInventoryResponse`</td></tr> 
-				<tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
-				<tr><td>INV_INPUT</td><td>`InvalidInputResponse`</td></tr>
-				<tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
-			</table>
-		</td>
-	</tr>
+    <tr><th>Request</th><th>Possible Failure Responses</th></tr>
+    <tr>
+        <td>`GetAvailableBalanceRequest`</td>
+        <td>
+            <table>
+                <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
+                <tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
+                <tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>`PurchaseCardRequest`</td>
+        <td>
+            <table>
+                <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
+                <tr><td>INS_FUNDS</td><td>`InsufficientFundsResponse`</td></tr>
+                <tr><td>INS_INV</td><td>`InsufficientInventoryResponse`</td></tr> 
+                <tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
+                <tr><td>INV_INPUT</td><td>`InvalidInputResponse`</td></tr>
+                <tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+            </table>
+        </td>
+    </tr>
 </table>
 
 <a name="sdk_error_responses"></a>
@@ -327,44 +331,44 @@ This SDK throws it own custom exception `tangocard.sdk.common.TangoCardSdkExcept
 Wrap every Tango Card request call within a try/catch block, followed by first catching `tangocard.sdk.service.TangoCardServiceException`, then by `tangocard.sdk.common.TangoCardSdkException`, and finally by standard `Exception`.
 
 ```java
-	try
-	{
-		TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
+    try
+    {
+        TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.INTEGRATION;
         String username = "burt@example.com";
         String password = "password";
-		
-		GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
-		if ( TangoCardServiceApi.GetAvailableBalance(
-				enumTangoCardServiceApi, 
-				username, 
-				password, 
-				response
-				) 
-				&& (null != response) 
-		) {
+        
+        GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
+        if ( TangoCardServiceApi.GetAvailableBalance(
+                enumTangoCardServiceApi, 
+                username, 
+                password, 
+                response
+                ) 
+                && (null != response) 
+        ) {
             // Do Stuff ... //
-		}
-	}
-	catch (TangoCardServiceException ex)
-	{           
-		System.out.println("=== Tango Card Service Failure ===");
-		System.out.println( String.format("Failure response type: %s", ex.getResponseType()) );
-		System.out.println( String.format("Failure response:      %s", ex.getMessage()));
-		
-	}
-	catch (TangoCardSdkException ex)
-	{
-		
-		System.out.println("=== Tango Card SDK Failure ===");
-		System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));
-		
-	}
-	catch (Exception ex)
-	{
-		
-		System.out.println("=== Unexpected Error ===");
-		System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));            
-	}
+        }
+    }
+    catch (TangoCardServiceException ex)
+    {           
+        System.out.println("=== Tango Card Service Failure ===");
+        System.out.println( String.format("Failure response type: %s", ex.getResponseType()) );
+        System.out.println( String.format("Failure response:      %s", ex.getMessage()));
+        
+    }
+    catch (TangoCardSdkException ex)
+    {
+        
+        System.out.println("=== Tango Card SDK Failure ===");
+        System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));
+        
+    }
+    catch (Exception ex)
+    {
+        
+        System.out.println("=== Unexpected Error ===");
+        System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));            
+    }
 ```
 
 <a name="sdk_contents"></a>
@@ -400,11 +404,11 @@ Provided is an [Apache ANT](http://ant.apache.org/) *build.xml* file, which was 
 There a several configuration files that are referenced by either the provide application examples, unittests, and SDK itself.
 
 <dl>
-	<dt>app_config.properties</dt>
-	<dd>- Application configuration file for `\examples` and `\unittests`</dd>
-	
-	<dt>src/tangocard/sdk/common/tc_sdk_config.properties</dt>
-	<dd>- SDK configuration file referenced by `tangocard.sdk.common.SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
+    <dt>app_config.properties</dt>
+    <dd>- Application configuration file for `\examples` and `\unittests`</dd>
+    
+    <dt>src/tangocard/sdk/common/tc_sdk_config.properties</dt>
+    <dd>- SDK configuration file referenced by `tangocard.sdk.common.SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
 </dl>
 
 <a name="doc"></a>
@@ -432,7 +436,7 @@ This example is intended to be run from the command line  (<b>NOTE: Set `<versio
 
 ```Text
     > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
-	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
+    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
 ```
 or 
 
@@ -443,34 +447,34 @@ or
 #### Example Command Line Run ####
 
 ```Text
-	===============================
-	= Tango Card Java SDK Example =
-	=   for simple store front    =
-	===============================
+    ===============================
+    = Tango Card Java SDK Example =
+    =   for simple store front    =
+    ===============================
 
-	Success - GetAvailableBalance - Initial
-			I have an available balance of $8,755,654.00 dollars.
+    Success - GetAvailableBalance - Initial
+            I have an available balance of $8,755,654.00 dollars.
 
-	Success - PurchaseCard - Delivery
+    Success - PurchaseCard - Delivery
 
-			Reference Order ID: 112-07212466-28
-			Card Token:         501385bb04f608.38922035
-			Card Number:        7001-8040-0176-7850-913
-			Card Pin:           368525
+            Reference Order ID: 112-07212466-28
+            Card Token:         501385bb04f608.38922035
+            Card Number:        7001-8040-0176-7850-913
+            Card Pin:           368525
 
-	Success - PurchaseCard - No Delivery
+    Success - PurchaseCard - No Delivery
 
-			Reference Order ID: 112-07212467-28
-			Card Token:         501385bb84a0f7.11849672
-			Card Number:        7001-5040-0168-6066-118
-			Card Pin:           701172
+            Reference Order ID: 112-07212467-28
+            Card Token:         501385bb84a0f7.11849672
+            Card Number:        7001-5040-0168-6066-118
+            Card Pin:           701172
 
-	Success - GetAvailableBalance - Concluding
-			I have an available balance of $8,755,652.00 dollars.
-			
-	===============================
-	=   The End                   =
-	===============================
+    Success - GetAvailableBalance - Concluding
+            I have an available balance of $8,755,652.00 dollars.
+            
+    ===============================
+    =   The End                   =
+    ===============================
 ```
 
 ### TangoCard_Failures_Example.java ###
@@ -486,40 +490,40 @@ This example is intended to be run from the command line:
 
 ```Text
     > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Failures_Example.java
-	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
+    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
 ```
 
 or 
 
 ```Text
-	> ant TangoCard_Failures_Example
+    > ant TangoCard_Failures_Example
 ```
 
 #### Example Command Line Run ####
 
 ```Text
-	===============================
-	= Tango Card Java SDK Example =
-	=   with Failures             =
-	===============================
-	
-	======== Get Available Balance ========
-	=== Tango Card Service Failure ===
-	Failure response type: INV_CREDENTIAL
-	Failure response:      Provided user credentials are not valid.
-	===== End Get Available Balance ====
+    ===============================
+    = Tango Card Java SDK Example =
+    =   with Failures             =
+    ===============================
+    
+    ======== Get Available Balance ========
+    === Tango Card Service Failure ===
+    Failure response type: INV_CREDENTIAL
+    Failure response:      Provided user credentials are not valid.
+    ===== End Get Available Balance ====
 
-	======== Purchase Card ========
-	=== Tango Card Service Failure ===
-	Failure response type: INS_FUNDS
-	Failure response:      Available Balance: 0, Order Cost: 100
-	AvailableBalance:      0
-	OrderCost:             100
-	===== End Get Available Balance ====
+    ======== Purchase Card ========
+    === Tango Card Service Failure ===
+    Failure response type: INS_FUNDS
+    Failure response:      Available Balance: 0, Order Cost: 100
+    AvailableBalance:      0
+    OrderCost:             100
+    ===== End Get Available Balance ====
 
-	===============================
-	=   The End                   =
-	===============================
+    ===============================
+    =   The End                   =
+    ===============================
 ```
 <a name="unittests"></a>
 ## unittests ##
@@ -538,24 +542,24 @@ This SDK sources contains a JUnit jar downloaded from [junit.org downloads](http
 This junit test is intended to be run from the command line:
 
 ```Text
-	> javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_GetAvailableBalance.java
-	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_GetAvailableBalance
-		JUnit version 4.10
-		..
-		Time: 1.466
+    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_GetAvailableBalance.java
+    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_GetAvailableBalance
+        JUnit version 4.10
+        ..
+        Time: 1.466
 
-		OK (2 tests)
+        OK (2 tests)
 ```
 
 or 
 
 ```Text
-	> ant UnitTest_GetAvailableBalance
-	Buildfile: \TangoCard_Java_SDK\build.xml
+    > ant UnitTest_GetAvailableBalance
+    Buildfile: \TangoCard_Java_SDK\build.xml
 
-	UnitTest_GetAvailableBalance:
-		[junit] Running UnitTest_GetAvailableBalance
-		[junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 3.43 sec	
+    UnitTest_GetAvailableBalance:
+        [junit] Running UnitTest_GetAvailableBalance
+        [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 3.43 sec    
 ```
 
 #### JUnit UnitTest_PurchaseCard.java ####
@@ -563,26 +567,26 @@ or
 This junit test is intended to be run from the command line:
 
 ```Text
-	> javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_PurchaseCard.java
+    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_PurchaseCard.java
 
-	> java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_PurchaseCard
-		JUnit version 4.10
-		.....
-		Time: 2.492
+    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_PurchaseCard
+        JUnit version 4.10
+        .....
+        Time: 2.492
 
-		OK (5 tests)
+        OK (5 tests)
 ```
 
 or 
 
 ```Text
-	> ant UnitTest_PurchaseCard
-	Buildfile: \TangoCard_Java_SDK\build.xml
+    > ant UnitTest_PurchaseCard
+    Buildfile: \TangoCard_Java_SDK\build.xml
 
-	UnitTest_PurchaseCard:
-		[mkdir] \TangoCard_Java_SDK\junit
-		[junit] Running UnitTest_PurchaseCard
-		[junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 2.932 sec	
+    UnitTest_PurchaseCard:
+        [mkdir] \TangoCard_Java_SDK\junit
+        [junit] Running UnitTest_PurchaseCard
+        [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 2.932 sec    
 ```
 
 

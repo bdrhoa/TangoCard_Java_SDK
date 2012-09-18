@@ -92,12 +92,12 @@ public class TangoCard_Failures_Example {
 
             GetAvailableBalanceResponse response = new GetAvailableBalanceResponse();
             if (TangoCardServiceApi.GetAvailableBalance(
-            		enumTangoCardServiceApi, 
-            		username, 
-            		password, 
-            		response
-            		) 
-            		&& (null != response)
+                    enumTangoCardServiceApi, 
+                    username, 
+                    password, 
+                    response
+                    ) 
+                    && (null != response)
             ) {
                 System.out.println("=== Expected failure ===");
             }
@@ -154,19 +154,20 @@ public class TangoCard_Failures_Example {
 
             PurchaseCardResponse response = new PurchaseCardResponse();
             if ( TangoCardServiceApi.PurchaseCard(
-                    enumTangoCardServiceApi,	// API environment
-                    username, 					// username
-                    password,					// password
-                    "tango-card",				// cardSku
-                    100,    					// cardValue = $1.00 value
-                    false,						// tcSend 
-                    null,						// recipientName
-                    null,						// recipientEmail
-                    null,						// giftMessage
-                    null,						// giftFrom  
-                    response					// response 
-            		) 
-            		&& (null != response)
+                    enumTangoCardServiceApi,     // API environment
+                    username,                    // username
+                    password,                    // password
+                    "tango-card",                // cardSku
+                    100,                         // cardValue = $1.00 value
+                    false,                       // tcSend 
+                    null,                        // recipientName
+                    null,                        // recipientEmail
+                    null,                        // giftMessage
+                    null,                        // giftFrom 
+                    null,                        // companyIdentifier
+                    response                     // response 
+                    ) 
+                    && (null != response)
             ) {       
                 System.out.println("=== Expected failure ===");               
             }

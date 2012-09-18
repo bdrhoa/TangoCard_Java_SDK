@@ -2,7 +2,7 @@
  * TangoCardServiceApi.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -35,45 +35,45 @@ import tangocard.sdk.response.success.*;
 import tangocard.sdk.service.TangoCardServiceApiEnum;
 
 public final class TangoCardServiceApi {
-	
-	/**
-	 * Constructor that prevents a default instance of this class from being created.
-	 */
-	private TangoCardServiceApi() {}
-	
-	
-	/**
-	 * Gets the available balance.
-	 *
-	 * @param enumTangoCardServiceApi the enum Tango Card service api
-	 * @param username the username
-	 * @param password the password
-	 * @param response the response
-	 * @return true, if successful
-	 * @throws Exception the exception
-	 */
-	public static boolean GetAvailableBalance (
+    
+    /**
+     * Constructor that prevents a default instance of this class from being created.
+     */
+    private TangoCardServiceApi() {}
+    
+    
+    /**
+     * Gets the available balance.
+     *
+     * @param enumTangoCardServiceApi the enum Tango Card service api
+     * @param username the username
+     * @param password the password
+     * @param response the response
+     * @return true, if successful
+     * @throws Exception the exception
+     */
+    public static boolean GetAvailableBalance (
             TangoCardServiceApiEnum enumTangoCardServiceApi,
             String username, 
             String password,
             GetAvailableBalanceResponse response
     ) throws Exception {
-		
-    	if ( null == response) {
-    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
-    	}
-    	
-		// set up the request
+        
+        if ( null == response) {
+            throw new IllegalArgumentException("Parameter 'response' is not defined.");
+        }
+        
+        // set up the request
         GetAvailableBalanceRequest request 
-	        = new GetAvailableBalanceRequest( 
-	                enumTangoCardServiceApi,
-	                username, 
-	                password
-	                );
+            = new GetAvailableBalanceRequest( 
+                    enumTangoCardServiceApi,
+                    username, 
+                    password
+                    );
         
         return request.execute(response);
-	}
-	
+    }
+    
     /**
      * Purchase card.
      *
@@ -102,28 +102,30 @@ public final class TangoCardServiceApi {
             String recipientEmail, 
             String giftMessage, 
             String giftFrom,
+            String companyIdentifier,
             PurchaseCardResponse response
     ) throws Exception {
-    	
-    	if ( null == response) {
-    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
-    	}
-    	
-    	// set up the request
+        
+        if ( null == response) {
+            throw new IllegalArgumentException("Parameter 'response' is not defined.");
+        }
+        
+        // set up the request
         PurchaseCardRequest requestPurchaseCard = new PurchaseCardRequest(
                 enumTangoCardServiceApi,
                 username, 
                 password,
-                cardSku,					// cardSku
-                cardValue,					// cardValue
-                tcSend,						// tcSend 
-                recipientName,				// recipientName
-                recipientEmail,				// recipientEmail
-                giftMessage,				// giftMessage
-                giftFrom					// giftFrom  
+                cardSku,                       // cardSku
+                cardValue,                     // cardValue
+                tcSend,                        // tcSend 
+                recipientName,                 // recipientName
+                recipientEmail,                // recipientEmail
+                giftMessage,                   // giftMessage
+                giftFrom,                      // giftFrom 
+                companyIdentifier              // companyIdentifier
         );
         
         return requestPurchaseCard.execute(response);
-	}
+    }
 
 }

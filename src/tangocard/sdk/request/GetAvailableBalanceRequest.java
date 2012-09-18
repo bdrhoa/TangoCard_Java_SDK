@@ -2,7 +2,7 @@
  * GetAvailableBalanceRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * 
  * © 2012 Tango Card, Inc
  * All rights reserved.

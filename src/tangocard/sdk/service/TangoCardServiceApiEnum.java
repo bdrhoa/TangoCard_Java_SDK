@@ -3,7 +3,7 @@
  * TangoCard_Java_SDK
  * 
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
  * © 2012 Tango Card, Inc
@@ -35,7 +35,7 @@ package tangocard.sdk.service;
  * Enumeration of possible endpoint environments that provide Tango Card Service API.
  */
 public enum TangoCardServiceApiEnum {
-	/** Undefined. */
+    /** Undefined. */
     UNDEFINED,
     
     /** Integration Tango Card Service API. */

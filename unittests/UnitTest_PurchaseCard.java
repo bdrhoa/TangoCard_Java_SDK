@@ -101,17 +101,18 @@ public class UnitTest_PurchaseCard extends TestCase {
         try {
             isSuccess = TangoCardServiceApi.PurchaseCard(
                     this._enumTangoCardServiceApi,
-                    this._app_username, 
-                    this._app_password,
-                    this._app_card_sku,             // cardSku
-                    cardValueTangoCardCents,        // cardValue
-                    true,                           // tcSend 
-                    "Sally Example",                // recipientName
-                    "sally@example.com",            // recipientEmail
-                    "Happy Birthday",               // giftMessage
-                    "Bill Example",                 // giftFrom  
-            		responsePurchaseCard_Delivery	// response
-            		);
+                    this._app_username,              // username 
+                    this._app_password,              // password
+                    this._app_card_sku,              // cardSku
+                    cardValueTangoCardCents,         // cardValue
+                    true,                            // tcSend 
+                    "Sally Example",                 // recipientName
+                    "sally@example.com",             // recipientEmail
+                    "Happy Birthday",                // giftMessage
+                    "Bill Example",                  // giftFrom
+                    "Tango Card PHP SDK Unit Test",  // companyIdentifier
+                    responsePurchaseCard_Delivery    // response
+                    );
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -143,15 +144,16 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     this._app_username, 
                     this._app_password,
-                    this._app_card_sku,             // cardSku
-                    cardValueTangoCardCents,        // cardValue
-                    false,                          // tcSend 
-                    null,                           // recipientName
-                    null,                           // recipientEmail
-                    null,                           // giftMessage
-                    null,                            // giftFrom  
-                    responsePurchaseCard_NoDelivery	// response
-            		);
+                    this._app_card_sku,                // cardSku
+                    cardValueTangoCardCents,           // cardValue
+                    false,                             // tcSend 
+                    null,                              // recipientName
+                    null,                              // recipientEmail
+                    null,                              // giftMessage
+                    null,                              // giftFrom
+                    "Tango Card PHP SDK Unit Test",    // companyIdentifier
+                    responsePurchaseCard_NoDelivery    // response
+                    );
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -184,15 +186,16 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     username, 
                     password,
-                    this._app_card_sku,             	// cardSku
-                    cardValueTangoCardCents,           	// cardValue
-                    false,                          	// tcSend 
-                    null,                             	// recipientName
-                    null,                              	// recipientEmail
-                    null,                           	// giftMessage
-                    null,                            	// giftFrom  
-                    responsePurchaseCard_NoDelivery		// response
-            		);
+                    this._app_card_sku,                    // cardSku
+                    cardValueTangoCardCents,               // cardValue
+                    false,                                 // tcSend 
+                    null,                                  // recipientName
+                    null,                                  // recipientEmail
+                    null,                                  // giftMessage
+                    null,                                  // giftFrom
+                    "Tango Card PHP SDK Unit Test",        // companyIdentifier
+                    responsePurchaseCard_NoDelivery        // response
+                    );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {
@@ -230,15 +233,16 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     username, 
                     password,
-                    this._app_card_sku,             	// cardSku
-                    cardValueTangoCardCents,           	// cardValue
-                    false,                          	// tcSend 
-                    null,                             	// recipientName
-                    null,                              	// recipientEmail
-                    null,                           	// giftMessage
-                    null,                            	// giftFrom  
-                    responsePurchaseCard_NoDelivery		// response
-            		);
+                    this._app_card_sku,                    // cardSku
+                    cardValueTangoCardCents,               // cardValue
+                    false,                                 // tcSend 
+                    null,                                  // recipientName
+                    null,                                  // recipientEmail
+                    null,                                  // giftMessage
+                    null,                                  // giftFrom
+                    "Tango Card PHP SDK Unit Test",        // companyIdentifier
+                    responsePurchaseCard_NoDelivery        // response
+                    );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {
@@ -273,15 +277,16 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     this._app_username, 
                     this._app_password,
-                    "mango-card",                   	// cardSku
-                    cardValueTangoCardCents,           	// cardValue
-                    false,                          	// tcSend 
-                    null,                             	// recipientName
-                    null,                              	// recipientEmail
-                    null,                           	// giftMessage
-                    null,                            	// giftFrom  
-                    responsePurchaseCard_NoDelivery		// response
-            		);
+                    "mango-card",                          // cardSku
+                    cardValueTangoCardCents,               // cardValue
+                    false,                                 // tcSend 
+                    null,                                  // recipientName
+                    null,                                  // recipientEmail
+                    null,                                  // giftMessage
+                    null,                                  // giftFrom
+                    "Tango Card PHP SDK Unit Test",        // companyIdentifier
+                    responsePurchaseCard_NoDelivery        // response
+                    );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {

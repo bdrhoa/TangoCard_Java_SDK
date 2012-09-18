@@ -96,11 +96,11 @@ public class UnitTest_GetAvailableBalance extends TestCase {
         GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
         try {            
             isSuccess = TangoCardServiceApi.GetAvailableBalance(
-            		this._enumTangoCardServiceApi, 
-            		this._app_username, 
-            		this._app_password, 
-            		responseAvailableBalance
-            		);
+                    this._enumTangoCardServiceApi, 
+                    this._app_username, 
+                    this._app_password, 
+                    responseAvailableBalance
+                    );
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -133,7 +133,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
                     username, 
                     password,
                     responseAvailableBalance
-            		);
+                    );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {

@@ -73,12 +73,12 @@ public class TangoCard_Store_Example {
                         
             GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
             if ( TangoCardServiceApi.GetAvailableBalance(
-            		enumTangoCardServiceApi, 
-            		app_username, 
-            		app_password, 
-            		responseAvailableBalance
-            		) 
-            		&& (null != responseAvailableBalance) 
+                    enumTangoCardServiceApi, 
+                    app_username, 
+                    app_password, 
+                    responseAvailableBalance
+                    ) 
+                    && (null != responseAvailableBalance) 
             ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Initial");
                 int tango_cents_available_balance = responseAvailableBalance.getAvailableBalance();
@@ -92,19 +92,20 @@ public class TangoCard_Store_Example {
 
             PurchaseCardResponse responsePurchaseCard_Delivery = new PurchaseCardResponse();
             if ( TangoCardServiceApi.PurchaseCard(
-                    enumTangoCardServiceApi,		// API environment
-                    app_username, 					// username
-                    app_password,					// password
-                    app_card_sku,					// cardSku
-                    cardValueTangoCardCents,		// cardValue
-                    true,							// tcSend 
-                    "Sally Example",				// recipientName
-                    "sally@example.com",			// recipientEmail
-                    "Happy Birthday",				// giftMessage
-                    "Bill Example",					// giftFrom  
-            		responsePurchaseCard_Delivery	// response 
-            		) 
-            		&& (null != responsePurchaseCard_Delivery)
+                    enumTangoCardServiceApi,           // API environment
+                    app_username,                      // username
+                    app_password,                      // password
+                    app_card_sku,                      // cardSku
+                    cardValueTangoCardCents,           // cardValue
+                    true,                              // tcSend 
+                    "Sally Example",                   // recipientName
+                    "sally@example.com",               // recipientEmail
+                    "Happy Birthday",                  // giftMessage
+                    "Bill Example",                    // giftFrom
+                    "Tango Card PHP SDK Example",      // companyIdentifier  
+                    responsePurchaseCard_Delivery      // response 
+                    ) 
+                    && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
                 System.out.println( "\tReference Order ID: "  + responsePurchaseCard_Delivery.getReferenceOrderId() + "");
@@ -115,19 +116,20 @@ public class TangoCard_Store_Example {
             
             PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
             if ( TangoCardServiceApi.PurchaseCard(
-                    enumTangoCardServiceApi,		// API environment
-                    app_username, 					// username
-                    app_password,					// password
-                    app_card_sku,					// cardSku
-                    cardValueTangoCardCents,		// cardValue
-                    false,                          // tcSend 
-                    null,							// recipientName
-                    null,							// recipientEmail
-                    null,                           // giftMessage
-                    null,                           // giftFrom  
-                    responsePurchaseCard_NoDelivery	// response 
-            		) 
-            		&& (null != responsePurchaseCard_Delivery)
+                    enumTangoCardServiceApi,           // API environment
+                    app_username,                      // username
+                    app_password,                      // password
+                    app_card_sku,                      // cardSku
+                    cardValueTangoCardCents,           // cardValue
+                    false,                             // tcSend 
+                    null,                              // recipientName
+                    null,                              // recipientEmail
+                    null,                              // giftMessage
+                    null,                              // giftFrom
+                    "Tango Card PHP SDK Example",      // companyIdentifier    
+                    responsePurchaseCard_NoDelivery    // response 
+                    ) 
+                    && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - No Delivery\n" );
                 System.out.println( "\tReference Order ID: "  + responsePurchaseCard_NoDelivery.getReferenceOrderId() + "");
@@ -138,11 +140,11 @@ public class TangoCard_Store_Example {
             
             GetAvailableBalanceResponse responseUpdatedBalance = new GetAvailableBalanceResponse();
             if ( TangoCardServiceApi.GetAvailableBalance(
-            		enumTangoCardServiceApi, 
-            		app_username, 
-            		app_password, 
-            		responseUpdatedBalance) 
-            		&& (null != responseUpdatedBalance) 
+                    enumTangoCardServiceApi, 
+                    app_username, 
+                    app_password, 
+                    responseUpdatedBalance) 
+                    && (null != responseUpdatedBalance) 
             ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Concluding");
                 int tango_cents_available_balance = responseUpdatedBalance.getAvailableBalance();
