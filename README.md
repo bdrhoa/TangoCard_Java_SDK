@@ -361,7 +361,7 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
   <dd>- Valid email address of recipient receiving gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
 
   <dt>string $giftMessage</dt>
-  <dd>- [Optional] Gift message to be applied to gift card's email. Set this optional parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) or null if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
+  <dd>- [Optional] Gift message to be applied to gift card's email. Set this optional parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) or <code>null</code> if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
 
   <dt>string $giftFrom</dt>
   <dd>- Full name of giver of gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
