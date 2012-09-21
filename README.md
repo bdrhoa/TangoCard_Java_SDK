@@ -274,13 +274,13 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
   <dd>- INTEGRATION and PRODUCTION</dd>
   
   <dt>string username</dt>
-  <dd>- User email address, and the SDK Integration test username is defined within configuration file *app_config.properties* in setting *app_username*</dd>
+  <dd>- User email address, and the SDK Integration test username is defined within configuration file <code>app_config.properties</code> in setting <code>app_username</code></dd>
 
   <dt>string password</dt>
-  <dd>- User password, and the SDK Integration test password is defined within configuration file *app_config.properties* in setting *app_password*</dd>
+  <dd>- User password, and the SDK Integration test password is defined within configuration file <code>app_config.properties</code> in setting <code>app_password</code></dd>
 
   <dt>tangocard.sdk.response.success.GetAvailableBalanceResponse response</dt>
-  <dd>- This <i>out</i> paramter will provide a valid success response object if this method returns true upon success.</dd>
+  <dd>- This <i>out</i> paramter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
 </dl>
 
 ### `tangocard.sdk.response.success.GetAvailableBalanceResponse` Properties ###
@@ -306,17 +306,17 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
     
     PurchaseCardResponse response = new PurchaseCardResponse();
     if ( TangoCardServiceApi.PurchaseCard(
-            enumTangoCardServiceApi,        // API environment
-            username,                         // username
-            password,                        // password
-            card_sku,                        // cardSku
-            cardValueTangoCardCents,        // cardValue
-            true,                            // tcSend 
-            "Sally Example",                // recipientName
-            "sally@example.com",            // recipientEmail
-            "Happy Birthday",                // giftMessage
-            "Bill Example",                    // giftFrom  
-            response    // response 
+            enumTangoCardServiceApi,            // API environment
+            username,                           // username
+            password,                           // password
+            card_sku,                           // cardSku
+            cardValueTangoCardCents,            // cardValue
+            true,                               // tcSend 
+            "Sally Example",                    // recipientName
+            "sally@example.com",                // recipientEmail
+            "Happy Birthday",                   // giftMessage
+            "Bill Example",                     // giftFrom  
+            response                            // response 
             ) 
             && (null != response)
     ) {
@@ -340,34 +340,34 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
   <dd>- INTEGRATION or PRODUCTION</dd>
 
   <dt>string username</dt>
-  <dd>- User email address, and a SDK Integration test username is defined within configuration file *app_config.properties* in setting *app_username*</dd>
+  <dd>- User email address, and a SDK Integration test username is defined within configuration file <code>app_config.properties</code> in setting <code>app_username</code></dd>
 
   <dt>string password</dt>
-  <dd>- User password, and a SDK Integration test password is defined within configuration file *app_config.properties* in setting *app_password*</dd>
+  <dd>- User password, and a SDK Integration test password is defined within configuration file <code>app_config.properties</code> in setting <code>app_password</code></dd>
 
   <dt>string cardSku</dt>
-  <dd>- Card brand request, and the Tango Card brand's card sku *tango-card* is defined within configuration file *app_config.properties* in setting *app_card_sku*</dd>
+  <dd>- Card brand request, and the Tango Card brand's card sku <code>tango-card</code> is defined within configuration file <code>app_config.properties</code> in setting <code>app_card_sku</code></dd>
 
   <dt>int cardValue</dt>
   <dd>- Card value in cents; a value of 100 (cent) is $1.00 dollar card. Minimum value is 1 (cent).</dd>
 
-  <dt>boolean tcSend</dt>
-  <dd>- Tango Card Service delivers by Email requested card. Set to true for email delivery, and false for no delivery.</dd>
+  <dt>boolean $tcSend</dt>
+  <dd>- Tango Card Service delivers by Email requested card. Set to <code>true</code> for email delivery, and <code>false</code> for no delivery.</dd>
 
-  <dt>string recipientName</dt>
-  <dd>- Full name of recipient receiving gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dt>string $recipientName</dt>
+  <dd>- Full name of recipient receiving gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
 
-  <dt>string recipientEmail</dt>
-  <dd>- Valid email address of recipient receiving gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dt>string $recipientEmail</dt>
+  <dd>- Valid email address of recipient receiving gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
 
-  <dt>string giftMessage</dt>
-  <dd>- [Optional] Gift message to be applied to gift card's email. Set this value with either a string (length minumum 1 character to maximum of 255 characters) or null if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dt>string $giftMessage</dt>
+  <dd>- [Optional] Gift message to be applied to gift card's email. Set this optional parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) or null if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
 
-  <dt>string giftFrom</dt>
-  <dd>- Full name of giver of gift card. Set this value with either a string (length minumum 1 character to maximum of 255 characters) if `tcSend` is true, or null if parameter `tcSend` is false.</dd>
+  <dt>string $giftFrom</dt>
+  <dd>- Full name of giver of gift card. Set this parameter with a value of either a string (length minimum 1 character to maximum of 255 characters) if <code>tcSend</code> is <code>true</code>, or <code>null</code> if parameter <code>tcSend</code> is <code>false</code>.</dd>
 
   <dt>tangocard.sdk.response.success.PurchaseCardResponse response</dt>
-  <dd>- This <i>out</i> paramter will provide a valid success response object if this method returns true upon success.</dd>
+  <dd>- This <i>out</i> parameter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
 </dl>
 
 ### `tangocard.sdk.response.success.PurchaseCardResponse` Properties ###
@@ -404,11 +404,11 @@ A service will return the following failure responses as enumerated by `tangocar
 
 <table>
     <tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
-    <tr><td>Insufficient Funds</td><td>INS_FUNDS</td><td>`tangocard.sdk.response.failure.InsufficientFundsResponse`</td></tr>
-    <tr><td>Insufficient Inventory</td><td>INS_INV</td><td>`tangocard.sdk.response.failure.InsufficientInventoryResponse`</td></tr> 
-    <tr><td>Invalid Credentials</td><td>INV_CREDENTIAL</td><td>`tangocard.sdk.response.failure.InvalidCredentialsResponse`</td></tr> 
-    <tr><td>Invalid Input</td><td>INV_INPUT</td><td>`tangocard.sdk.response.failure.InvalidInputResponse`</td></tr>
-    <tr><td>System Failure</td><td>SYS_ERROR</td><td>`tangocard.sdk.response.failure.SystemFailureResponse`</td></tr>
+    <tr><td>Insufficient Funds</td><td><code>INS_FUNDS</code></td><td><code>tangocard.sdk.response.failure.InsufficientFundsResponse</code></td></tr>
+    <tr><td>Insufficient Inventory</td><td><code>INS_INV</code></td><td><code>tangocard.sdk.response.failure.InsufficientInventoryResponse</code></td></tr> 
+    <tr><td>Invalid Credentials</td><td><code>INV_CREDENTIAL</code></td><td><code>tangocard.sdk.response.failure.InvalidCredentialsResponse</code></td></tr> 
+    <tr><td>Invalid Input</td><td><code>INV_INPUT</code></td><td><code>tangocard.sdk.response.failure.InvalidInputResponse</code></td></tr>
+    <tr><td>System Failure</td><td><code>SYS_ERROR</code></td><td><code>tangocard.sdk.response.failure.SystemFailureResponse</code></td></tr>
 </table>
 
 Each of the aforementioned `Failure Responses` contains details as to the reason that the `Tango Card Service API` did not perform provided `Request`.
@@ -420,29 +420,34 @@ The details of these service failure responses are embedded and thrown within `t
 ### Expected Failure Responses for Specific Requests ###
 
 Each Request will have the following possible Failure Responses as a property value within `tangocard.sdk.service.TangoCardServiceException.getResponse()`:
+Using this SDK, when a request fails because of failure response from the Tango Card Service API, then <code>tangocard.sdk.service.TangoCardServiceException</code> is thrown.
+
+The exception has two properties that define what was failure response from the Tango Card Service API:
+* `Failure Response Type` held within this property <code>tangocard.sdk.service.TangoCardServiceException.getResponseType()</code>.
+* `failure Response Object` held within this property <code>tangocard.sdk.service.TangoCardServiceException.getResponse()</code> whose parent class is <code>tangocard.sdk.response.failure.FailureResponse</code>.
 
 <table>
     <tr><th>Request</th><th>Possible Failure Responses</th></tr>
     <tr>
-        <td>`GetAvailableBalanceRequest`</td>
+        <td><code>GetAvailableBalanceRequest</code></td>
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-                <tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
-                <tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+                <tr><td><code>INV_CREDENTIAL</code></td><td><code>InvalidCredentialsResponse</code></td></tr> 
+                <tr><td><code>SYS_ERROR</code></td><td><code>SystemFailureResponse</code></td></tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td>`PurchaseCardRequest`</td>
+        <td><code>PurchaseCardRequest</code></td>
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-                <tr><td>INS_FUNDS</td><td>`InsufficientFundsResponse`</td></tr>
-                <tr><td>INS_INV</td><td>`InsufficientInventoryResponse`</td></tr> 
-                <tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
-                <tr><td>INV_INPUT</td><td>`InvalidInputResponse`</td></tr>
-                <tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+                <tr><td><code>INS_FUNDS</code></td><td><code>InsufficientFundsResponse</code></td></tr>
+                <tr><td><code>INS_INV</code></td><td><code>InsufficientInventoryResponse</code></td></tr> 
+                <tr><td><code>INV_CREDENTIAL</code></td><td><code>InvalidCredentialsResponse</code></td></tr> 
+                <tr><td><code>INV_INPUT</code></td><td><code>InvalidInputResponse</code></td></tr>
+                <tr><td><code>SYS_ERROR</code></td><td><code>SystemFailureResponse</code></td></tr>
             </table>
         </td>
     </tr>
