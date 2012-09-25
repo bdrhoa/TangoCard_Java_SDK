@@ -100,7 +100,7 @@ public class TangoCard_Store_Example {
                     true,                               // tcSend 
                     "Sally Example",                    // recipientName
                     "sally@example.com",                // recipientEmail
-                    "Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",                // giftMessage
+                    "Hello from Tango Card Java SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",                // giftMessage
                     "Bill Example",                     // giftFrom  
                     responsePurchaseCard_Delivery       // response 
                     ) 

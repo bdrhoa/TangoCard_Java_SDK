@@ -108,9 +108,9 @@ public class UnitTest_PurchaseCard extends TestCase {
                     true,                           // tcSend 
                     "Sally Example",                // recipientName
                     "sally@example.com",            // recipientEmail
-                    "Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",               // giftMessage
+                    "Hello from Tango Card Java SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",               // giftMessage
                     "Bill Example",                 // giftFrom  
-                    responsePurchaseCard_Delivery    // response
+                    responsePurchaseCard_Delivery   // response
                     );
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
@@ -184,14 +184,14 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     username, 
                     password,
-                    this._app_card_sku,                 // cardSku
-                    cardValueTangoCardCents,               // cardValue
-                    false,                              // tcSend 
-                    null,                                 // recipientName
-                    null,                                  // recipientEmail
-                    null,                               // giftMessage
-                    null,                                // giftFrom  
-                    responsePurchaseCard_NoDelivery        // response
+                    this._app_card_sku,                     // cardSku
+                    cardValueTangoCardCents,                // cardValue
+                    false,                                  // tcSend 
+                    null,                                   // recipientName
+                    null,                                   // recipientEmail
+                    null,                                   // giftMessage
+                    null,                                   // giftFrom  
+                    responsePurchaseCard_NoDelivery         // response
                     );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
@@ -230,14 +230,14 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     username, 
                     password,
-                    this._app_card_sku,                 // cardSku
-                    cardValueTangoCardCents,               // cardValue
-                    false,                              // tcSend 
-                    null,                                 // recipientName
-                    null,                                  // recipientEmail
-                    null,                               // giftMessage
-                    null,                                // giftFrom  
-                    responsePurchaseCard_NoDelivery        // response
+                    this._app_card_sku,                     // cardSku
+                    cardValueTangoCardCents,                // cardValue
+                    false,                                  // tcSend 
+                    null,                                   // recipientName
+                    null,                                   // recipientEmail
+                    null,                                   // giftMessage
+                    null,                                   // giftFrom  
+                    responsePurchaseCard_NoDelivery         // response
                     );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
@@ -273,14 +273,14 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     this._app_username, 
                     this._app_password,
-                    "mango-card",                       // cardSku
-                    cardValueTangoCardCents,               // cardValue
-                    false,                              // tcSend 
-                    null,                                 // recipientName
-                    null,                                  // recipientEmail
-                    null,                               // giftMessage
-                    null,                                // giftFrom  
-                    responsePurchaseCard_NoDelivery        // response
+                    "mango-card",                           // cardSku
+                    cardValueTangoCardCents,                // cardValue
+                    false,                                  // tcSend 
+                    null,                                   // recipientName
+                    null,                                   // recipientEmail
+                    null,                                   // giftMessage
+                    null,                                   // giftFrom  
+                    responsePurchaseCard_NoDelivery         // response
                     );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
