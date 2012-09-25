@@ -57,7 +57,7 @@
     </path>
     <target name="init">
         <mkdir dir="bin"/>
-        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="dist"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src" excludes="**/*.launch, **/*.java"/>
         </copy>
@@ -69,20 +69,20 @@
         </copy>
     </target>
     <target name="clean">
-        <delete dir="${dist.dir}"/>
+        <delete dir="dist"/>
         <delete dir="bin"/>
         <delete file="TangoCard_Java_SDK.jar"/>
     </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project,compress" name="build"/>
+    <target name="cleanall" depends="clean" />
+    <target name="build" depends="cleanall,build-subprojects,build-project,increment,compress" />
     <target name="build-subprojects"/>
-    <target depends="build-project" name="compress" >
-        <!-- <jar destfile="TangoCard_Java_SDK.jar" basedir="bin" /> -->
-        <jar destfile="${dist.dir}/${build.name}-${build.major.number}.${build.minor.number}.${build.revision.number}.jar"  basedir="bin" >
+    <target name="compress" depends="build-project" >
+        <echo message="dist/${build.name}-${build.major.number}.${build.minor.number}.${build.revision.number}.jar" />
+        <jar destfile="dist/${build.name}-${build.major.number}.${build.minor.number}.${build.revision.number}.jar" basedir="bin" >
         </jar>
     </target>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
+    <target name="build-project" depends="init">
+        <echo message="${ant.project.name}: ${ant.file}" />
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false" >
             <src path="src"/>
             <classpath refid="TangoCard_Java_SDK.classpath"/>
