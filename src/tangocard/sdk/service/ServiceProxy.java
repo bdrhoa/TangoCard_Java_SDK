@@ -208,7 +208,7 @@ public class ServiceProxy {
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-length", String.valueOf(this._request_json.length()));
-                connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+                connection.setRequestProperty("Content-Type","application/json; charset=utf-8");
     
                 // open up the output stream of the connection
                 DataOutputStream output = new DataOutputStream( connection.getOutputStream() );

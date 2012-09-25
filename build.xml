@@ -30,22 +30,34 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="TangoCard_Java_SDK">
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="TangoCard_Java_SDK">
+    <property name="major-version-number" value="1" />
+    <property name="project-name" value="${ant.project.name}" />
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
-    <path id="JUnit 3.libraryclasspath">
-        <pathelement location="../../../Program Files (x86)/eclipse/eclipse-java-ganymede-SR2-win32/eclipse/plugins/org.junit_3.8.2.v20080602-1318/junit.jar"/>
+    <property file="build.properties"/>
+    <target name="increment">
+        <propertyfile file="build.properties">
+            <entry key="build.revision.number" type="int" operation="+" default="0"/>
+        </propertyfile>
+        <property file="build.properties"/>
+        <echo message="Build number is ${build.revision.number}"/>
+    </target>
+    <path id="JUnit.libraryclasspath">
+        <pathelement location="lib/junit-4.10.jar"/>
     </path>
     <path id="TangoCard_Java_SDK.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/org.json-20120521.jar"/>
-        <path refid="JUnit 3.libraryclasspath"/>
+        <path refid="JUnit.libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
+        <mkdir dir="${dist.dir}"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src" excludes="**/*.launch, **/*.java"/>
         </copy>
@@ -57,26 +69,29 @@
         </copy>
     </target>
     <target name="clean">
+        <delete dir="${dist.dir}"/>
         <delete dir="bin"/>
-		<delete file="TangoCard_Java_SDK.jar"/>
+        <delete file="TangoCard_Java_SDK.jar"/>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project,compress" name="build"/>
     <target name="build-subprojects"/>
-	<target depends="build-project" name="compress" >
-		<jar destfile="TangoCard_Java_SDK.jar" basedir="bin" />
-	</target>
+    <target depends="build-project" name="compress" >
+        <!-- <jar destfile="TangoCard_Java_SDK.jar" basedir="bin" /> -->
+        <jar destfile="${dist.dir}/${build.name}-${build.major.number}.${build.minor.number}.${build.revision.number}.jar"  basedir="bin" >
+        </jar>
+    </target>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false" >
             <src path="src"/>
             <classpath refid="TangoCard_Java_SDK.classpath"/>
         </javac>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false" >
             <src path="examples"/>
             <classpath refid="TangoCard_Java_SDK.classpath"/>
         </javac>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false" >
             <src path="unittests"/>
             <classpath refid="TangoCard_Java_SDK.classpath"/>
         </javac>

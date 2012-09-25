@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-09-20</h4>
+<h4>Update: 2012-09-25</h4>
 =================
 
 # Table of Contents #
@@ -533,7 +533,11 @@ This folder also contains JUnit Library [junit-4.10.jar](https://github.com/Kent
 
 ## build file ##
 
-Provided is an [Apache ANT](http://ant.apache.org/) *build.xml* file, which was used to create the binary file *TangoCard_Java_SDK.jar*.
+Provided is an [Apache ANT](http://ant.apache.org/) `build.xml` file and reading build attributes from `build.properties` which was used to create `dest\TangoCard_Java_SDK-{major}.{minor}.{revision}.jar` file by using `ant`:
+
+```Text
+    > ant build
+```
 
 <a name="configuration_files"></a>
 ## configuration files ##
@@ -569,13 +573,7 @@ This is a complete example of requesting available balance and purchasing Tango 
 
 #### Command Line ####
 
-This example is intended to be run from the command line  (<b>NOTE: Set `<version>` to the current TangoCard_Java_SDK jar label.):
-
-```Text
-    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Store_Example.java
-    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Store_Example
-```
-or 
+This example is intended to be run from the command line by using `ant`:
 
 ```Text
     > ant TangoCard_Store_Example
@@ -623,14 +621,7 @@ Example of how the SDK handles various failure responses, such as:
 
 #### Command Line ####
 
-This example is intended to be run from the command line:
-
-```Text
-    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" examples\TangoCard_Failures_Example.java
-    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;" TangoCard_Failures_Example
-```
-
-or 
+This example is intended to be run from the command line by using `ant`:
 
 ```Text
     > ant TangoCard_Failures_Example
@@ -676,19 +667,7 @@ This SDK sources contains a JUnit jar downloaded from [junit.org downloads](http
 
 #### JUnit UnitTest_GetAvailableBalance.java ####
 
-This junit test is intended to be run from the command line:
-
-```Text
-    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_GetAvailableBalance.java
-    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_GetAvailableBalance
-        JUnit version 4.10
-        ..
-        Time: 1.466
-
-        OK (2 tests)
-```
-
-or 
+This `junit` test is intended to be run from the command line by using `ant`:
 
 ```Text
     > ant UnitTest_GetAvailableBalance
@@ -701,23 +680,11 @@ or
 
 #### JUnit UnitTest_PurchaseCard.java ####
 
-This junit test is intended to be run from the command line:
-
-```Text
-    > javac -d . -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" unittests\UnitTest_PurchaseCard.java
-
-    > java -cp ".;TangoCard_Java_SDK.jar;lib\org.json-20120521.jar;lib\junit-4.10.jar;" org.junit.runner.JUnitCore UnitTest_PurchaseCard
-        JUnit version 4.10
-        .....
-        Time: 2.492
-
-        OK (5 tests)
-```
-
-or 
+This `junit` test is intended to be run from the command line by using `ant`:
 
 ```Text
     > ant UnitTest_PurchaseCard
+    
     Buildfile: \TangoCard_Java_SDK\build.xml
 
     UnitTest_PurchaseCard:
@@ -725,8 +692,6 @@ or
         [junit] Running UnitTest_PurchaseCard
         [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 2.932 sec    
 ```
-
-
 
 <a name="sdk_development_environment"></a>
 # SDK Development Environment #

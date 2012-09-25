@@ -30,50 +30,56 @@
 
 package tangocard.sdk;
 
+import tangocard.sdk.common.*;
 import tangocard.sdk.request.*;
 import tangocard.sdk.response.success.*;
 import tangocard.sdk.service.TangoCardServiceApiEnum;
 
 public final class TangoCardServiceApi {
-	
-	/**
-	 * Constructor that prevents a default instance of this class from being created.
-	 */
-	private TangoCardServiceApi() {}
-	
-	
-	/**
-	 * Gets the available balance.
-	 *
-	 * @param enumTangoCardServiceApi the enum Tango Card service api
-	 * @param username the username
-	 * @param password the password
-	 * @param response the response
-	 * @return true, if successful
-	 * @throws Exception the exception
-	 */
-	public static boolean GetAvailableBalance (
+    
+    /**
+     * Constructor that prevents a default instance of this class from being created.
+     */
+    private TangoCardServiceApi() {}
+    
+    
+    /**
+     * Gets the available balance.
+     *
+     * @param enumTangoCardServiceApi the enum Tango Card service api
+     * @param username the username
+     * @param password the password
+     * @param response the response
+     * @return true, if successful
+     * @throws Exception the exception
+     */
+    public static boolean GetAvailableBalance (
             TangoCardServiceApiEnum enumTangoCardServiceApi,
             String username, 
             String password,
             GetAvailableBalanceResponse response
     ) throws Exception {
-		
-    	if ( null == response) {
-    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
-    	}
-    	
-		// set up the request
+        if (Helper.isNullOrEmptyString(username)) {
+            throw new IllegalArgumentException("Parameter 'username' is not defined.");
+        }
+        if (Helper.isNullOrEmptyString(password)) {
+            throw new IllegalArgumentException("Parameter 'password' is not defined.");
+        }
+        if ( null == response) {
+            throw new IllegalArgumentException("Parameter 'response' is not defined.");
+        }
+        
+        // set up the request
         GetAvailableBalanceRequest request 
-	        = new GetAvailableBalanceRequest( 
-	                enumTangoCardServiceApi,
-	                username, 
-	                password
-	                );
+            = new GetAvailableBalanceRequest( 
+                    enumTangoCardServiceApi,
+                    username.trim(), 
+                    password
+                    );
         
         return request.execute(response);
-	}
-	
+    }
+    
     /**
      * Purchase card.
      *
@@ -104,26 +110,31 @@ public final class TangoCardServiceApi {
             String giftFrom,
             PurchaseCardResponse response
     ) throws Exception {
-    	
-    	if ( null == response) {
-    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
-    	}
-    	
-    	// set up the request
+        if (Helper.isNullOrEmptyString(username)) {
+            throw new IllegalArgumentException("Parameter 'username' is not defined.");
+        }
+        if (Helper.isNullOrEmptyString(password)) {
+            throw new IllegalArgumentException("Parameter 'password' is not defined.");
+        }
+        if ( null == response ) {
+            throw new IllegalArgumentException("Parameter 'response' is not defined.");
+        }
+        
+        // set up the request
         PurchaseCardRequest requestPurchaseCard = new PurchaseCardRequest(
                 enumTangoCardServiceApi,
-                username, 
+                username.trim(), 
                 password,
-                cardSku,					// cardSku
-                cardValue,					// cardValue
-                tcSend,						// tcSend 
-                recipientName,				// recipientName
-                recipientEmail,				// recipientEmail
-                giftMessage,				// giftMessage
-                giftFrom					// giftFrom  
+                Helper.isNullOrEmptyString(cardSku)         ? null : cardSku.trim(),            // cardSku
+                cardValue,                                                                      // cardValue
+                tcSend,                                                                         // tcSend 
+                Helper.isNullOrEmptyString(recipientName)   ? null : recipientName.trim(),      // recipientName
+                Helper.isNullOrEmptyString(recipientEmail)  ? null : recipientEmail.trim(),     // recipientEmail
+                Helper.isNullOrEmptyString(giftMessage)     ? null : giftMessage.trim().replaceAll("(\r\n|\n\r|\r|\n)", "<br>") ,        // giftMessage
+                Helper.isNullOrEmptyString(giftFrom)        ? null : giftFrom.trim()            // giftFrom  
         );
         
         return requestPurchaseCard.execute(response);
-	}
+    }
 
 }
