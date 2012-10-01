@@ -5,7 +5,7 @@
  * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -89,8 +89,8 @@ public class ServiceProxy {
             this._requestObject = requestObject;
             
             appConfig = SdkConfig.getInstance();
-        } catch ( Exception ex ) {
-            throw ex;
+        } catch ( Exception e ) {
+            throw e;
         }
         
         if ( null == appConfig ) {
@@ -171,8 +171,8 @@ public class ServiceProxy {
                 this._request_json = responseJsonEncoded;
                 isSuccess = true;
             }
-        } catch (Exception ex) {
-            throw ex;
+        } catch (Exception e) {
+            throw e;
         }
                 
         return isSuccess;
@@ -196,8 +196,8 @@ public class ServiceProxy {
 
         try {
             url = new URL(this._path);
-        } catch(MalformedURLException ex) {
-            throw new TangoCardSdkException( "MalformedURLException", ex );
+        } catch(MalformedURLException e) {
+            throw new TangoCardSdkException( "MalformedURLException", e );
         }
         
         if ( this.mapRequest() ) {
@@ -208,7 +208,7 @@ public class ServiceProxy {
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-length", String.valueOf(this._request_json.length()));
-                connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+                connection.setRequestProperty("Content-Type","application/json; charset=utf-8");
     
                 // open up the output stream of the connection
                 DataOutputStream output = new DataOutputStream( connection.getOutputStream() );
@@ -225,8 +225,8 @@ public class ServiceProxy {
                 }
     
                 responseJsonEncoded = response.toString();        
-            } catch(IOException ex) {
-                throw new TangoCardSdkException( "IOException", ex );
+            } catch(IOException e) {
+                throw new TangoCardSdkException( "IOException", e );
             }
         }
 
@@ -246,8 +246,8 @@ public class ServiceProxy {
         String responseType = null;
         try {
             responseType = responseJson.getString("responseType");
-        } catch (JSONException ex) {
-            throw new TangoCardSdkException( "JSONException", ex );
+        } catch (JSONException e) {
+            throw new TangoCardSdkException( "JSONException", e );
         }
         
         if ( responseType.equals("SUCCESS")) {

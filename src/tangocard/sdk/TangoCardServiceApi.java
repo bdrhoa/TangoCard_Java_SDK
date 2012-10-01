@@ -5,7 +5,7 @@
  * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,6 +30,7 @@
 
 package tangocard.sdk;
 
+import tangocard.sdk.common.*;
 import tangocard.sdk.request.*;
 import tangocard.sdk.response.success.*;
 import tangocard.sdk.service.TangoCardServiceApiEnum;
@@ -58,7 +59,12 @@ public final class TangoCardServiceApi {
             String password,
             GetAvailableBalanceResponse response
     ) throws Exception {
-        
+        if (Helper.isNullOrEmptyString(username)) {
+            throw new IllegalArgumentException("Parameter 'username' is not defined.");
+        }
+        if (Helper.isNullOrEmptyString(password)) {
+            throw new IllegalArgumentException("Parameter 'password' is not defined.");
+        }
         if ( null == response) {
             throw new IllegalArgumentException("Parameter 'response' is not defined.");
         }
@@ -67,7 +73,7 @@ public final class TangoCardServiceApi {
         GetAvailableBalanceRequest request 
             = new GetAvailableBalanceRequest( 
                     enumTangoCardServiceApi,
-                    username, 
+                    username.trim(), 
                     password
                     );
         
@@ -105,24 +111,29 @@ public final class TangoCardServiceApi {
             String companyIdentifier,
             PurchaseCardResponse response
     ) throws Exception {
-        
-        if ( null == response) {
+        if (Helper.isNullOrEmptyString(username)) {
+            throw new IllegalArgumentException("Parameter 'username' is not defined.");
+        }
+        if (Helper.isNullOrEmptyString(password)) {
+            throw new IllegalArgumentException("Parameter 'password' is not defined.");
+        }
+        if ( null == response ) {
             throw new IllegalArgumentException("Parameter 'response' is not defined.");
         }
         
         // set up the request
         PurchaseCardRequest requestPurchaseCard = new PurchaseCardRequest(
                 enumTangoCardServiceApi,
-                username, 
+                username.trim(), 
                 password,
-                cardSku,                       // cardSku
-                cardValue,                     // cardValue
-                tcSend,                        // tcSend 
-                recipientName,                 // recipientName
-                recipientEmail,                // recipientEmail
-                giftMessage,                   // giftMessage
-                giftFrom,                      // giftFrom 
-                companyIdentifier              // companyIdentifier
+                Helper.isNullOrEmptyString(cardSku)             ? null : cardSku.trim(),                // cardSku
+                cardValue,                                                                              // cardValue
+                tcSend,                                                                                 // tcSend 
+                Helper.isNullOrEmptyString(recipientName)       ? null : recipientName.trim(),          // recipientName
+                Helper.isNullOrEmptyString(recipientEmail)      ? null : recipientEmail.trim(),         // recipientEmail
+                Helper.isNullOrEmptyString(giftMessage)         ? null : giftMessage.trim().replaceAll("(\r\n|\n\r|\r|\n)", "<br>") ,        // giftMessage
+                Helper.isNullOrEmptyString(giftFrom)            ? null : giftFrom.trim(),                // giftFrom
+                Helper.isNullOrEmptyString(companyIdentifier)    ? null : companyIdentifier.trim()        // companyIdentifier
         );
         
         return requestPurchaseCard.execute(response);

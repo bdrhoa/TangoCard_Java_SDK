@@ -5,7 +5,7 @@
  *  
  *  Example code using Tango Card SDK to get available balance and purchase card.
  * 
- *  © 2012 Tango Card, Inc
+ *  Copyright (c) 2012 Tango Card, Inc
  *  All rights reserved.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -53,24 +53,26 @@ public class TangoCard_Store_Example {
         System.out.println(   "= Tango Card Java SDK Example =" );
         System.out.println(   "=   for simple store front    =" );
         System.out.println(   "===============================" );
-        
-        Properties prop = new Properties();        
+
+        Properties prop = new Properties();
         try {
-            prop.load(new FileInputStream("app_config.properties"));
-        } catch ( FileNotFoundException ex ) {
-            throw ex;
-        } catch ( Exception ex ) {
-            throw ex;
+            prop.load(new FileInputStream("config/app_config.properties"));
+        } catch ( FileNotFoundException e ) {
+            throw e;
+        } catch ( Exception e ) {
+            throw e;
         }
-        
+
         try {
             String app_username = prop.getProperty("app_username");
             String app_password = prop.getProperty("app_password");
             String app_card_sku = prop.getProperty("app_card_sku");
+            int app_card_value = Integer.parseInt(prop.getProperty("app_card_value"));
+            String app_recipient_email = prop.getProperty("app_recipient_email");
             
             String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
             TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
-                        
+
             GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
             if ( TangoCardServiceApi.GetAvailableBalance(
                     enumTangoCardServiceApi, 
@@ -85,29 +87,28 @@ public class TangoCard_Store_Example {
                 double currencyAmount = tango_cents_available_balance/100;
     
                 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-                System.out.println("\tI have an available balance of " + currencyFormatter.format(currencyAmount) + " dollars.");        
+                System.out.println(String.format("\t'%s': Available balance: %s.", app_username, currencyFormatter.format(currencyAmount)));
             }
-                    
-            int cardValueTangoCardCents = 100; // $1.00 dollars
 
             PurchaseCardResponse responsePurchaseCard_Delivery = new PurchaseCardResponse();
             if ( TangoCardServiceApi.PurchaseCard(
-                    enumTangoCardServiceApi,           // API environment
-                    app_username,                      // username
-                    app_password,                      // password
-                    app_card_sku,                      // cardSku
-                    cardValueTangoCardCents,           // cardValue
-                    true,                              // tcSend 
-                    "Sally Example",                   // recipientName
-                    "sally@example.com",               // recipientEmail
-                    "Happy Birthday",                  // giftMessage
-                    "Bill Example",                    // giftFrom
-                    "Tango Card PHP SDK Example",      // companyIdentifier  
-                    responsePurchaseCard_Delivery      // response 
+                    enumTangoCardServiceApi,            // API environment
+                    app_username,                       // username
+                    app_password,                       // password
+                    app_card_sku,                       // cardSku
+                    app_card_value,                     // cardValue
+                    true,                               // tcSend
+                    "Sally Example",                    // recipientName
+                    app_recipient_email,                // recipientEmail
+                    "Example: Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n\r601 Union Street, Suite 4200\r\nSeattle, WA\r98101",                // giftMessage
+                    "Bill Example",                     // giftFrom
+                    null,                              // companyIdentifier
+                    responsePurchaseCard_Delivery       // response 
                     ) 
                     && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
+                System.out.println( "\tRecipient:         '"  + app_recipient_email + "'");
                 System.out.println( "\tReference Order ID: "  + responsePurchaseCard_Delivery.getReferenceOrderId() + "");
                 System.out.println( "\tCard Token:         "  + responsePurchaseCard_Delivery.getCardToken() + "");
                 System.out.println( "\tCard Number:        "  + responsePurchaseCard_Delivery.getCardNumber() + "");
@@ -116,18 +117,18 @@ public class TangoCard_Store_Example {
             
             PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
             if ( TangoCardServiceApi.PurchaseCard(
-                    enumTangoCardServiceApi,           // API environment
-                    app_username,                      // username
-                    app_password,                      // password
-                    app_card_sku,                      // cardSku
-                    cardValueTangoCardCents,           // cardValue
-                    false,                             // tcSend 
-                    null,                              // recipientName
-                    null,                              // recipientEmail
-                    null,                              // giftMessage
-                    null,                              // giftFrom
-                    "Tango Card PHP SDK Example",      // companyIdentifier    
-                    responsePurchaseCard_NoDelivery    // response 
+                    enumTangoCardServiceApi,            // API environment
+                    app_username,                       // username
+                    app_password,                       // password
+                    app_card_sku,                       // cardSku
+                    app_card_value,                     // cardValue
+                    false,                              // tcSend 
+                    null,                               // recipientName
+                    null,                               // recipientEmail
+                    null,                               // giftMessage
+                    null,                               // giftFrom
+                    null,                              // companyIdentifier  
+                    responsePurchaseCard_NoDelivery     // response 
                     ) 
                     && (null != responsePurchaseCard_Delivery)
             ) {
@@ -151,17 +152,17 @@ public class TangoCard_Store_Example {
                 double currencyAmount = tango_cents_available_balance/100;
         
                 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-                System.out.println("\tI have an available balance of " + currencyFormatter.format(currencyAmount) + " dollars.");        
+                System.out.println(String.format("\t'%s': Available balance: %s.", app_username, currencyFormatter.format(currencyAmount)));
             }
-        } catch ( TangoCardServiceException ex ) {
-            System.out.println( "TangoCardServiceException: " + ex.getMessage() );
+        } catch ( TangoCardServiceException e ) {
+            System.out.println( "TangoCardServiceException: " + e.getMessage() );
            
-        } catch ( TangoCardSdkException ex ) {
-            System.out.println( "TangoCardSdkException: " + ex.getMessage() );
-            System.out.print(ex.getStackTrace());
-        } catch ( Exception ex ) {
-            System.out.println( "Exception: " + ex.getMessage() );
-            System.out.print(ex.getStackTrace());
+        } catch ( TangoCardSdkException e ) {
+            System.out.println( "TangoCardSdkException: " + e.getMessage() );
+            System.out.print( e.getStackTrace());
+        } catch ( Exception e ) {
+            System.out.println( "Exception: " + e.getMessage() );
+            System.out.print( e.getStackTrace());
         }
         
         System.out.println(   "===============================" );        

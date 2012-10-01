@@ -5,7 +5,7 @@
  * 
  * This Exception is thrown when Tango Card service returns Failure Response.
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  *  All rights reserved.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -84,8 +84,8 @@ public class TangoCardServiceException extends Exception {
     public String getMessage() {
         try {
             return this._response.getMessage();
-        } catch (TangoCardSdkException ex) {
-            return ex.getMessage();
+        } catch (TangoCardSdkException e) {
+            return e.getMessage();
         }
     }
 } 

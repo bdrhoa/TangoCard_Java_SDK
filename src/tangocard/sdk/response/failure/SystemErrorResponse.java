@@ -5,7 +5,7 @@
  * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -72,8 +72,8 @@ public class SystemErrorResponse extends FailureResponse {
         try {
             this._errorCode     = responseJson.getJSONObject("response").getString("errorCode");
             isSuccess = true;
-        } catch (JSONException ex) {
-            throw new TangoCardSdkException( "JSONException", ex );
+        } catch (JSONException e) {
+            throw new TangoCardSdkException( "JSONException", e );
         }
         
         return isSuccess;
