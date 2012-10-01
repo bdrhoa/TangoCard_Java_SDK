@@ -628,12 +628,12 @@ There a several configuration files that are referenced by either the provide ap
 <a name="doc"></a>
 ## doc ##
 
-The <code>doc\javadoc\index.html<\code> accesses the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) generated documentation for the classes (and functions) that are included in the SDK.
+The *\doc\javadoc\index.html* accesses the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) generated documentation for the classes (and functions) that are included in the SDK.
 
 <a name="examples"></a>
 ## examples ##
 
-The <code>\examples<\code> sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
+The *\examples* sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
 
 ### TangoCard_Store_Example.java ###
 
