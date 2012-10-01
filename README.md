@@ -618,11 +618,11 @@ Provided is an [Apache ANT](http://ant.apache.org/) `build.xml` file and reading
 There a several configuration files that are referenced by either the provide application examples, unittests, and SDK itself.
 
 <dl>
-    <dt>config\app_config.properties</dt>
+    <dt><code>config\app_config.properties<\code></dt>
     <dd>- An example application configuration file for <code>\examples<\code> and <code>\unittests<\code></dd>
     
-    <dt>src\tangocard\config\tc_sdk_config.properties</dt>
-    <dd>- SDK configuration file referenced by `tangocard.sdk.common.SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
+    <dt><code>src\tangocard\config\tc_sdk_config.properties<\code></dt>
+    <dd>- SDK configuration file referenced by <code>tangocard.sdk.common.SdkConfig.java<\code>. <b>**DO NOT MODIFY**</b></dd>
 </dl>
 
 <a name="doc"></a>
@@ -736,11 +736,11 @@ The SDK's <code>\unittests<\code> have been written to use [JUnit](http://www.ju
 
 ### Running JUnit Tests ###
 
-This SDK sources contains a JUnit jar downloaded from [junit.org downloads](https://github.com/KentBeck/junit/downloads): `\lib\junit-4.10.jar`.
+This SDK sources contains a JUnit jar downloaded from [junit.org downloads](https://github.com/KentBeck/junit/downloads): <code>\lib\junit-4.10.jar<\code>.
 
 #### JUnit UnitTest_GetAvailableBalance.java ####
 
-This `junit` test is intended to be run from the command line by using `ant`:
+This <code>junit<\code> test is intended to be run from the command line by using <code>ant<\code>:
 
 ```Text
     > ant UnitTest_GetAvailableBalance
