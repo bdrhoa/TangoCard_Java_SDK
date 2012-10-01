@@ -618,22 +618,22 @@ Provided is an [Apache ANT](http://ant.apache.org/) `build.xml` file and reading
 There a several configuration files that are referenced by either the provide application examples, unittests, and SDK itself.
 
 <dl>
-    <dt>app_config.properties</dt>
-    <dd>- Application configuration file for `\examples` and `\unittests`</dd>
+    <dt>config\app_config.properties</dt>
+    <dd>- An example application configuration file for <code>\examples<\code> and <code>\unittests<\code></dd>
     
-    <dt>src/tangocard/sdk/common/tc_sdk_config.properties</dt>
+    <dt>src\tangocard\config\tc_sdk_config.properties</dt>
     <dd>- SDK configuration file referenced by `tangocard.sdk.common.SdkConfig.java`. <b>**DO NOT MODIFY**</b></dd>
 </dl>
 
 <a name="doc"></a>
 ## doc ##
 
-The `doc\javadoc\index.html` accesses the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) generated documentation for the classes (and functions) that are included in the SDK.
+The <code>doc\javadoc\index.html<\code> accesses the up-to-date [javadoc](http://www.oracle.com/technetwork/java/javase/documentation/index-jsp-135444.html) generated documentation for the classes (and functions) that are included in the SDK.
 
 <a name="examples"></a>
 ## examples ##
 
-The `examples` sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
+The <code>\examples<\code> sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
 
 ### TangoCard_Store_Example.java ###
 
@@ -729,7 +729,7 @@ This example is intended to be run from the command line by using `ant`:
 <a name="unittests"></a>
 ## unittests ##
 
-The SDK's unittests have been written to use [JUnit](http://www.junit.org/).
+The SDK's <code>\unittests<\code> have been written to use [JUnit](http://www.junit.org/).
 
 * `UnitTest_GetAvailableBalance.java`
 * `UnitTest_PurchaseCard.java`
