@@ -573,16 +573,30 @@ This section details the provided sources of this SDK.
 
 <a name="src"></a>
 ## src ##
-This is the heart of the SDK which contains the sources, and here is a listing of its directories:
+This is the heart of the SDK which contains the <code>src</code., and here is a listing of its contents:
 
-* src\tangocard
-* src\tangocard\sdk
-* src\tangocard\sdk\common
-* src\tangocard\sdk\request
-* src\tangocard\sdk\response
-* src\tangocard\sdk\response\failure
-* src\tangocard\sdk\response\success
-* src\tangocard\sdk\service
+* src\tangocard\config\tc_sdk_config.properties
+* src\tangocard\sdk\TangoCardServiceApi.java
+* src\tangocard\sdk\common\Helper.java
+* src\tangocard\sdk\common\SdkConfig.java
+* src\tangocard\sdk\common\TangoCardSdkException.java
+* src\tangocard\sdk\request\BaseRequest.java
+* src\tangocard\sdk\request\GetAvailableBalanceRequest.java
+* src\tangocard\sdk\request\PurchaseCardRequest.java
+* src\tangocard\sdk\response\BaseResponse.java
+* src\tangocard\sdk\response\ServiceResponseEnum.java
+* src\tangocard\sdk\response\failure\FailureResponse.java
+* src\tangocard\sdk\response\failure\InsufficientFundsResponse.java
+* src\tangocard\sdk\response\failure\InsufficientInventoryResponse.java
+* src\tangocard\sdk\response\failure\InvalidCredentialsResponse.java
+* src\tangocard\sdk\response\failure\InvalidInputResponse.java
+* src\tangocard\sdk\response\failure\SystemErrorResponse.java
+* src\tangocard\sdk\response\success\GetAvailableBalanceResponse.java
+* src\tangocard\sdk\response\success\PurchaseCardResponse.java
+* src\tangocard\sdk\response\success\SuccessResponse.java
+* src\tangocard\sdk\service\ServiceProxy.java
+* src\tangocard\sdk\service\TangoCardServiceApiEnum.java
+* src\tangocard\sdk\service\TangoCardServiceException.java
 
 <a name="lib"></a>
 ## lib ##
