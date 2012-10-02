@@ -88,12 +88,12 @@ public final class TangoCardServiceApi {
      * @param password The password to access User's registered Tango Card account
      * @param cardSku The card sku
      * @param cardValue The card value
-     * @param tcSend Determines if Tango Card Service will send an email with gift card information to recipient
+     * @param tcSend Determines if Tango Card Service will send an email with gift card information to recipient.
      * @param recipientName The recipient name
      * @param recipientEmail The recipient email
      * @param giftMessage The gift message
      * @param giftFrom The gift from
-     * @param companyIdentifier The Company identifier for which Email Template when sending Gift Card
+     * @param companyIdentifier The Company identifier for which Email Template to use when sending Gift Card. 
      * @param response The response
      *
      * @return true, if successful
