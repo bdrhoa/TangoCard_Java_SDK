@@ -426,19 +426,19 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
     <dd>boolean - <b>required</b> - Determines if Tango Card Service will send an email with gift card information to recipient. See: <a href="#puchasing_options_distribution">Purchase Option for Distribution</a>.</dd>
 
     <dt>[IN] * recipientName</dt>
-    <dd>string (length 1 - 255) or null - <b>required</b> if parameter <code>tcSend</code> is <code>true</code. else ignored - The name of the person receiving the card.</dd>
+    <dd>string (length 1 - 255) or null - <b>required</b> if parameter <code>tcSend</code> is <code>true</code>, else ignored - The name of the person receiving the card.</dd>
 
     <dt>[IN] * recipientEmail</dt>
-    <dd>string (length 3 - 255) or null - <b>required</b> if parameter <code>tcSend</code> is <code>true</code. else ignored - The email address of the person receiving the card.</dd>
+    <dd>string (length 3 - 255) or null - <b>required</b> if parameter <code>tcSend</code> is <code>true</code>, else ignored - The email address of the person receiving the card.</dd>
 
     <dt>[IN] * giftMessage</dt>
-    <dd>string (length 1 - 255) or null - <b>required</b> if parameter <code>tcSend</code> is <code>true</code. else ignored - A message from the sender of the card to the recipient. May be null, but must exist if tcSend = true.</dd>
+    <dd>string (length 1 - 255) or null - <b>required</b> if parameter <code>tcSend</code> is <code>true</code>, else ignored - A message from the sender of the card to the recipient. May be null, but must exist if tcSend = true.</dd>
 
     <dt>[IN] giftFrom</dt>
-    <dd>string (length 1 - 255) or null - <b>optional</b> if parameter <code>tcSend</code> is <code>true</code. else ignored - The name of the person sending the card.</dd>
+    <dd>string (length 1 - 255) or null - <b>optional</b> if parameter <code>tcSend</code> is <code>true</code>, else ignored - The name of the person sending the card.</dd>
 
     <dt>[IN] companyIdentifer</dt>
-    <dd>string (length 1 - 255) or null - <b>optional</b> if parameter <code>tcSend</code> is <code>true</code. else ignored - The email-template identifier. Ignored or value <code>null</code> will use the Tango Card Email Template. See: <a href="#puchasing_options_templates">Purchase Option for Email Templates</a>.</dd>
+    <dd>string (length 1 - 255) or null - <b>optional</b> if parameter <code>tcSend</code> is <code>true</code>, else ignored - The email-template identifier. Ignored or value <code>null</code> will use the Tango Card Email Template. See: <a href="#puchasing_options_templates">Purchase Option for Email Templates</a>.</dd>
 
   <dt>[OUT] response</dt>
   <dd><code>tangocard.sdk.response.success.PurchaseCardResponse</code> - This <i>out</i> parameter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
