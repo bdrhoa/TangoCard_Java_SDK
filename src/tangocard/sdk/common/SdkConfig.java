@@ -4,10 +4,10 @@
  * 
  * SDK Configuration file parser.
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,6 +36,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import tangocard.sdk.TangoCardServiceApi;
+
 public class SdkConfig {
 
     private static SdkConfig _instanceObject = null;
@@ -48,14 +50,15 @@ public class SdkConfig {
      * @throws Exception the exception
      */
     private SdkConfig() throws Exception {
-        this._tc_sdk_config = new Properties(); 
+        this._tc_sdk_config = new Properties();
         try {
-        	InputStream inputStream = this.getClass().getResourceAsStream("tc_sdk_config.properties"); 
+            String filePathString = "../config/tc_sdk_config.properties";
+            InputStream inputStream = TangoCardServiceApi.class.getResourceAsStream(filePathString); 
             this._tc_sdk_config.load(inputStream);
-        } catch ( IOException ex ) {
-            throw ex;
-        } catch ( Exception ex ) {
-            throw ex;
+        } catch ( IOException e ) {
+            throw new TangoCardSdkException( "IOException", e);
+        } catch ( Exception e ) {
+            throw e;
         }
     }
     

@@ -2,10 +2,10 @@
  * PurchaseCardRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,39 +39,42 @@ import tangocard.sdk.service.TangoCardServiceApiEnum;
     
 public class PurchaseCardRequest extends BaseRequest {
     
-    public String     _cardSku = null;
-    public int        _cardValue = -1;
-    public boolean    _tcSend = false;
-    public String    _recipientName = null;
-    public String    _recipientEmail = null;
-    public String    _giftMessage = null;
-    public String    _giftFrom = null;
+    public String         _cardSku = null;
+    public int            _cardValue = -1;
+    public boolean        _tcSend = false;
+    public String        _recipientName = null;
+    public String        _recipientEmail = null;
+    public String        _giftMessage = null;
+    public String        _giftFrom = null;
+    public String        _companyIdentifier = null;
 
     /**
      * Instantiates a new purchase card request.
      *
-     * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
-     * @param cardSku the card sku
-     * @param cardValue the card value
-     * @param tcSend Tango Card service sends email to recipient
-     * @param recipientName the recipient name
-     * @param recipientEmail the recipient email
-     * @param giftMessage the gift message
-     * @param giftFrom the gift from
+     * @param enumTangoCardServiceApi The enum Tango Card service api
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
+     * @param cardSku The card sku
+     * @param cardValue The card value
+     * @param tcSend Determines if Tango Card Service will send an email with gift card information to recipient
+     * @param recipientName The recipient name
+     * @param recipientEmail The recipient email
+     * @param giftMessage The gift message
+     * @param giftFrom The gift from
+     * @param companyIdentifier The Company identifier for which Email Template when sending Gift Card.  
      */
     public PurchaseCardRequest(
             TangoCardServiceApiEnum enumTangoCardServiceApi,
-            String username, 
-            String password,    
-            String cardSku, 
-            int cardValue, 
-            boolean tcSend, 
-            String recipientName, 
-            String recipientEmail, 
-            String giftMessage, 
-            String giftFrom
+            String username,
+            String password,
+            String cardSku,
+            int cardValue,
+            boolean tcSend,
+            String recipientName,
+            String recipientEmail,
+            String giftMessage,
+            String giftFrom, 
+            String companyIdentifier
     ) {
         // parent construct
         super(enumTangoCardServiceApi, username, password);
@@ -156,8 +159,15 @@ public class PurchaseCardRequest extends BaseRequest {
                 }
             }
 
+            // companyIdentifier
+            if ( !Helper.isNullOrEmptyString(companyIdentifier) ) {
+                if (companyIdentifier.length() > 255)
+                {
+                    throw new IllegalArgumentException( "Parameter 'companyIdentifier' must have a length less than 256.");
+                }
+            }
         }
-        
+
         // -----------------------------------------------------------------
         // save inputs
         // -----------------------------------------------------------------
@@ -166,16 +176,19 @@ public class PurchaseCardRequest extends BaseRequest {
         this._cardValue = cardValue;
         this._tcSend    = tcSend;
         if (tcSend) {
-            this._recipientName  = recipientName; 
+            this._recipientName  = recipientName;
             this._recipientEmail = recipientEmail;
             this._giftFrom       = giftFrom;
             if ( !Helper.isNullOrEmptyString(giftMessage) ) {
                 this._giftMessage    = giftMessage;
-            }          
+            }
+            if ( !Helper.isNullOrEmptyString(companyIdentifier) ) {
+                this._companyIdentifier    = companyIdentifier;
+            }
         }
     }
-    
-    
+
+
     /**
      * Execute.
      *
@@ -208,9 +221,12 @@ public class PurchaseCardRequest extends BaseRequest {
                 if ( !Helper.isNullOrEmptyString(this._giftMessage) ) {
                     requestJson.put("giftMessage",     this._giftMessage);
                 }
+            if ( !Helper.isNullOrEmptyString(           this._companyIdentifier) ) {
+                requestJson.put("companyIdentifier",    this._companyIdentifier);
             }
-        } catch (JSONException ex) {
-            throw new TangoCardSdkException( "JSONException", ex );
+            }
+        } catch (JSONException e) {
+            throw new TangoCardSdkException( "JSONException", e );
         }
         
         return requestJson.toString();

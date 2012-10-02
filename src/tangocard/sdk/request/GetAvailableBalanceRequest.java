@@ -2,9 +2,9 @@
  * GetAvailableBalanceRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,8 +45,8 @@ public class GetAvailableBalanceRequest extends BaseRequest {
      * Instantiates a new gets the available balance request.
      *
      * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
      */
     public GetAvailableBalanceRequest(
             TangoCardServiceApiEnum enumTangoCardServiceApi,
@@ -77,8 +77,8 @@ public class GetAvailableBalanceRequest extends BaseRequest {
         try {
             requestJson.put("username", super.getUsername());
             requestJson.put("password", super.getPassword());
-        } catch (JSONException ex) {
-            throw new TangoCardSdkException( "JSONException", ex );
+        } catch (JSONException e) {
+            throw new TangoCardSdkException( "JSONException", e );
         }
         
         return requestJson.toString();

@@ -2,10 +2,10 @@
  * BaseRequest.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,8 +49,8 @@ public abstract class BaseRequest {
      * Instantiates a new base request.
      *
      * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
      */
     public BaseRequest(
             TangoCardServiceApiEnum enumTangoCardServiceApi,
@@ -60,12 +60,12 @@ public abstract class BaseRequest {
         // -----------------------------------------------------------------
         // validate inputs
         // -----------------------------------------------------------------
-    	
-    	// enumTangoCardServiceApi
+
+        // enumTangoCardServiceApi
         if ( enumTangoCardServiceApi.equals(TangoCardServiceApiEnum.UNDEFINED) ) {
             throw new IllegalArgumentException("Parameter 'enumTangoCardServiceApi' is not a defined service environment.");
         }
-    	
+
         // username
         if ( Helper.isNullOrEmptyString(username) ) {
             throw new IllegalArgumentException("Parameter 'username' is not defined.");
@@ -161,9 +161,9 @@ public abstract class BaseRequest {
      */
     public <T extends SuccessResponse> boolean execute(T response) throws Exception
     {
-    	if ( null == response) {
-    		throw new IllegalArgumentException("Parameter 'response' is not defined.");
-    	}
+        if ( null == response) {
+            throw new IllegalArgumentException("Parameter 'response' is not defined.");
+        }
         ServiceProxy proxy = new ServiceProxy(this);
         return proxy.executeRequest(response);
     }

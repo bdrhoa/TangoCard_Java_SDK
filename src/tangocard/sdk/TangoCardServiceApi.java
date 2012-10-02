@@ -2,10 +2,10 @@
  * TangoCardServiceApi.java
  * TangoCard_Java_SDK
  * 
- * @version  1.0.6
+ * @version  1.1.0
  * @link     http://www.tangocard.com
  * 
- * © 2012 Tango Card, Inc
+ * Copyright (c) 2012 Tango Card, Inc
  * All rights reserved.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,8 +47,8 @@ public final class TangoCardServiceApi {
      * Gets the available balance.
      *
      * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
      * @param response the response
      * @return true, if successful
      * @throws Exception the exception
@@ -84,17 +84,20 @@ public final class TangoCardServiceApi {
      * Purchase card.
      *
      * @param enumTangoCardServiceApi the enum tango card service api
-     * @param username the username
-     * @param password the password
-     * @param cardSku the card sku
-     * @param cardValue the card value
-     * @param tcSend the tc send
-     * @param recipientName the recipient name
-     * @param recipientEmail the recipient email
-     * @param giftMessage the gift message
-     * @param giftFrom the gift from
-     * @param response the response
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
+     * @param cardSku The card sku
+     * @param cardValue The card value
+     * @param tcSend Determines if Tango Card Service will send an email with gift card information to recipient.
+     * @param recipientName The recipient name
+     * @param recipientEmail The recipient email
+     * @param giftMessage The gift message
+     * @param giftFrom The gift from
+     * @param companyIdentifier The Company identifier for which Email Template to use when sending Gift Card. 
+     * @param response The response
+     *
      * @return true, if successful
+     *
      * @throws Exception the exception
      */
     public static boolean PurchaseCard(
@@ -108,6 +111,7 @@ public final class TangoCardServiceApi {
             String recipientEmail, 
             String giftMessage, 
             String giftFrom,
+            String companyIdentifier,
             PurchaseCardResponse response
     ) throws Exception {
         if (Helper.isNullOrEmptyString(username)) {
@@ -115,6 +119,12 @@ public final class TangoCardServiceApi {
         }
         if (Helper.isNullOrEmptyString(password)) {
             throw new IllegalArgumentException("Parameter 'password' is not defined.");
+        }
+        if (Helper.isNullOrEmptyString(cardSku)) {
+            throw new IllegalArgumentException("Parameter 'cardSku' is not defined.");
+        }
+        if (0 >= cardValue) {
+            throw new IllegalArgumentException("Parameter 'cardValue' is not defined.");
         }
         if ( null == response ) {
             throw new IllegalArgumentException("Parameter 'response' is not defined.");
@@ -125,13 +135,14 @@ public final class TangoCardServiceApi {
                 enumTangoCardServiceApi,
                 username.trim(), 
                 password,
-                Helper.isNullOrEmptyString(cardSku)         ? null : cardSku.trim(),            // cardSku
-                cardValue,                                                                      // cardValue
-                tcSend,                                                                         // tcSend 
-                Helper.isNullOrEmptyString(recipientName)   ? null : recipientName.trim(),      // recipientName
-                Helper.isNullOrEmptyString(recipientEmail)  ? null : recipientEmail.trim(),     // recipientEmail
-                Helper.isNullOrEmptyString(giftMessage)     ? null : giftMessage.trim().replaceAll("(\r\n|\n\r|\r|\n)", "<br>") ,        // giftMessage
-                Helper.isNullOrEmptyString(giftFrom)        ? null : giftFrom.trim()            // giftFrom  
+                cardSku.trim(),                                                                         // cardSku
+                cardValue,                                                                              // cardValue
+                tcSend,                                                                                 // tcSend 
+                Helper.isNullOrEmptyString(recipientName)       ? null : recipientName.trim(),          // recipientName
+                Helper.isNullOrEmptyString(recipientEmail)      ? null : recipientEmail.trim(),         // recipientEmail
+                Helper.isNullOrEmptyString(giftMessage)         ? null : giftMessage.trim().replaceAll("(\r\n|\n\r|\r|\n)", "<br>") ,        // giftMessage
+                Helper.isNullOrEmptyString(giftFrom)            ? null : giftFrom.trim(),                // giftFrom
+                Helper.isNullOrEmptyString(companyIdentifier)   ? null : companyIdentifier.trim()        // companyIdentifier
         );
         
         return requestPurchaseCard.execute(response);

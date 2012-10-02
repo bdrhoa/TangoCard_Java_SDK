@@ -5,7 +5,7 @@
  *
  *  Tango Card SDK JUnit Test
  * 
- * © 2012 Tango Card, Inc
+ *  Copyright (c) 2012 Tango Card, Inc
  *  All rights reserved.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,7 +64,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
         Properties prop = new Properties();
         
         try {
-            prop.load(new FileInputStream("app_config.properties"));
+        	prop.load(new FileInputStream("config/app_config.properties"));
         } catch ( FileNotFoundException ex ) {
             TestCase.fail("FileNotFoundException: " + ex.getMessage());
         } catch ( Exception ex ) {
@@ -96,11 +96,11 @@ public class UnitTest_GetAvailableBalance extends TestCase {
         GetAvailableBalanceResponse responseAvailableBalance = new GetAvailableBalanceResponse();
         try {            
             isSuccess = TangoCardServiceApi.GetAvailableBalance(
-            		this._enumTangoCardServiceApi, 
-            		this._app_username, 
-            		this._app_password, 
-            		responseAvailableBalance
-            		);
+                    this._enumTangoCardServiceApi, 
+                    this._app_username, 
+                    this._app_password, 
+                    responseAvailableBalance
+                    );
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
         } catch (TangoCardSdkException ex) {
@@ -133,7 +133,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
                     username, 
                     password,
                     responseAvailableBalance
-            		);
+                    );
             
             TestCase.fail("Expected 'TangoCardServiceException' to be thrown");
         } catch (TangoCardServiceException ex) {

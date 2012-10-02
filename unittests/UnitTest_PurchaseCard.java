@@ -5,7 +5,7 @@
  *
  *  Tango Card SDK JUnit Test
  * 
- * © 2012 Tango Card, Inc
+ *  Copyright (c) 2012 Tango Card, Inc
  *  All rights reserved.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +33,6 @@ import java.util.Properties;
 
 import tangocard.sdk.TangoCardServiceApi;
 import tangocard.sdk.common.TangoCardSdkException;
-import tangocard.sdk.request.PurchaseCardRequest;
 import tangocard.sdk.response.ServiceResponseEnum;
 import tangocard.sdk.response.success.PurchaseCardResponse;
 import tangocard.sdk.service.TangoCardServiceApiEnum;
@@ -65,7 +64,7 @@ public class UnitTest_PurchaseCard extends TestCase {
         Properties prop = new Properties();
         
         try {
-            prop.load(new FileInputStream("app_config.properties"));
+            prop.load(new FileInputStream("config/app_config.properties"));
         } catch ( FileNotFoundException ex ) {
             TestCase.fail("FileNotFoundException: " + ex.getMessage());
         } catch ( Exception ex ) {
@@ -109,7 +108,8 @@ public class UnitTest_PurchaseCard extends TestCase {
                     "Sally Example",                // recipientName
                     "sally@example.com",            // recipientEmail
                     "Hello from Tango Card Java SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",               // giftMessage
-                    "Bill Example",                 // giftFrom  
+                    "Bill Example",                 // giftFrom
+                    null,                           // companyIdentifier
                     responsePurchaseCard_Delivery   // response
                     );
         } catch (TangoCardServiceException ex) {
@@ -143,14 +143,15 @@ public class UnitTest_PurchaseCard extends TestCase {
                     this._enumTangoCardServiceApi,
                     this._app_username, 
                     this._app_password,
-                    this._app_card_sku,             // cardSku
-                    cardValueTangoCardCents,        // cardValue
-                    false,                          // tcSend 
-                    null,                           // recipientName
-                    null,                           // recipientEmail
-                    null,                           // giftMessage
-                    null,                            // giftFrom  
-                    responsePurchaseCard_NoDelivery    // response
+                    this._app_card_sku,                 // cardSku
+                    cardValueTangoCardCents,            // cardValue
+                    false,                              // tcSend 
+                    null,                               // recipientName
+                    null,                               // recipientEmail
+                    null,                               // giftMessage
+                    null,                               // giftFrom
+                    null,                               // companyIdentifier
+                    responsePurchaseCard_NoDelivery     // response
                     );
         } catch (TangoCardServiceException ex) {
             TestCase.fail("TangoCardServiceException: " + ex.getMessage());
@@ -190,7 +191,8 @@ public class UnitTest_PurchaseCard extends TestCase {
                     null,                                   // recipientName
                     null,                                   // recipientEmail
                     null,                                   // giftMessage
-                    null,                                   // giftFrom  
+                    null,                                   // giftFrom
+                    null,                                   // companyIdentifier
                     responsePurchaseCard_NoDelivery         // response
                     );
             
@@ -236,7 +238,8 @@ public class UnitTest_PurchaseCard extends TestCase {
                     null,                                   // recipientName
                     null,                                   // recipientEmail
                     null,                                   // giftMessage
-                    null,                                   // giftFrom  
+                    null,                                   // giftFrom
+                    null,                                   // companyIdentifier
                     responsePurchaseCard_NoDelivery         // response
                     );
             
@@ -279,7 +282,8 @@ public class UnitTest_PurchaseCard extends TestCase {
                     null,                                   // recipientName
                     null,                                   // recipientEmail
                     null,                                   // giftMessage
-                    null,                                   // giftFrom  
+                    null,                                   // giftFrom
+                    null,                                   // companyIdentifier
                     responsePurchaseCard_NoDelivery         // response
                     );
             
