@@ -27,27 +27,27 @@
             <li><a href="#puchasing_options_templates">The Tango Card and custom Company Email Templates</a></li>
         </ul>
     </li>
-    <li><a href="#sdk_support">Tango Card Service API Support</a>
+    <li><a href="#sdk_support">Tango Card SDKs and Service API Support</a>
         <ul>
             <li><a href="#sdk_support_contact">Contact Us</a></li>
             <li><a href="#sdk_support_resolve">Resolving Issues using Fiddler 2</a></li>
         </ul>
     </li>
-    <li><a href="#sdk_overview">Tango Card Java SDK Overview</a></li>
-    <li><a href="#sdk_requirements">Tango Card SDK Requirements</a></li>
+    <li><a href="#sdk_overview">SDK Overview</a></li>
+    <li><a href="#sdk_requirements">SDK Requirements</a></li>
     <li><a href="#tango_card_service_api_requests">Tango Card Service API Requests</a>
         <ul>
             <li><a href="#tango_card_service_api_endpoints">Tango Card Service API Endpoints</a></li>
             <li><a href="#tango_card_service_api_security">Tango Card Service API Security</a></li>
         </ul>
     </li>
-    <li><a href="#tango_card_sdk_methods">Tango Card SDK Methods</a>
+    <li><a href="#sdk_methods">SDK Methods</a>
         <ul>
             <li><a href="#get_available_balance">Get Available Balance</a></li>
             <li><a href="#purchase_card">Purchase Card</a></li>
         </ul>
     </li>
-    <li><a href="#tango_card_error_handling">Tango Card Error Handling</a>
+    <li><a href="#sdk_error_handling">SDK Error Handling</a>
         <ul>
             <li><a href="#service_failure_responses">Service Failure Responses</a></li>
             <li><a href="#sdk_error_responses">SDK Error Responses</a></li>
@@ -72,20 +72,28 @@
 <a name="introduction"></a>
 # Introduction #
 
-<a name="tango_card_sdk"></a>
-## Tango Card SDK ##
-Tango Card's SDK is flexible, secure, and straightforward. It allows any server to purchase the Tango Card and is intended for users requiring high volume transactions and processes.
+<a name="tango_card_sdks"></a>
+## Tango Card SDKs ##
+The Tango Card SDKs are flexible, secure, and straight forward. It allows any server to purchase the Tango Card and is intended for users requiring high volume transactions.
+
+there are several Tango Card SDKs currently available that use the `Tango Card Service API`:
+<ul>
+    <li><a href="https://github.com/tangocarddev/TangoCard_DotNet_SDK" target="_blank">Tango Card C#/.Net 4.0 SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_PHP_SDK" target="_blank">Tango Card PHP SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_Java_SDK" target="_blank">Tango Card Java SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK" target="_blank">Tango Card Ruby SDK</a></li>
+</ul>
 
 <a name="tango_card_service_api"></a>
 ## Tango Card Service API ##
-For those developers who wish to develop directly with our Tango Card API endpoints and do not wish to use our available SDKs or need more detail of how our API is defined, the following document is available:
+For those developers who wish to develop directly with our `Tango Card Service API` endpoints and do not wish to use our available SDKs or need more detail of how our API is defined, the following document is available:
 <ul>
-    <li><a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a></li>
+    <li><a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a></li>
 </ul>
 
 <a name="incorporate_tango_card"></a>
 ## Incorporate the Tango Card ##
-The Tango Card SDKs, through the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.
+The Tango Card SDKs, through our <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.
 
 Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
 
@@ -161,8 +169,10 @@ When you are ready to purchase a card, the Tango Card Service API has several op
 </dl>
 
 <a name="sdk_support"></a>
-# Tango Card Java SDK and Service API Support #
+# Tango Card SDKs and Service API Support #
 If you have any questions with the Tango Card Java SDK or our Service API, please contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Java SDK Question">sdk@tangocard.com</a>.
+
+If you have any issues using this SKD, such as bugs or change requests, then please do <a href="https://github.com/tangocarddev/TangoCard_Java_SDK/issues?state=open" target="_blank">Open Issue</a> in this repository.
 
 <a name="sdk_support_contact"></a>
 ## Contact Us ##
@@ -208,9 +218,9 @@ Content-Type: application/json
 ```
 
 <a name="sdk_overview"></a>
-# Tango Card Java SDK Overview #
+# SDK Overview #
 
-The Tango Card Java SDK is a wrapper around the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>.
+The Tango Card Java SDK is a wrapper around the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>.
 
 As such, it has two primary types of objects, Requests and Responses; which are handled by a wrapper class `tangocard.sdk.TangoCardServiceApi`.
 
@@ -223,10 +233,10 @@ The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the foll
     <dd>- Purchase a gift card using funds from user's www.tangocard.com account.</dd>
 </dl>
 
-![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocardserviceapi.png "Tango Card Service Api")
+![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocardserviceapi.png "Tango Card Service API")
 
 <a name="sdk_requirements"></a>
-# Tango Card SDK Requirements #
+# SDK Requirements #
 
 * [Java Development Kit 1.6+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Java Runtime Environment 6 / 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -236,12 +246,12 @@ The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the foll
 <a name="tango_card_service_api_requests"></a>
 # Tango Card Service API Requests #
 
-With the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, every request has a corresponding success-case response object. There are also several failure-case response objects which are shared between calls. The specifics of the request and response objects will be described in <a href="#tango_card_sdk_methods">Tango Card SDK Methods</a>.
+With the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, every request has a corresponding success-case response object. There are also several failure-case response objects which are shared between calls. The specifics of the request and response objects will be described in <a href="#sdk_methods">SDK Methods</a>.
 
 <a name="tango_card_service_api_endpoints"></a>
 ## Tango Card Service API Endpoints ##
 
-Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `enum tangocard.sdk.service.TangoCardServiceApiEnum` :
+Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `enum tangocard.sdk.service.TangoCardServiceApiEnum`:
 <dl>
     <dt><code>INTEGRATION</code></dt> 
     <dd>
@@ -290,14 +300,14 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
 <a name="tango_card_service_api_security"></a>
 ## Tango Card Service API Security ##
 
-<a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a> Requests are performed using secure HTTP POST via <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">"TLS/SSL"</a>.
+<a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a> Requests are performed using secure HTTP POST via <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">"TLS/SSL"</a>.
 
 The use of SSL allows for securely transmitting data and prevents <a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank">man-in-the-middle attacks</a>.
 
 The lack of sessions and the inability to communicate with the API over HTTP prevents <a href="http://en.wikipedia.org/wiki/Session_hijacking" target="_blank">session hijacking</a> and <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">cross-site request forgery</a>.
 
-<a name="tango_card_sdk_methods"></a>
-# Tango Card SDK Methods #
+<a name="sdk_methods"></a>
+# SDK Methods #
 
 <a name="get_available_balance"></a>
 ## Get Available Balance ##
@@ -385,7 +395,7 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
             "Sally Example",                    // recipientName
             "sally@example.com",                // recipientEmail
             "Happy Birthday",                   // giftMessage
-            "Bill Example",                     // giftFrom
+            "Bill Company",                     // giftFrom
             null,                               // companyIdentifier (default Tango Card email template)
             response                            // response 
             ) 
@@ -460,8 +470,8 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
   <dd>- Card pin provided to the recipient used to validate provided Card number a redemption upon the www.tangocard.com site.</dd>
 </dl>
 
-<a name="tango_card_error_handling"></a>
-# Tango Card Error Handling #
+<a name="sdk_error_handling"></a>
+# SDK Error Handling #
 
 The Tango Card Service API SDK handles its errors by throwing the following exceptions:
 
