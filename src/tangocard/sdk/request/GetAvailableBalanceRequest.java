@@ -45,8 +45,8 @@ public class GetAvailableBalanceRequest extends BaseRequest {
      * Instantiates a new gets the available balance request.
      *
      * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
      */
     public GetAvailableBalanceRequest(
             TangoCardServiceApiEnum enumTangoCardServiceApi,

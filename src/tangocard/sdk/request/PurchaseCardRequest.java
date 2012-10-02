@@ -51,17 +51,17 @@ public class PurchaseCardRequest extends BaseRequest {
     /**
      * Instantiates a new purchase card request.
      *
-     * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
-     * @param cardSku the card sku
-     * @param cardValue the card value
-     * @param tcSend Tango Card service sends email to recipient
-     * @param recipientName the recipient name
-     * @param recipientEmail the recipient email
-     * @param giftMessage the gift message
-     * @param giftFrom the gift from
-     * @param companyIdentifier The name of the parent company providing this gift (optional) 
+     * @param enumTangoCardServiceApi The enum Tango Card service api
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
+     * @param cardSku The card sku
+     * @param cardValue The card value
+     * @param tcSend Determines if Tango Card Service will send an email with gift card information to recipient
+     * @param recipientName The recipient name
+     * @param recipientEmail The recipient email
+     * @param giftMessage The gift message
+     * @param giftFrom The gift from
+     * @param companyIdentifier The Company identifier for which Email Template when sending Gift Card.  
      */
     public PurchaseCardRequest(
             TangoCardServiceApiEnum enumTangoCardServiceApi,
@@ -166,7 +166,6 @@ public class PurchaseCardRequest extends BaseRequest {
                     throw new IllegalArgumentException( "Parameter 'companyIdentifier' must have a length less than 256.");
                 }
             }
-
         }
 
         // -----------------------------------------------------------------

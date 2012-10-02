@@ -5,7 +5,7 @@
  *
  *  Tango Card SDK JUnit Test
  * 
- * © 2012 Tango Card, Inc
+ *  Copyright (c) 2012 Tango Card, Inc
  *  All rights reserved.
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64,7 +64,7 @@ public class UnitTest_GetAvailableBalance extends TestCase {
         Properties prop = new Properties();
         
         try {
-            prop.load(new FileInputStream("app_config.properties"));
+        	prop.load(new FileInputStream("config/app_config.properties"));
         } catch ( FileNotFoundException ex ) {
             TestCase.fail("FileNotFoundException: " + ex.getMessage());
         } catch ( Exception ex ) {

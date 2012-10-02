@@ -49,8 +49,8 @@ public abstract class BaseRequest {
      * Instantiates a new base request.
      *
      * @param enumTangoCardServiceApi the enum Tango Card service api
-     * @param username the username
-     * @param password the password
+     * @param username The username to access User's registered Tango Card account
+     * @param password The password to access User's registered Tango Card account
      */
     public BaseRequest(
             TangoCardServiceApiEnum enumTangoCardServiceApi,

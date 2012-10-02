@@ -85,9 +85,9 @@ public class TangoCard_Store_Example {
                 System.out.println("\nSuccess - GetAvailableBalance - Initial");
                 int tango_cents_available_balance = responseAvailableBalance.getAvailableBalance();
                 double currencyAmount = tango_cents_available_balance/100;
-    
                 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-                System.out.println(String.format("\t'%s': Available balance: %s.", app_username, currencyFormatter.format(currencyAmount)));
+                String currencyAmountFormatted = currencyFormatter.format(currencyAmount);
+                System.out.println(String.format("\t'%s': Available balance: %d.", app_username, tango_cents_available_balance));
             }
 
             PurchaseCardResponse responsePurchaseCard_Delivery = new PurchaseCardResponse();
@@ -102,7 +102,7 @@ public class TangoCard_Store_Example {
                     app_recipient_email,                // recipientEmail
                     "Example: Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n\r601 Union Street, Suite 4200\r\nSeattle, WA\r98101",                // giftMessage
                     "Bill Example",                     // giftFrom
-                    null,                              // companyIdentifier
+                    null,                               // companyIdentifier
                     responsePurchaseCard_Delivery       // response 
                     ) 
                     && (null != responsePurchaseCard_Delivery)
@@ -127,7 +127,7 @@ public class TangoCard_Store_Example {
                     null,                               // recipientEmail
                     null,                               // giftMessage
                     null,                               // giftFrom
-                    null,                              // companyIdentifier  
+                    null,                               // companyIdentifier  
                     responsePurchaseCard_NoDelivery     // response 
                     ) 
                     && (null != responsePurchaseCard_Delivery)
@@ -150,9 +150,9 @@ public class TangoCard_Store_Example {
                 System.out.println("\nSuccess - GetAvailableBalance - Concluding");
                 int tango_cents_available_balance = responseUpdatedBalance.getAvailableBalance();
                 double currencyAmount = tango_cents_available_balance/100;
-        
                 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-                System.out.println(String.format("\t'%s': Available balance: %s.", app_username, currencyFormatter.format(currencyAmount)));
+                String currencyAmountFormatted = currencyFormatter.format(currencyAmount);
+                System.out.println(String.format("\t'%s': Available balance: %d.", app_username, tango_cents_available_balance));
             }
         } catch ( TangoCardServiceException e ) {
             System.out.println( "TangoCardServiceException: " + e.getMessage() );
