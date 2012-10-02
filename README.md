@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-01</h4>
+<h4>Update: 2012-10-02</h4>
 ===
 
 # Table of Contents #
@@ -80,12 +80,12 @@ Tango Card's SDK is flexible, secure, and straightforward. It allows any server 
 ## Tango Card Service API ##
 For those developers who wish to develop directly with our Tango Card API endpoints and do not wish to use our available SDKs or need more detail of how our API is defined, the following document is available:
 <ul>
-    <li><a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a></li>
+    <li><a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a></li>
 </ul>
 
 <a name="incorporate_tango_card"></a>
 ## Incorporate the Tango Card ##
-The Tango Card SDKs, through the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications. 
+The Tango Card SDKs, through the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.
 
 Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
 
@@ -141,7 +141,7 @@ When you are ready to purchase a card, the Tango Card Service API has several op
     The Tango Card and other Retailer Brand Gift Cards SKUs - parameter <code>cardSKU</code> - string - <b>required</b></dt>
     <dd>The API is optimized for ordering the Tango Card, which is SKU <code>"tango-card"</code>.
 
-    <br>If you have questions about potentially incorporating other brands or digital goods in your program, then please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Service API Question">sdk@tangocard.com</a>.
+    <br>If you have questions about potentially incorporating other brands or digital goods in your program, then please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Java SDK Question">sdk@tangocard.com</a>.
     </dd>
     
     <dt>
@@ -149,20 +149,20 @@ When you are ready to purchase a card, the Tango Card Service API has several op
     Gift Card Denominations - parameter <code>cardValue</code> - integer - <b>required</b></dt>
     <dd>Each gift card SKU has it own allowed set of denominations that can to assigned to parameter <code>cardValue</code>.
     <br/>For SKU <code>"tango-card"</code>, the available denomination in cents is between <code>1</code> ($0.01) to <code>100000</code> ($1000.00).
-    <br/>To find out about other available denominations for potentially incorporating other SKUs that can be assigned to parameter <code>cardValue</code>, then please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Service API Question">sdk@tangocard.com</a>.
+    <br/>To find out about other available denominations for potentially incorporating other SKUs that can be assigned to parameter <code>cardValue</code>, then please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Java SDK Question">sdk@tangocard.com</a>.
     </dd>
     
     <dt>
     <a name="puchasing_options_templates"></a>
     The Tango Card and custom Company Email Templates - parameter <code>companyIdentifier</code> - string - <b>optional</b></dt>
     <dd>If you choose to have the Tango Card Service API send digital gift cards by setting <code>tcSend</code> to <code>true</code>, then by default the gift card information within a Tango Card email template.
-    <br>If you prefer to have the Tango Card Service API send the gift card information with a custom email template (with your own branding), then please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Service API Question">sdk@tangocard.com</a>.
+    <br>If you prefer to have the Tango Card Service API send the gift card information with a custom email template (with your own branding), then please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Java SDK Question">sdk@tangocard.com</a>.
     </dd>
 </dl>
 
 <a name="sdk_support"></a>
 # Tango Card Java SDK and Service API Support #
-If you have any questions with the Tango Card Java SDK or our Service API, please contact us at sdk@tangocard.com.
+If you have any questions with the Tango Card Java SDK or our Service API, please contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Java SDK Question">sdk@tangocard.com</a>.
 
 <a name="sdk_support_contact"></a>
 ## Contact Us ##
@@ -210,7 +210,7 @@ Content-Type: application/json
 <a name="sdk_overview"></a>
 # Tango Card Java SDK Overview #
 
-The Tango Card Java SDK is a wrapper around the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>.
+The Tango Card Java SDK is a wrapper around the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>.
 
 As such, it has two primary types of objects, Requests and Responses; which are handled by a wrapper class `tangocard.sdk.TangoCardServiceApi`.
 
@@ -236,12 +236,12 @@ The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the foll
 <a name="tango_card_service_api_requests"></a>
 # Tango Card Service API Requests #
 
-With the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, every request has a corresponding success-case response object. There are also several failure-case response objects which are shared between calls. The specifics of the request and response objects will be described in <a href="#tango_card_sdk_methods">Tango Card SDK Methods</a>.
+With the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, every request has a corresponding success-case response object. There are also several failure-case response objects which are shared between calls. The specifics of the request and response objects will be described in <a href="#tango_card_sdk_methods">Tango Card SDK Methods</a>.
 
 <a name="tango_card_service_api_endpoints"></a>
 ## Tango Card Service API Endpoints ##
 
-Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `enum tangocard.sdk.service.TangoCardServiceApiEnum` :
+Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `enum tangocard.sdk.service.TangoCardServiceApiEnum` :
 <dl>
     <dt><code>INTEGRATION</code></dt> 
     <dd>
@@ -290,7 +290,7 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
 <a name="tango_card_service_api_security"></a>
 ## Tango Card Service API Security ##
 
-<a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a> Requests are performed using secure HTTP POST via <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">"TLS/SSL"</a>.
+<a href="https://github.com/tangocarddev/General/blob/dev/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a> Requests are performed using secure HTTP POST via <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank">"TLS/SSL"</a>.
 
 The use of SSL allows for securely transmitting data and prevents <a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank">man-in-the-middle attacks</a>.
 
@@ -340,14 +340,17 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
 
 #### Parameters ####
 <dl>
-    <dt>* enumTangoCardServiceApi</dt>
+    <dt>[IN] * enumTangoCardServiceApi</dt>
     <dd><code>TangoCardServiceApiEnum</code> - <b>required</b> - <code>INTEGRATION</code> or <code>PRODUCTION</code></dd>
-    <dt>* username</dt>
+
+    <dt>[IN] * username</dt>
     <dd>string - <b>required</b> - user account's username registered within Tango Card production website (https://www.tangocard.com).</dd>
-    <dt>* password</dt>
+
+    <dt>[IN] * password</dt>
     <dd>string - <b>required</b> - user account's password registered within Tango Card production website (https://www.tangocard.com)</dd>
-    <dt>tangocard.sdk.response.success.GetAvailableBalanceResponse response</dt>
-    <dd>- This <i>out</i> paramter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
+
+    <dt>[OUT] response</dt>
+    <dd><code>tangocard.sdk.response.success.GetAvailableBalanceResponse</code> - This <i>out</i> paramter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
 </dl>
 
 ### `tangocard.sdk.response.success.GetAvailableBalanceResponse` Properties ###
@@ -383,7 +386,7 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
             "sally@example.com",                // recipientEmail
             "Happy Birthday",                   // giftMessage
             "Bill Example",                     // giftFrom
-            null,                               // companyIdentifier (default Tango Card email template
+            null,                               // companyIdentifier (default Tango Card email template)
             response                            // response 
             ) 
             && (null != response)
@@ -404,31 +407,41 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
 #### Parameters ###
 
 <dl>
-    <dt>* enumTangoCardServiceApi</dt>
+    <dt>[IN] * enumTangoCardServiceApi</dt>
     <dd><code>TangoCardServiceApiEnum</code> - <b>required</b> - <code>INTEGRATION</code> or <code>PRODUCTION</code></dd>
-    <dt>* username</dt>
+
+    <dt>[IN] * username</dt>
     <dd>string - <b>required</b> - user account's username registered within Tango Card production website (https://www.tangocard.com).</dd>
-    <dt>* password</dt>
+
+    <dt>[IN] * password</dt>
     <dd>string - <b>required</b> - user account's password registered within Tango Card production website (https://www.tangocard.com)</dd>
-    <dt>* cardSku</dt>
+
+    <dt>[IN] * cardSku</dt>
     <dd>string - <b>required</b> - The SKU of the card to purchase. The SKU for the Tango Card is "tango-card". See: <a href="#puchasing_options_skus">Purchase Option of Gift Card Brands</a></dd>
-    <dt>* cardValue</dt>
+
+    <dt>[IN] * cardValue</dt>
     <dd>integer - <b>required</b> - The value of the card to purchase in cents (100 = $1.00). See: <a href="#puchasing_options_denominations">Purchase Option for Denominations</a></dd>
-    <dt>* tcSend</dt>
+
+    <dt>[IN] * tcSend</dt>
     <dd>boolean - <b>required</b> - Whether Tango Card will send the email to the user. See: <a href="#puchasing_options_distribution">Purchase Option for Distribution</a>.</dd>
-    <dt>* recipientName</dt>
+
+    <dt>[IN] * recipientName</dt>
     <dd>string (length 1 - 255) or null - <b>required</b> if tcSend=true else ignored - The name of the person receiving the card.</dd>
-    <dt>* recipientEmail</dt>
+
+    <dt>[IN] * recipientEmail</dt>
     <dd>string (length 3 - 255) or null - <b>required</b> if tcSend=true else ignored - The email address of the person receiving the card.</dd>
-    <dt>* giftMessage</dt>
+
+    <dt>[IN] * giftMessage</dt>
     <dd>string (length 1 - 255) or null - <b>required</b> if tcSend=true else ignored - A message from the sender of the card to the recipient. May be null, but must exist if tcSend = true.</dd>
-    <dt>giftFrom</dt>
+
+    <dt>[IN] giftFrom</dt>
     <dd>string (length 1 - 255) or null - <b>optional</b> if tcSend=true else ignored - The name of the person sending the card.</dd>
-    <dt>companyIdentifer</dt>
+
+    <dt>[IN] companyIdentifer</dt>
     <dd>string (length 1 - 255) or null - <b>optional</b> if tcSend=true else ignored - The email-template identifier. Ignored or value <code>null</code> will use the Tango Card Email Template. See: <a href="#puchasing_options_templates">Purchase Option for Email Templates</a>.</dd>
 
-  <dt>tangocard.sdk.response.success.PurchaseCardResponse response</dt>
-  <dd>- This <i>out</i> parameter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
+  <dt>[OUT] response</dt>
+  <dd><code>tangocard.sdk.response.success.PurchaseCardResponse</code> - This <i>out</i> parameter will provide a valid success response object if this method returns <code>true</code> upon success.</dd>
 </dl>
 
 ### `tangocard.sdk.response.success.PurchaseCardResponse` Properties ###
