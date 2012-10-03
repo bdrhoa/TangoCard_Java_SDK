@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-02</h4>
+<h4>Update: 2012-10-03</h4>
 ===
 
 # Table of Contents #
@@ -29,7 +29,6 @@
     </li>
     <li><a href="#sdk_support">Tango Card SDKs and Service API Support</a>
         <ul>
-            <li><a href="#sdk_support_contact">Contact Us</a></li>
             <li><a href="#sdk_support_resolve">Resolving Issues using Fiddler 2</a></li>
         </ul>
     </li>
@@ -60,13 +59,13 @@
             <li><a href="#lib">lib</a></li>
             <li><a href="#configuration_files">configuration files</a></li>
             <li><a href="#doc">doc</a></li>
-            <li><a href="#examples">examples</a></li>        
+            <li><a href="#examples">examples</a></li>
             <li><a href="#unittests">unittests</a></li>
         </ul>
     </li>
     <li><a href="#sdk_development_environment">SDK Development Environment</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#production_deployment">Production Deployment</a></li>
+    <li><a href="#contact_us">Contact Us</a></li>
 </ul>
 
 <a name="introduction"></a>
@@ -82,6 +81,7 @@ there are several Tango Card SDKs currently available that use the `Tango Card S
     <li><a href="https://github.com/tangocarddev/TangoCard_PHP_SDK" target="_blank">Tango Card PHP SDK</a></li>
     <li><a href="https://github.com/tangocarddev/TangoCard_Java_SDK" target="_blank">Tango Card Java SDK</a></li>
     <li><a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK" target="_blank">Tango Card Ruby SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_jQuery_SDK" target="_blank">Tango Card jQuery Plugin</a></li>
 </ul>
 
 <a name="tango_card_service_api"></a>
@@ -95,9 +95,9 @@ For those developers who wish to develop directly with our `Tango Card Service A
 ## Incorporate the Tango Card ##
 The Tango Card SDKs, through our <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.
 
-Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
+Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want - they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
 
-Tango Card value can be used via the web or from almost any mobile device. There are no fees or expiration dates of any kind. It’s great for the recipient, and even better for you because it is an entire gift card program delivered in one card allowing you to focus on your core business. 
+Tango Card value can be used via the web or from almost any mobile device. There are no fees or expiration dates of any kind. It's great for the recipient, and even better for you because it is an entire gift card program delivered in one card allowing you to focus on your core business. 
 
 Tango Card solutions are already used by Microsoft Bing, FedEx, Extole, Plink, beintoo, Lead Valu, Getty Images, and many others.
 
@@ -174,10 +174,6 @@ If you have any questions with the Tango Card Java SDK or our Service API, pleas
 
 If you have any issues using this SKD, such as bugs or change requests, then please do <a href="https://github.com/tangocarddev/TangoCard_Java_SDK/issues?state=open" target="_blank">Open Issue</a> in this repository.
 
-<a name="sdk_support_contact"></a>
-## Contact Us ##
-To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
-
 <a name="sdk_support_resolve"></a>
 ## Resolving Issues using Fiddler 2 ##
 
@@ -227,16 +223,18 @@ As such, it has two primary types of objects, Requests and Responses; which are 
 The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the following static methods:
 <dl>
     <dt>bool GetAvailableBalance()</dt>
-    <dd>- Gather the currently available balance for provided user within their www.tangocard.com account.</dd>
+    <dd>- Gather the currently available balance for provided user's credentials within their www.tangocard.com account.</dd>
 
     <dt>bool PurchaseCard()</dt>
-    <dd>- Purchase a gift card using funds from user's www.tangocard.com account.</dd>
+    <dd>- Purchase a gift card using funds from user's credentials within their www.tangocard.com account.</dd>
 </dl>
 
 ![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Java_SDK/raw/master/doc/images/tangocardserviceapi.png "Tango Card Service API")
 
 <a name="sdk_requirements"></a>
 # SDK Requirements #
+
+To use this SDK, here are requirements:
 
 * [Java Development Kit 1.6+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Java Runtime Environment 6 / 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -473,7 +471,7 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
 <a name="sdk_error_handling"></a>
 # SDK Error Handling #
 
-The Tango Card Service API SDK handles its errors by throwing the following exceptions:
+The Tango Card Java SDK handles its errors by throwing the following exceptions:
 
 * Custom `tangocard.sdk.service.TangoCardServiceException` is thrown when the `Tango Card Service API` return a `Failure Response` for a given `Request`.
 * Custom `tangocard.sdk.common.TangoCardSdkException` is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
@@ -484,7 +482,7 @@ The Tango Card Service API SDK handles its errors by throwing the following exce
 <a name="service_failure_responses"></a>
 ## Service Failure Responses ##
 
-A service will return the following failure responses as enumerated by `tangocard.sdk.response.ServiceResponseEnum`:
+The `Tango Card SERVICE API` handles its errors by returning the following failure responses as enumerated by `tangocard.sdk.response.ServiceResponseEnum`:
 
 <table>
     <tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
@@ -656,9 +654,9 @@ The *\doc\javadoc\index.html* accesses the up-to-date [javadoc](http://www.oracl
 <a name="examples"></a>
 ## examples ##
 
-The *\examples* sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
+The *\examples* sub-directory contains full "start to finish" examples of all of the supported methods provided by this SDK. This includes catching all of the possible failure modes, etc. 
 
-### TangoCard_Store_Example.java ###
+### <code>TangoCard_Store_Example.java</code> ###
 
 This is a complete example of requesting available balance and purchasing Tango Cards.
 
@@ -708,7 +706,7 @@ This example is intended to be run from the command line by using `ant`:
     ===============================
 ```
 
-### TangoCard_Failures_Example.java ###
+### <code>TangoCard_Failures_Example.java</code> ###
 
 Example of how the SDK handles various failure responses, such as:
 * Insufficient Funds
@@ -761,7 +759,7 @@ The SDK's <code>\unittests<\code> have been written to use [JUnit](http://www.ju
 
 This SDK sources contains a JUnit jar downloaded from [junit.org downloads](https://github.com/KentBeck/junit/downloads): <code>\lib\junit-4.10.jar<\code>.
 
-#### JUnit UnitTest_GetAvailableBalance.java ####
+#### JUnit <code>UnitTest_GetAvailableBalance.java</code> ####
 
 This <code>junit<\code> test is intended to be run from the command line by using <code>ant<\code>:
 
@@ -774,7 +772,7 @@ This <code>junit<\code> test is intended to be run from the command line by usin
         [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 3.43 sec    
 ```
 
-#### JUnit UnitTest_PurchaseCard.java ####
+#### JUnit <code>UnitTest_PurchaseCard.java</code> ####
 
 This `junit` test is intended to be run from the command line by using `ant`:
 
@@ -804,4 +802,9 @@ This Java SDK was built using:
 <a name="license"></a>
 # License #
 
-The Tango Card Java SDK is free to use, given some restrictions. Please see the LICENSE file for details.
+The Tango Card Java SDK is free to use, given some restrictions. Please see the <a href="https://github.com/tangocarddev/TangoCard_Java_SDK/blob/master/LICENSE.md" target="_blank">LICENSE</a> file for details.
+
+<a name="contact_us"></a>
+# Contact Us #
+
+To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
