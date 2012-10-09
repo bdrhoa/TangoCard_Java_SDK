@@ -32,7 +32,6 @@ package tangocard.sdk.service;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -84,24 +83,24 @@ public class ServiceProxy {
             throw new IllegalArgumentException("Parameter 'requestObject' is not defined.");
         }
         
-        SdkConfig appConfig = null;
+        SdkConfig sdkConfig = null;
         try {
             this._requestObject = requestObject;
             
-            appConfig = SdkConfig.getInstance();
+            sdkConfig = SdkConfig.getInstance();
         } catch ( Exception e ) {
             throw e;
         }
         
-        if ( null == appConfig ) {
+        if ( null == sdkConfig ) {
             throw new TangoCardSdkException("Failed to get instance of SDK configuration.");
         }
         
         this._base_url = null;
         if ( requestObject.getTangoCardServiceApiEnum().equals(TangoCardServiceApiEnum.INTEGRATION)) {
-            this._base_url = appConfig.getConfigValue("tc_sdk_environment_integration_url");
+            this._base_url = sdkConfig.getConfigValue("tc_sdk_environment_integration_url");
         } else if ( requestObject.getTangoCardServiceApiEnum().equals(TangoCardServiceApiEnum.PRODUCTION)) {
-            this._base_url = appConfig.getConfigValue("tc_sdk_environment_production_url");
+            this._base_url = sdkConfig.getConfigValue("tc_sdk_environment_production_url");
         } else {
             throw new TangoCardSdkException("Unexpected Tango Card Service API request: " + requestObject.getTangoCardServiceApiEnum().name() );
         }
@@ -110,7 +109,7 @@ public class ServiceProxy {
             throw new TangoCardSdkException("Tango Card Service API URL was not assigned." );
         }
         
-        this._controller = appConfig.getConfigValue("tc_sdk_controller");
+        this._controller = sdkConfig.getConfigValue("tc_sdk_controller");
         if ( Helper.isNullOrEmptyString(this._controller)) {
             throw new TangoCardSdkException("SDK configuration missing 'tc_sdk_controller' setting");
         }
@@ -213,10 +212,8 @@ public class ServiceProxy {
                 // open up the output stream of the connection
                 DataOutputStream output = new DataOutputStream( connection.getOutputStream() );
                 output.write(this._str_request_json.getBytes());
-            } catch(IOException e) {
-                throw new TangoCardSdkException( String.format("IOException: Problems processing request: '%s'", e.getMessage()), e );
             } catch(Exception e) {
-                throw new TangoCardSdkException( String.format("Exception: Problems processing request: '%s'", e.getMessage()), e );
+                throw new TangoCardSdkException( String.format("Problems executing request: %s: '%s'", e.getClass().toString(), e.getMessage()), e );
             } 
             
             try {
@@ -232,7 +229,7 @@ public class ServiceProxy {
     
                 responseJsonEncoded = response.toString();        
             } catch(Exception e) {
-                throw new TangoCardSdkException( String.format("Exception: Problems reading response: '%s'", e.getMessage()), e );
+                throw new TangoCardSdkException( String.format("Problems reading response: %s: '%s'", e.getClass().toString(), e.getMessage()), e );
             } 
         }
 

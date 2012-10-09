@@ -91,13 +91,40 @@ public class PurchaseCardResponse extends SuccessResponse {
     {
         return this._cardPin;
     }
+    
+    
+    /** The claim URL. */
+    private String _claimUrl;
+    
+    /**
+     * Gets the claim URL.
+     *
+     * @return the claim URL
+     */
+    public String getClaimUrl()
+    {
+        return this._claimUrl;
+    }
+    
+    
+    /** The challenge Key. */
+    private String _challengeKey;
+    
+    /**
+     * Gets the claim URL.
+     *
+     * @return the challenge Key
+     */
+    public String getChallengeKey()
+    {
+        return this._challengeKey;
+    }
  
     /**
      * Instantiates a new purchase card response.
      */
     public PurchaseCardResponse()
     {
-        
     }
     
     /**
@@ -133,6 +160,12 @@ public class PurchaseCardResponse extends SuccessResponse {
                 }
                 if ( response.has("cardPin") && !response.isNull("cardPin")) {
                     this._cardPin = response.getString("cardPin");
+                }
+                if ( response.has("claimUrl") && !response.isNull("claimUrl")) {
+                    this._claimUrl = response.getString("claimUrl");
+                }
+                if ( response.has("challengeKey") && !response.isNull("challengeKey")) {
+                    this._challengeKey = response.getString("challengeKey");
                 }
                 isSuccess = true;
             }

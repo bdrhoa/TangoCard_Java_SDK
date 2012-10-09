@@ -55,6 +55,8 @@ public class TangoCard_Failures_Example {
         System.out.println(   "=   with Failures             =" );
         System.out.println(   "===============================" );
         
+        System.out.println(   "\nSDK Version: " + TangoCardServiceApi.GetVersion() + "\n" );
+        
         TangoCard_Failures_Example.Example_GetAvailableBalance_InvalidCredentials();
         TangoCard_Failures_Example.Example_PurchaseCard_InsufficientFunds();
 

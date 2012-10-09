@@ -110,6 +110,11 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <target name="TangoCard_Store_Example">
+        <java classname="TangoCard_Store_Example" failonerror="true" fork="yes">
+            <classpath refid="TangoCard_Java_SDK.classpath"/>
+        </java>
+    </target>
     <target name="TangoCard_Failures_Example">
         <java classname="TangoCard_Failures_Example" failonerror="true" fork="yes">
             <classpath refid="TangoCard_Java_SDK.classpath"/>
@@ -140,11 +145,7 @@
             <classpath refid="TangoCard_Java_SDK.classpath"/>
         </junit>
     </target>
-    <target name="TangoCard_Store_Example">
-        <java classname="TangoCard_Store_Example" failonerror="true" fork="yes">
-            <classpath refid="TangoCard_Java_SDK.classpath"/>
-        </java>
-    </target>
+
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">

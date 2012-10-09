@@ -29,6 +29,7 @@
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Properties;
 
 import tangocard.sdk.TangoCardServiceApi;
@@ -52,6 +53,8 @@ public class TangoCard_Store_Example {
         System.out.println(   "= Tango Card Java SDK Example =" );
         System.out.println(   "=   for simple store front    =" );
         System.out.println(   "===============================" );
+        
+        System.out.println(   "\nSDK Version: " + TangoCardServiceApi.GetVersion() + "\n" );
 
         Properties prop = new Properties();
         try {
@@ -104,11 +107,15 @@ public class TangoCard_Store_Example {
                     && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
-                System.out.println( "\tRecipient:         '"  + app_recipient_email + "'");
-                System.out.println( "\tReference Order ID: "  + responsePurchaseCard_Delivery.getReferenceOrderId() + "");
-                System.out.println( "\tCard Token:         "  + responsePurchaseCard_Delivery.getCardToken() + "");
-                System.out.println( "\tCard Number:        "  + responsePurchaseCard_Delivery.getCardNumber() + "");
-                System.out.println( "\tCard Pin:           "  + responsePurchaseCard_Delivery.getCardPin() + "");
+                System.out.println( "\tRecipient:           '"  + app_recipient_email + "'");
+                System.out.println( "\tCard SKU:            '"  + app_card_sku + "'");
+                System.out.println( "\tDenomination:         "  + app_card_value + "");
+                System.out.println( "\tReference Order ID:  '"  + responsePurchaseCard_Delivery.getReferenceOrderId() + "'");
+                System.out.println( "\tCard Token:          '"  + responsePurchaseCard_Delivery.getCardToken() + "'");
+                System.out.println( "\tCard Number:         '"  + responsePurchaseCard_Delivery.getCardNumber() + "'");
+                System.out.println( "\tCard Pin:            '"  + responsePurchaseCard_Delivery.getCardPin() + "'");
+                System.out.println( "\tClaim URL:           '"  + responsePurchaseCard_Delivery.getClaimUrl() + "'");
+                System.out.println( "\tChallenge Key:       '"  + responsePurchaseCard_Delivery.getChallengeKey() + "'");
             }
             
             PurchaseCardResponse responsePurchaseCard_NoDelivery = new PurchaseCardResponse();
@@ -129,10 +136,14 @@ public class TangoCard_Store_Example {
                     && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - No Delivery\n" );
-                System.out.println( "\tReference Order ID: "  + responsePurchaseCard_NoDelivery.getReferenceOrderId() + "");
-                System.out.println( "\tCard Token:         "  + responsePurchaseCard_NoDelivery.getCardToken() + "");
-                System.out.println( "\tCard Number:        "  + responsePurchaseCard_NoDelivery.getCardNumber() + "");
-                System.out.println( "\tCard Pin:           "  + responsePurchaseCard_NoDelivery.getCardPin() + "");
+                System.out.println( "\tCard SKU:            '"  + app_card_sku + "'");
+                System.out.println( "\tDenomination:         "  + app_card_value + "");
+                System.out.println( "\tReference Order ID:  '"  + responsePurchaseCard_NoDelivery.getReferenceOrderId() + "'");
+                System.out.println( "\tCard Token:          '"  + responsePurchaseCard_NoDelivery.getCardToken() + "'");
+                System.out.println( "\tCard Number:         '"  + responsePurchaseCard_NoDelivery.getCardNumber() + "'");
+                System.out.println( "\tCard Pin:            '"  + responsePurchaseCard_NoDelivery.getCardPin() + "'");
+                System.out.println( "\tClaim URL:           '"  + responsePurchaseCard_NoDelivery.getClaimUrl() + "'");
+                System.out.println( "\tChallenge Key:       '"  + responsePurchaseCard_NoDelivery.getChallengeKey() + "'");
             }
             
             GetAvailableBalanceResponse responseUpdatedBalance = new GetAvailableBalanceResponse();
@@ -149,13 +160,12 @@ public class TangoCard_Store_Example {
             }
         } catch ( TangoCardServiceException e ) {
             System.out.println( "TangoCardServiceException: '" + e.getMessage() + "'" );
-           
         } catch ( TangoCardSdkException e ) {
             System.out.println( "TangoCardSdkException: '" + e.getMessage() + "'" );
-            System.out.print( e.getStackTrace());
+            System.out.print( "Stack Trace: " + Arrays.toString(e.getStackTrace()) );
         } catch ( Exception e ) {
             System.out.println( "Exception: '" + e.getMessage() + "'" );
-            System.out.print( e.getStackTrace());
+            System.out.print( "Stack Trace: " + Arrays.toString(e.getStackTrace()) );
         }
         
         System.out.println(   "===============================" );        

@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-05</h4>
+<h4>Update: 2012-10-09</h4>
 ===
 
 # Table of Contents #
@@ -397,7 +397,7 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
     String card_sku = "tango-card";
     int cardValueTangoCardCents = 100; // $1.00 dollars
     
-    PurchaseCardResponse response = new PurchaseCardResponse();
+    PurchaseCardResponse responsePurchaseCard = new PurchaseCardResponse();
     if ( TangoCardServiceApi.PurchaseCard(
             enumTangoCardServiceApi,            // API environment
             username,                           // username
@@ -410,16 +410,18 @@ This request is defined by static method call `tangocard.sdk.TangoCardServiceApi
             "Happy Birthday",                   // giftMessage
             "Bill Company",                     // giftFrom
             null,                               // companyIdentifier (default Tango Card email template)
-            response                            // response 
+            responsePurchaseCard                // response 
             ) 
-            && (null != response)
+            && (null != responsePurchaseCard)
     ) {
     {
         System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
-        System.out.println( "\tReference Order ID: "  + response.getReferenceOrderId() + "");
-        System.out.println( "\tCard Token:         "  + response.getCardToken() + "");
-        System.out.println( "\tCard Number:        "  + response.getCardNumber() + "");
-        System.out.println( "\tCard Pin:           "  + response.getCardPin() + "");
+        System.out.println( "\tReference Order ID:  '"  + responsePurchaseCard.getReferenceOrderId() + "'");
+        System.out.println( "\tCard Token:          '"  + responsePurchaseCard.getCardToken() + "'");
+        System.out.println( "\tCard Number:         '"  + responsePurchaseCard.getCardNumber() + "'");
+        System.out.println( "\tCard Pin:            '"  + responsePurchaseCard.getCardPin() + "'");
+        System.out.println( "\tClaim URL:           '"  + responsePurchaseCard.getClaimUrl() + "'");
+        System.out.println( "\tChallenge Key:       '"  + responsePurchaseCard.getChallengeKey() + "'");
     }
 ```
 
@@ -481,6 +483,12 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
   
   <dt>String getCardPin</dt>
   <dd>- Card pin provided to the recipient used to validate provided Card number a redemption upon the www.tangocard.com site.</dd>
+  
+  <dt>String getClaimURL</dt>
+  <dd>- It is the address of a web page on the World Wide Web. This URL can only be accessed through the email you received. It is a unique URL, meaning that it cannot be duplicated or altered..</dd>
+  
+  <dt>String getChallangeKey</dt>
+  <dd>- Depending on the retailer, some eGift Cards Challenge Key in order to be accessed; if that is the case you will find it next to your link or URL. You will be prompted to input your Challenge Key when you try to open your eGift Card.</dd>
 </dl>
 
 <a name="sdk_error_handling"></a>
@@ -586,18 +594,14 @@ Wrap every Tango Card request call within a try/catch block, followed by first c
         System.out.println("=== Tango Card Service Failure ===");
         System.out.println( String.format("Failure response type: %s", ex.getResponseType()) );
         System.out.println( String.format("Failure response:      %s", ex.getMessage()));
-        
     }
     catch (TangoCardSdkException ex)
     {
-        
         System.out.println("=== Tango Card SDK Failure ===");
         System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));
-        
     }
     catch (Exception ex)
     {
-        
         System.out.println("=== Unexpected Error ===");
         System.out.println( String.format("%s :: %s", ex.getClass().toString(), ex.getMessage()));            
     }

@@ -36,8 +36,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import tangocard.sdk.TangoCardServiceApi;
-
 public class SdkConfig {
 
     private static SdkConfig _instanceObject = null;

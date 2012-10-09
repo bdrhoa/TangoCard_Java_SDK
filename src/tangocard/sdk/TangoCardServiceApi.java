@@ -42,6 +42,20 @@ public final class TangoCardServiceApi {
      */
     private TangoCardServiceApi() {}
     
+    /**
+     * Get SDK Version from config file.
+     * @return String SDK version
+     */
+    public static String GetVersion() {
+        SdkConfig sdkConfig;
+        try {
+            sdkConfig = SdkConfig.getInstance();
+            return sdkConfig.getConfigValue("tc_sdk_version");
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+    
     
     /**
      * Gets the available balance.
