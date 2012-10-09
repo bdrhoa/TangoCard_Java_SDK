@@ -51,12 +51,12 @@ public class SdkConfig {
      */
     private SdkConfig() throws Exception {
         this._tc_sdk_config = new Properties();
+        String strFilePath = "tc_sdk_config.properties";
         try {
-            String filePathString = "../config/tc_sdk_config.properties";
-            InputStream inputStream = TangoCardServiceApi.class.getResourceAsStream(filePathString); 
+            InputStream inputStream = this.getClass().getResourceAsStream(strFilePath); 
             this._tc_sdk_config.load(inputStream);
         } catch ( IOException e ) {
-            throw new TangoCardSdkException( "IOException", e);
+            throw new TangoCardSdkException( String.format("IOException: Problems getting SDK configuration resource: '%s', error: '%s'", strFilePath, e.getMessage()), e);
         } catch ( Exception e ) {
             throw e;
         }

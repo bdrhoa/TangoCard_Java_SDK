@@ -208,12 +208,18 @@ public class ServiceProxy {
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-length", String.valueOf(this._str_request_json.length()));
-                connection.setRequestProperty("Content-Type","application/json; charset=utf-8");
+                connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
     
                 // open up the output stream of the connection
                 DataOutputStream output = new DataOutputStream( connection.getOutputStream() );
                 output.write(this._str_request_json.getBytes());
-    
+            } catch(IOException e) {
+                throw new TangoCardSdkException( String.format("IOException: Problems processing request: '%s'", e.getMessage()), e );
+            } catch(Exception e) {
+                throw new TangoCardSdkException( String.format("Exception: Problems processing request: '%s'", e.getMessage()), e );
+            } 
+            
+            try {
                 // now read the input stream until it is closed, line by line adding to the response
                 InputStream inputstream = connection.getInputStream();
                 InputStreamReader inputstreamreader = new InputStreamReader(inputstream);
@@ -225,9 +231,9 @@ public class ServiceProxy {
                 }
     
                 responseJsonEncoded = response.toString();        
-            } catch(IOException e) {
-                throw new TangoCardSdkException( "IOException", e );
-            }
+            } catch(Exception e) {
+                throw new TangoCardSdkException( String.format("Exception: Problems reading response: '%s'", e.getMessage()), e );
+            } 
         }
 
         return responseJsonEncoded;
