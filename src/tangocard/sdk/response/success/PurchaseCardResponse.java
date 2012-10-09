@@ -117,16 +117,25 @@ public class PurchaseCardResponse extends SuccessResponse {
     public boolean parseResponseJSON( JSONObject responseJson ) throws TangoCardSdkException
     {
         boolean isSuccess = false;
+        
         try {
-            this._referenceOrderId         = responseJson.getJSONObject("response").getString("referenceOrderId");
-            this._cardToken             = responseJson.getJSONObject("response").getString("cardToken");
-            if ( responseJson.getJSONObject("response").has("cardNumber")) {
-                this._cardNumber         = responseJson.getJSONObject("response").getString("cardNumber");
+            JSONObject response = responseJson.getJSONObject("response");
+
+            if ( null != response ) {
+                if ( response.has("referenceOrderId") && !response.isNull("referenceOrderId")) {
+                    this._referenceOrderId = response.getString("referenceOrderId");
+                }
+                if ( response.has("cardToken") && !response.isNull("cardToken")) {
+                    this._cardToken = response.getString("cardToken");
+                }
+                if ( response.has("cardNumber") && !response.isNull("cardNumber")) {
+                    this._cardNumber = response.getString("cardNumber");
+                }
+                if ( response.has("cardPin") && !response.isNull("cardPin")) {
+                    this._cardPin = response.getString("cardPin");
+                }
+                isSuccess = true;
             }
-            if ( responseJson.getJSONObject("response").has("cardPin")) {
-                this._cardPin             = responseJson.getJSONObject("response").getString("cardPin");
-            }
-            isSuccess = true;
         } catch (JSONException e) {
             throw new TangoCardSdkException( "JSONException", e );
         }

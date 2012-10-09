@@ -85,8 +85,14 @@ public class GetAvailableBalanceResponse extends SuccessResponse {
     {
         boolean isSuccess = false;
         try {
-            this._availableBalance = responseJson.getJSONObject("response").getInt("availableBalance");
-            isSuccess = true;
+            JSONObject response = responseJson.getJSONObject("response");
+
+            if ( null != response ) {
+                if ( response.has("availableBalance") && !response.isNull("availableBalance")) {
+                    this._availableBalance = response.getInt("availableBalance");
+                    isSuccess = true;
+                }
+            }
         } catch (JSONException e) {
             throw new TangoCardSdkException( "JSONException", e );
         }

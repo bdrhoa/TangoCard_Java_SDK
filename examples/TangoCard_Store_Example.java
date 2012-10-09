@@ -29,7 +29,6 @@
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.text.NumberFormat;
 import java.util.Properties;
 
 import tangocard.sdk.TangoCardServiceApi;
@@ -84,9 +83,6 @@ public class TangoCard_Store_Example {
             ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Initial");
                 int tango_cents_available_balance = responseAvailableBalance.getAvailableBalance();
-                double currencyAmount = tango_cents_available_balance/100;
-                NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-                String currencyAmountFormatted = currencyFormatter.format(currencyAmount);
                 System.out.println(String.format("\t'%s': Available balance: %d.", app_username, tango_cents_available_balance));
             }
 
@@ -149,19 +145,16 @@ public class TangoCard_Store_Example {
             ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Concluding");
                 int tango_cents_available_balance = responseUpdatedBalance.getAvailableBalance();
-                double currencyAmount = tango_cents_available_balance/100;
-                NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-                String currencyAmountFormatted = currencyFormatter.format(currencyAmount);
                 System.out.println(String.format("\t'%s': Available balance: %d.", app_username, tango_cents_available_balance));
             }
         } catch ( TangoCardServiceException e ) {
-            System.out.println( "TangoCardServiceException: " + e.getMessage() );
+            System.out.println( "TangoCardServiceException: '" + e.getMessage() + "'" );
            
         } catch ( TangoCardSdkException e ) {
-            System.out.println( "TangoCardSdkException: " + e.getMessage() );
+            System.out.println( "TangoCardSdkException: '" + e.getMessage() + "'" );
             System.out.print( e.getStackTrace());
         } catch ( Exception e ) {
-            System.out.println( "Exception: " + e.getMessage() );
+            System.out.println( "Exception: '" + e.getMessage() + "'" );
             System.out.print( e.getStackTrace());
         }
         

@@ -67,7 +67,7 @@ public class ServiceProxy {
     private String _path = null;
     
     /** The _request_json. */
-    private String _request_json = null;
+    private String _str_request_json = null;
     
     /** The _request object. */
     private BaseRequest _requestObject = null;
@@ -166,9 +166,9 @@ public class ServiceProxy {
     {
         boolean isSuccess = false;
         try {            
-            String responseJsonEncoded = this._requestObject.getJsonEncodedRequest();
-            if ( !Helper.isNullOrEmptyString(responseJsonEncoded) ) {
-                this._request_json = responseJsonEncoded;
+            String strResponseJson = this._requestObject.getJsonEncodedRequest();
+            if ( !Helper.isNullOrEmptyString(strResponseJson) ) {
+                this._str_request_json = strResponseJson;
                 isSuccess = true;
             }
         } catch (Exception e) {
@@ -207,12 +207,12 @@ public class ServiceProxy {
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-length", String.valueOf(this._request_json.length()));
+                connection.setRequestProperty("Content-length", String.valueOf(this._str_request_json.length()));
                 connection.setRequestProperty("Content-Type","application/json; charset=utf-8");
     
                 // open up the output stream of the connection
                 DataOutputStream output = new DataOutputStream( connection.getOutputStream() );
-                output.write(this._request_json.getBytes());
+                output.write(this._str_request_json.getBytes());
     
                 // now read the input stream until it is closed, line by line adding to the response
                 InputStream inputstream = connection.getInputStream();
