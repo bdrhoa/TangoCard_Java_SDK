@@ -40,6 +40,7 @@
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     <property file="build.properties"/>
+    <!--
     <target name="increment">
         <propertyfile file="build.properties">
             <entry key="build.revision.number" type="int" operation="+" default="0"/>
@@ -47,6 +48,7 @@
         <property file="build.properties"/>
         <echo message="Build number is ${build.revision.number}"/>
     </target>
+    -->
     <path id="JUnit.libraryclasspath">
         <pathelement location="lib/junit-4.10.jar"/>
     </path>
@@ -74,7 +76,10 @@
         <delete file="TangoCard_Java_SDK.jar"/>
     </target>
     <target name="cleanall" depends="clean" />
+    <!--
     <target name="build" depends="cleanall,build-subprojects,build-project,increment,compress" />
+    -->
+    <target name="build" depends="cleanall,build-subprojects,build-project,compress" />
     <target name="build-subprojects"/>
     <target name="compress" depends="build-project" >
         <echo message="dist/${build.name}-${build.major.number}.${build.minor.number}.${build.revision.number}.jar" />

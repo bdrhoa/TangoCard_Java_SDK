@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-09</h4>
+<h4>Update: 2012-10-10</h4>
 ===
 
 # Table of Contents #
@@ -695,34 +695,47 @@ This example is intended to be run from the command line by using `ant`:
 #### Example Command Line Run ####
 
 ```Text
-    ===============================
-    = Tango Card Java SDK Example =
-    =   for simple store front    =
-    ===============================
-
-    Success - GetAvailableBalance - Initial
-            I have an available balance of $8,755,654.00 dollars.
-
-    Success - PurchaseCard - Delivery
-
-            Reference Order ID: 112-07212466-28
-            Card Token:         501385bb04f608.38922035
-            Card Number:        7001-8040-0176-7850-913
-            Card Pin:           368525
-
-    Success - PurchaseCard - No Delivery
-
-            Reference Order ID: 112-07212467-28
-            Card Token:         501385bb84a0f7.11849672
-            Card Number:        7001-5040-0168-6066-118
-            Card Pin:           701172
-
-    Success - GetAvailableBalance - Concluding
-            I have an available balance of $8,755,652.00 dollars.
-            
-    ===============================
-    =   The End                   =
-    ===============================
+TangoCard_Store_Example:
+     [java]
+     [java] ===============================
+     [java] = Tango Card Java SDK Example =
+     [java] =   for simple store front    =
+     [java] ===============================
+     [java]
+     [java] SDK Version: 1.1.7
+     [java]
+     [java]
+     [java] Success - GetAvailableBalance - Initial
+     [java]     'third_party_int@tangocard.com': Available balance: 842218467.
+     [java]
+     [java] Success - PurchaseCard - Delivery
+     [java]
+     [java]     Recipient:           'sally@example.com'
+     [java]     Card SKU:            'tango-card'
+     [java]     Denomination:         100
+     [java]     Reference Order ID:  '112-10215780-10'
+     [java]     Card Token:          '507608f4addb23.60144944'
+     [java]     Card Number:         '7001-0040-0161-3464-219'
+     [java]     Card Pin:            '703135'
+     [java]     Claim URL:           'null'
+     [java]     Challenge Key:       '7001004001613464219'
+     [java]
+     [java] Success - PurchaseCard - No Delivery
+     [java]
+     [java]     Card SKU:            'tango-card'
+     [java]     Denomination:         100
+     [java]     Reference Order ID:  '112-10215781-10'
+     [java]     Card Token:          '507608f51a62f2.11205198'
+     [java]     Card Number:         '7001-6040-0162-8822-612'
+     [java]     Card Pin:            '889515'
+     [java]     Claim URL:           'null'
+     [java]     Challenge Key:       '7001604001628822612'
+     [java]
+     [java] Success - GetAvailableBalance - Concluding
+     [java]     'third_party_int@tangocard.com': Available balance: 842218267.
+     [java] ===============================
+     [java] =   The End                   =
+     [java] ===============================
 ```
 
 ### <code>TangoCard_Failures_Example.java</code> ###
@@ -743,28 +756,38 @@ This example is intended to be run from the command line by using `ant`:
 #### Example Command Line Run ####
 
 ```Text
-    ===============================
-    = Tango Card Java SDK Example =
-    =   with Failures             =
-    ===============================
-    
-    ======== Get Available Balance ========
-    === Tango Card Service Failure ===
-    Failure response type: INV_CREDENTIAL
-    Failure response:      Provided user credentials are not valid.
-    ===== End Get Available Balance ====
-
-    ======== Purchase Card ========
-    === Tango Card Service Failure ===
-    Failure response type: INS_FUNDS
-    Failure response:      Available Balance: 0, Order Cost: 100
-    AvailableBalance:      0
-    OrderCost:             100
-    ===== End Get Available Balance ====
-
-    ===============================
-    =   The End                   =
-    ===============================
+TangoCard_Failures_Example:
+     [java]
+     [java] ===============================
+     [java] = Tango Card Java SDK Example =
+     [java] =   with Failures             =
+     [java] ===============================
+     [java]
+     [java] SDK Version: 1.1.7
+     [java]
+     [java]
+     [java] ======== Get Available Balance with Invalid Credentials ========
+     [java] === Tango Card Service Failure ===
+     [java] Failure response type: INV_CREDENTIAL
+     [java] Failure response:      Provided user credentials are not valid.
+     [java] ===== End Get Available Balance with Invalid Credentials ====
+     [java]
+     [java]
+     [java]
+     [java]
+     [java] ======== Purchase Card with Insufficient Funds ========
+     [java] === Tango Card Service Failure ===
+     [java] Failure response type: INS_FUNDS
+     [java] Failure response:      Available Balance: 0, Order Cost: 100
+     [java] AvailableBalance:      0
+     [java] OrderCost:             100
+     [java] ===== End Purchase Card with Insufficient Funds ====
+     [java]
+     [java]
+     [java]
+     [java] ===============================
+     [java] =   The End                   =
+     [java] ===============================
 ```
 <a name="unittests"></a>
 ## unittests ##

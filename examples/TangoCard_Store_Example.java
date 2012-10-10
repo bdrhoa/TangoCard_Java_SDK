@@ -53,7 +53,7 @@ public class TangoCard_Store_Example {
         System.out.println(   "= Tango Card Java SDK Example =" );
         System.out.println(   "=   for simple store front    =" );
         System.out.println(   "===============================" );
-        
+
         System.out.println(   "\nSDK Version: " + TangoCardServiceApi.GetVersion() + "\n" );
 
         Properties prop = new Properties();
