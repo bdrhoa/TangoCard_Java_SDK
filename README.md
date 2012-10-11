@@ -490,16 +490,16 @@ The `tangocard.sdk.response.success.PurchaseCardResponse` properties are:
   <dd>- Card reference to the aforementioned purchase.</dd>
   
   <dt>String getCardNumber</dt>
-  <dd>- Card number provided to the recipient to be used at redemption upon the www.tangocard.com site.</dd>
+  <dd>- If available, the card number provided to the recipient to be used at redemption of eGift Card upon the www.tangocard.com site.</dd>
   
   <dt>String getCardPin</dt>
-  <dd>- Card pin provided to the recipient used to validate provided Card number a redemption upon the www.tangocard.com site.</dd>
+  <dd>- If available, the card pin provided to the recipient used to validate provided eGift Card number a redemption upon the www.tangocard.com site.</dd>
   
   <dt>String getClaimURL</dt>
-  <dd>- It is the address of a web page on the World Wide Web. This URL can only be accessed through the email you received. It is a unique URL, meaning that it cannot be duplicated or altered..</dd>
+  <dd>- If available, the claim URL is an address to a web page on the World Wide Web. This URL can only be accessed through the email you received. It is a unique URL, meaning that it cannot be duplicated or altered.</dd>
   
   <dt>String getChallangeKey</dt>
-  <dd>- Depending on the retailer, some eGift Cards Challenge Key in order to be accessed; if that is the case you will find it next to your link or URL. You will be prompted to input your Challenge Key when you try to open your eGift Card.</dd>
+  <dd>- If available, the challenge key provides access, which can be found next to the aforementioned claim URL. You will be prompted to input your Challenge Key when you try to open your eGift Card.</dd>
 </dl>
 
 <a name="sdk_error_handling"></a>
