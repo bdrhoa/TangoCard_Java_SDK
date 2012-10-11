@@ -100,7 +100,7 @@ For those developers who wish to develop directly with our `Tango Card Service A
 ## Incorporate the Tango Card ##
 The Tango Card SDKs, through our <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.
 
-Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
+Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want â€“ they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
 
 Tango Card value can be used via the web or from almost any mobile device. There are no fees or expiration dates of any kind. It's great for the recipient, and even better for you because it is an entire gift card program delivered in one card allowing you to focus on your core business. 
 
@@ -471,6 +471,17 @@ Assuming success, the `out` parameter `response` will be an instance of `tangoca
 
 ### `tangocard.sdk.response.success.PurchaseCardResponse` Properties ###
 
+The purpose of providing `PurchaseCard()` response properties is if you so choose, then you may record digital gift purchase confirmation and card redemption information within your own database.
+
+Depending on how you set `tangocard.sdk.TangoCardServiceApi.PurchaseCard()` parameter `tcSend`:
+<dl>
+<dt>If <code>tcSend = true</code></dt>
+<dd>Then both you (the gift card requester) and the gift card recipient are provided with all necessary redemption information to redeem the emailed digital gift card sent by our Tango Card Service.</dd>
+<dt>If <code>tcSend = false</code></dt>
+<dd>Then you (the gift card requester) are provided with all necessary card redemption information, and it is your choice on how you wish to deliver the digital gift card redemption information to gift card recipients.</dd>
+</dl>
+
+The `tangocard.sdk.response.success.PurchaseCardResponse` properties are: 
 <dl>
   <dt>String getReferenceOrderId</dt>
   <dd>- Confirmation number of purchase.</dd>
