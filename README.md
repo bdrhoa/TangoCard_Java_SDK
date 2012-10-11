@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-10</h4>
+<h4>Update: 2012-10-11</h4>
 ===
 
 # Table of Contents #
@@ -489,16 +489,16 @@ The `tangocard.sdk.response.success.PurchaseCardResponse` properties are:
   <dt>String getCardToken</dt>
   <dd>- Card reference to the aforementioned purchase.</dd>
   
-  <dt>String getCardNumber</dt>
+  <dt>String|null getCardNumber</dt>
   <dd>- If available, the card number provided to the recipient to be used at redemption of eGift Card upon the www.tangocard.com site.</dd>
   
-  <dt>String getCardPin</dt>
+  <dt>String|null getCardPin</dt>
   <dd>- If available, the card pin provided to the recipient used to validate provided eGift Card number a redemption upon the www.tangocard.com site.</dd>
   
-  <dt>String getClaimURL</dt>
+  <dt>String|null getClaimURL</dt>
   <dd>- If available, the claim URL is an address to a web page on the World Wide Web. This URL can only be accessed through the email you received. It is a unique URL, meaning that it cannot be duplicated or altered.</dd>
   
-  <dt>String getChallangeKey</dt>
+  <dt>String|null getChallangeKey</dt>
   <dd>- If available, the challenge key provides access, which can be found next to the aforementioned claim URL. You will be prompted to input your Challenge Key when you try to open your eGift Card.</dd>
 </dl>
 
