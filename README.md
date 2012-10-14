@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-11</h4>
+<h4>Update: 2012-10-14</h4>
 ===
 
 # Table of Contents #
@@ -524,7 +524,7 @@ The `Tango Card SERVICE API` handles its errors by returning the following failu
     <tr><td>Insufficient Inventory</td><td><code>INS_INV</code></td><td><code>tangocard.sdk.response.failure.InsufficientInventoryResponse</code></td></tr> 
     <tr><td>Invalid Credentials</td><td><code>INV_CREDENTIAL</code></td><td><code>tangocard.sdk.response.failure.InvalidCredentialsResponse</code></td></tr> 
     <tr><td>Invalid Input</td><td><code>INV_INPUT</code></td><td><code>tangocard.sdk.response.failure.InvalidInputResponse</code></td></tr>
-    <tr><td>System Failure</td><td><code>SYS_ERROR</code></td><td><code>tangocard.sdk.response.failure.SystemFailureResponse</code></td></tr>
+    <tr><td>System Failure</td><td><code>SYS_ERROR</code></td><td><code>tangocard.sdk.response.failure.SystemErrorResponse</code></td></tr>
 </table>
 
 Each of the aforementioned `Failure Responses` contains details as to the reason that the `Tango Card Service API` did not perform provided `Request`.
@@ -550,7 +550,7 @@ The exception has two properties that define what was failure response from the 
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
                 <tr><td><code>INV_CREDENTIAL</code></td><td><code>InvalidCredentialsResponse</code></td></tr> 
-                <tr><td><code>SYS_ERROR</code></td><td><code>SystemFailureResponse</code></td></tr>
+                <tr><td><code>SYS_ERROR</code></td><td><code>SystemErrorResponse</code></td></tr>
             </table>
         </td>
     </tr>
@@ -563,7 +563,7 @@ The exception has two properties that define what was failure response from the 
                 <tr><td><code>INS_INV</code></td><td><code>InsufficientInventoryResponse</code></td></tr> 
                 <tr><td><code>INV_CREDENTIAL</code></td><td><code>InvalidCredentialsResponse</code></td></tr> 
                 <tr><td><code>INV_INPUT</code></td><td><code>InvalidInputResponse</code></td></tr>
-                <tr><td><code>SYS_ERROR</code></td><td><code>SystemFailureResponse</code></td></tr>
+                <tr><td><code>SYS_ERROR</code></td><td><code>SystemErrorResponse</code></td></tr>
             </table>
         </td>
     </tr>
