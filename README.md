@@ -1,6 +1,6 @@
 <h1>Tango Card Java SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-14</h4>
+<h4>Update: 2012-10-30</h4>
 ===
 
 # Table of Contents #
@@ -31,6 +31,7 @@
         <ul>
             <li><a href="#sdk_support_resolve">Resolving Issues</a>
                 <ul>
+                    <li><a href="#sdk_support_health_check">Service Health Check</a></li>
                     <li><a href="#sdk_support_resolve_fiddler_2">Fiddler 2</a></li>
                     <li><a href="#sdk_support_resolve_jquery_diagnostic_tool">Tango Card Diagnostic Tool</a></li>
                 </ul>
@@ -38,7 +39,15 @@
         </ul>
     </li>
     <li><a href="#sdk_overview">SDK Overview</a></li>
-    <li><a href="#sdk_requirements">SDK Requirements</a></li>
+    <li><a href="#sdk_requirements">SDK Requirements</a>
+		<ul>
+			<li><a href="#sdk_requirements_environment">Java Environment</a></li>
+			<li><a href="#sdk_requirements_ssl">SSL Certificates</a>
+			    
+			</li>
+		</ul>
+	
+	</li>
     <li><a href="#tango_card_service_api_requests">Tango Card Service API Requests</a>
         <ul>
             <li><a href="#tango_card_service_api_endpoints">Tango Card Service API Endpoints</a></li>
@@ -184,6 +193,14 @@ If you have any issues using this SDK, such as bugs or change requests, then ple
 
 To expidite any issues you might be experiencing with our `Tango Card Service API` or our `Tango Card SDKs`, gather as much information by using the following two resolution approaches, and include the results when you contact us through <a href="mailto:sdk@tangocard.com?Subject=Tango Card C#/.NET 4.0 SDK Question">sdk@tangocard.com</a>.
 
+<a name="sdk_support_health_check"></a>
+### Service Health Check ###
+
+If you are having any issues with either INTEGRATION or PRODUCTION Tango Card Service API, check the endpoints' availability through a browser using the following health check URLs which should return a webpage with the text `"alive"`:
+
+* INTEGRATION: [https://int.tangocard.com/Health/check](https://int.tangocard.com/Health/check)
+* PRODUCTION: [https://api.tangocard.com/Health/check](https://api.tangocard.com/Health/check)
+
 <a name="sdk_support_resolve_fiddler_2"></a>
 ### Fiddler 2 ###
 
@@ -249,12 +266,99 @@ The wrapper class `tangocard.sdk.TangoCardServiceApi` currently handles the foll
 <a name="sdk_requirements"></a>
 # SDK Requirements #
 
+<a name="sdk_requirements_environment"></a>
+## Java Environment ##
 To use this SDK, here are requirements:
 
 * [Java Development Kit 1.6+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Java Runtime Environment 6 / 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [JSON in Java](http://www.json.org/java/) - *org.json-20120521.jar*, included within `\lib\` folder of this SDK.
 * [Apache ANT](http://ant.apache.org/)
+
+<a name="sdk_requirements_ssl"></a>
+## SSL Certificate ##
+
+The Tango Card API Endpoints provides DigiCert WildCard SSL Certificate which is signed by one called "DigiCert High Assurance CA-3":
+
+* [INTEGRATION DigiCert: https://int.tangocard.com](http://www.digicert.com/api/check-host.php?host=https%3A%2F%2F*.tangocard.com&order_id=&r=538)
+* [PRODUCTION DigiCert: https://api.tangocard.com](http://www.digicert.com/api/check-host.php?host=https%3A%2F%2Fapi.tangocard.com&order_id=&r=538)
+
+Making a connection to our Tango Card Service API over SSL (or https) programmatically, the Java runtime needs to trust the certificate of this server.
+
+Secure Socket Layer (SSL) technology allows web browsers and web servers to communicate over a secure connection. In this secure connection, the data that is being sent is encrypted before being sent and then is decrypted upon receipt and before processing. Both the browser and the server encrypt all traffic before sending any data. SSL addresses the following important security considerations.
+
+Java runtime uses a certificate store, which usually consists of a cacerts file, located in the jre/lib/security directory of your Java installation. If you are using the Directory Synchronization Client with its own Java Runtime, the jre directory is located in the directory where the client is installed.
+
+The `cacerts file` used to keep the root certificates of signing authorities.
+
+### Validate Access to Root Certificate ###
+
+The root certificate used by Tango Card for SSL access is `DigiCert High Assurance EV Root CA`. To find this root certificate within Java runtime's `cacerts` will look for alias `digicerthighassuranceevrootca` using Java's key and certificate management utility [keytool](http://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html):
+```bash
+keytool -list -v -keystore $JAVA_HOME/jre/lib/security/cacerts -alias digicerthighassuranceevrootca
+```
+
+If this DigiCert certificate was installed, then it should find the trusted root certificate with alias `digicerthighassuranceevrootca`:
+```bash
+Alias name: digicerthighassuranceevrootca
+Creation date: Jan 7, 2008
+Entry type: trustedCertEntry
+
+Owner: CN=DigiCert High Assurance EV Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+Issuer: CN=DigiCert High Assurance EV Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+Serial number: 2ac5c266a0b409b8f0b79f2ae462577
+Valid from: Thu Nov 09 16:00:00 PST 2006 until: Sun Nov 09 16:00:00 PST 2031
+Certificate fingerprints:
+	 MD5:  D4:74:DE:57:5C:39:B2:D3:9C:85:83:C5:C0:65:49:8A
+	 SHA1: 5F:B7:EE:06:33:E2:59:DB:AD:0C:4C:9A:E6:D3:8F:1A:61:C7:DC:25
+	 Signature algorithm name: SHA1withRSA
+	 Version: 3
+```
+
+If it is not there, then you will need to import our DigiCert Public Key to trust our Tango Card Service API into your Java runtime environment.
+
+<a name="sdk_requirements_ssl_import"></a>
+### Import Tango Card DigiCert Public Key ###
+
+If you have determined that `` DigiCert root certificate was not included within Java runtimes cacerts, then here is how you will perform a manual import.
+
+
+<a name="sdk_requirements_ssl_get_public_key"></a>
+#### Get Tango Card DigiCert Public Key ####
+
+First, you will need to gather our DigiCert Public Key and save it into a file named `tangocarddigicertrootca.cer`.
+
+There are two approaches in performing this task, one using [Google Chrome](https://www.google.com/intl/en/chrome/browser/) and the other using tool [OpenSSL](http://www.openssl.org/).
+
+<a name="sdk_requirements_ssl_get_public_key_chrome"></a>
+##### Using Google Chrome #####
+
+1. Using Google Chrome browser, open with URL [https://int.tangocard.com/Health/check](https://int.tangocard.com/Health/check). It should be showing only the text `"alive"` within the page.
+2. Click on green padlock left of aforementioned URL address to "View Site Information"
+3. Below a popup will appear, and then click link "Certificate Information"
+4. Another popup will appear labeled "Certificate", and then click tab "Details"
+5. Click on button "Copy To File"
+6. Click button "Next >"
+7. Select radio button "Base-64 encoded X.509 (.CER)", and click button "Next >"
+8. Give the public key certificate with file name `tangocarddigicertrootca.cer`, and click button "Next >"
+9. Click button "Finish"
+
+<a name="sdk_requirements_ssl_get_public_openssl"></a>
+##### Using OpenSSL #####
+
+```bash
+openssl s_client -connect int.tangocard.com:443 > ssl_session
+openssl x509 -pubkey -in ssl_session -out tangocard_api_b64_enc_X509.cer
+```
+
+<a name="sdk_requirements_ssl_keytool"></a>
+#### Java keytool: Import Public Key ####
+
+Using the Public Key 
+```bash
+keytool -import -alias tangocarddigicertrootca -file tangocarddigicertrootca.cer -keystore $JAVA_HOME/jre/lib/security/cacerts
+```
+
 
 <a name="tango_card_service_api_requests"></a>
 # Tango Card Service API Requests #
@@ -285,6 +389,7 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
                     <dd>integrateme</dd>
                 </dl>
             </li>
+			<li>Service Health Check: [https://int.tangocard.com/Health/check](https://int.tangocard.com/Health/check)</li>
         </ul>
     </dd>
     <dt><code>PRODUCTION</code></dt>
@@ -306,6 +411,7 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
                     <dd>Your Tango Card account's password</dd>
                 </dl>
             </li>
+			<li>Service Health Check: [https://api.tangocard.com/Health/check](https://api.tangocard.com/Health/check)</li>
         </ul>
     </dd>
 </dl>
