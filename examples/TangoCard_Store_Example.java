@@ -86,6 +86,7 @@ public class TangoCard_Store_Example {
             ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Initial");
                 int tango_cents_available_balance = responseAvailableBalance.getAvailableBalance();
+                System.out.println( "\tAPI Environment:     '"  + app_tango_card_service_api + "'");
                 System.out.println(String.format("\t'%s': Available balance: %d.", app_username, tango_cents_available_balance));
             }
 
@@ -97,10 +98,10 @@ public class TangoCard_Store_Example {
                     app_card_sku,                       // cardSku
                     app_card_value,                     // cardValue
                     true,                               // tcSend
-                    "Sally Example",                    // recipientName
+                    "Sally Java Example",               // recipientName
                     app_recipient_email,                // recipientEmail
-                    "Example: Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n\r601 Union Street, Suite 4200\r\nSeattle, WA\r98101",                // giftMessage
-                    "Bill Example",                     // giftFrom
+                    "Example: Hello from Tango Card Java SDK:\nTango Card\nPhone: 1-877-55-TANGO\n\r601 Union Street, Suite 4200\r\nSeattle, WA\r98101",                // giftMessage
+                    "Bill Java Company",                // giftFrom
                     null,                               // companyIdentifier
                     responsePurchaseCard_Delivery       // response 
                     ) 

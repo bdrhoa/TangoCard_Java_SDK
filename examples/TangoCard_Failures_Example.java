@@ -55,9 +55,9 @@ public class TangoCard_Failures_Example {
         System.out.println(   "=   with Failures             =" );
         System.out.println(   "===============================" );
         
-        System.out.println(   "\nSDK Version: " + TangoCardServiceApi.GetVersion() + "\n" );
-        
-        TangoCard_Failures_Example.Example_GetAvailableBalance_InvalidCredentials();
+        System.out.println(   "\nSDK Version: " +             TangoCardServiceApi.GetVersion() + "\n" );
+
+        TangoCard_Failures_Example.Example_GetAvailableBalance_InvalidCredentials();            TangoCard_Failures_Example.Example_PurchaseCard_InvalidCredentials();
         TangoCard_Failures_Example.Example_PurchaseCard_InsufficientFunds();
 
         System.out.println(   "===============================" );        
@@ -66,7 +66,7 @@ public class TangoCard_Failures_Example {
     }
     
     /**
-     * Example_ get available balance_ invalid credentials.
+     * Example GetAvailableBalance invalid credentials.
      *
      * @throws Exception the exception
      */
@@ -128,7 +128,81 @@ public class TangoCard_Failures_Example {
     }
 
     /**
-     * Example_ purchase card_ insufficient funds.
+     * Example PurchaseCard Invalid Credentials.
+     *
+     * @throws Exception the exception
+     */
+    static public void Example_PurchaseCard_InvalidCredentials() throws Exception
+    {
+        Properties prop = new Properties();        
+        try {
+            prop.load(new FileInputStream("config/app_config.properties"));
+        } catch ( FileNotFoundException e ) {
+            throw e;
+        } catch ( Exception e ) {
+            throw e;
+        }
+
+        String app_tango_card_service_api = prop.getProperty("app_tango_card_service_api");
+        TangoCardServiceApiEnum enumTangoCardServiceApi = TangoCardServiceApiEnum.valueOf(app_tango_card_service_api);
+
+        String username = "burt@example.com";
+        String password = "password";
+      
+        try
+        {
+            System.out.println("\n======== Purchase Card with Insufficient Funds ========");
+
+            PurchaseCardResponse response = new PurchaseCardResponse();
+            if ( TangoCardServiceApi.PurchaseCard(
+                    enumTangoCardServiceApi,       // API environment
+                    username,                        // username
+                    password,                       // password
+                    "tango-card",                   // cardSku
+                    100,                           // cardValue = $1.00 value
+                    false,                           // tcSend 
+                    null,                           // recipientName
+                    null,                           // recipientEmail
+                    null,                           // giftMessage
+                    null,                           // giftFrom
+                    null,                           // companyIdentifier
+                    response                       // response
+                    ) 
+                    && (null != response)
+            ) {       
+                System.out.println("=== Expected failure ===");               
+            }
+        }
+        catch (TangoCardServiceException e)
+        {        
+            System.out.println("=== Tango Card Service Failure ===");
+            System.out.println("Failure response type: " + e.getResponseType().toString());
+            System.out.println("Failure response:      " + e.getMessage());
+            if ( e.getResponseType().equals( ServiceResponseEnum.INS_FUNDS.toString() ) ) {
+                System.out.println("AvailableBalance:      " + ((InsufficientFundsResponse) e.getResponse()).getAvailableBalance());
+                System.out.println("OrderCost:             " + ((InsufficientFundsResponse) e.getResponse()).getOrderCost());
+            }          
+        }
+        catch (TangoCardSdkException e)
+        {
+            System.out.println("=== Tango Card SDK Failure ===");
+            System.out.println( String.format("%s :: %s", e.getCause().getClass().toString(), e.getMessage())); 
+
+            System.out.println(TangoCard_Failures_Example.getStackTrace(e));
+        }
+        catch (Exception e)
+        {          
+            System.out.println("=== Unexpected Error ===");
+            System.out.println( String.format("%s :: %s", e.getCause().getClass().toString(), e.getMessage()));   
+
+            System.out.println(TangoCard_Failures_Example.getStackTrace(e));
+        }
+
+        System.out.println("===== End Purchase Card with Insufficient Funds ====\n\n\n");
+    }
+	
+    /**
+     * Example PurchaseCard insufficient funds.
      *
      * @throws Exception the exception
      */
