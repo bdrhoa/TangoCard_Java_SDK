@@ -108,6 +108,7 @@ public class TangoCard_Store_Example {
                     && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - Delivery\n" );
+                System.out.println( "\tAPI Environment:     '"  + app_tango_card_service_api + "'");
                 System.out.println( "\tRecipient:           '"  + app_recipient_email + "'");
                 System.out.println( "\tCard SKU:            '"  + app_card_sku + "'");
                 System.out.println( "\tDenomination:         "  + app_card_value + "");
@@ -137,6 +138,7 @@ public class TangoCard_Store_Example {
                     && (null != responsePurchaseCard_Delivery)
             ) {
                 System.out.println( "\nSuccess - PurchaseCard - No Delivery\n" );
+                System.out.println( "\tAPI Environment:     '"  + app_tango_card_service_api + "'");
                 System.out.println( "\tCard SKU:            '"  + app_card_sku + "'");
                 System.out.println( "\tDenomination:         "  + app_card_value + "");
                 System.out.println( "\tReference Order ID:  '"  + responsePurchaseCard_NoDelivery.getReferenceOrderId() + "'");
@@ -157,6 +159,7 @@ public class TangoCard_Store_Example {
             ) {
                 System.out.println("\nSuccess - GetAvailableBalance - Concluding");
                 int tango_cents_available_balance = responseUpdatedBalance.getAvailableBalance();
+                System.out.println( "\tAPI Environment:     '"  + app_tango_card_service_api + "'");
                 System.out.println(String.format("\t'%s': Available balance: %d.", app_username, tango_cents_available_balance));
             }
         } catch ( TangoCardServiceException e ) {
